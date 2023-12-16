@@ -168,7 +168,22 @@ Unavailable Data: Some data is not collected or available through these surveys,
 
 ::: {.duedate}
 
-( 15 points; Answer due {{< var assess.group-date >}} )
+According to statistics on Airbnb listings, there are a total of 53,395 hosts for Airbnb properties  in London, which can be broadly categorized into four types: 
+a.individual hosts, who, as homeowners, may reside in the listed house or apartment.
+b.professional hosts, who are generally investors, buying property specifically for short-term lease to obtain a stable rental income. 
+c.listing management teams, companies or groups that oversee listings on behalf of property owners. Veeve, for instance, serves as a residential platform for visitors, facilitating homeowners in renting out their properties.
+d.hoteliers, who put some listings on the Airbnb platform to attract online bookings
+
+As a result, Airbnb hosts in London exhibit a diverse range of characteristics, contributing to the diversity of room type.
+
+The analysis of Airbnb listings indicates that a host may choose to list separate rooms within the same apartment or offer multiple apartments or homes for rent in their entirety.
+
+Hosts with multiple listings are more likely to be professional hosts, listing management teams or hotels. Their properties are generally dispersed across various geographical locations and are commonly situated in proximity to downtown areas.
+
+Airbnb hosts in London are primarily individual hosts, yet the presence of more professional landlords should not be overlooked. Among them, 1,389 hosts manage more than five listings, totaling 22,647 listings and constituting approximately 25.8 percent of all properties. Notably, STK Homes leads with the highest number of listings at 595.
+Airbnb listing room types in London are dominated by Entire home/apt(62.1%) and Private room(37.2%). In addition, there are a small number of Shared room and Hotel room.
+
+In central London ntire home/apt accounts for a large proportion of all listings, which is contrary to the rule of Private room. In most parts of London, Entire home/apt is the main room type, except for a few boroughs on the edge of the city. This may be due to the more Entire home/apt listings in central London because these areas may have more apartments and listings for rent. In the suburbs or other areas, independent houses may be more common, and hosts prefer to use some of them for rent, such as renting private rooms.
 
 :::
 
