@@ -179,7 +179,7 @@ When considering ethical considerations in using data from the Inside Airbnb web
 
 a. User Privacy and Data Security: The data contains precise geographical locations of Airbnb listings. While using this data, it's essential to ensure that personal privacy is not compromised and to comply with relevant data protection laws and standards.
 
-b. Original Data Accuracy and Reliability: Murray Cox, in his study "How Airbnb’s data hid the facts in New York City," highlighted that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability. This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation.
+b. Original Data Accuracy and Reliability: Murray Cox, in his study "How Airbnb’s data hid the facts in New York City," highlighted that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability(2016). This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation.
 
 c. Secondary Interpretation or Modification of Data: After scraping data from Airbnb, the website creator, Murray Cox, processed and filtered the data, which could introduce bias. If the original data or its processing is biased or flawed, these issues might be magnified in secondary references. Therefore, a thorough understanding of the data's original sources, processing methods, and potential limitations is necessary. There might be interpretations or modifications by the website creator to the original dataset, leading to misleading analysis outcomes. Potential information biases should be considered when using the data.
 
@@ -235,4 +235,6 @@ Your QMD file should automatically download your BibTeX file. We will then re-ru
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
 
 ## References
+Alsudais, Abdulkareem. 2021. “Incorrect Data in the Widely Used Inside Airbnb Dataset.” Decision Support Systems 141:113453. https://doi.org/10.1016/j.dss.2020.113453.
 
+Boyd,  danah and Crawford, K. (2012) ‘CRITICAL QUESTIONS FOR BIG DATA’, Information, Communication & Society, 15(5), pp. 662–679. Available at: https://doi.org/10.1080/1369118X.2012.678878.
