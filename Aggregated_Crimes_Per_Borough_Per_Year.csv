@@ -1,0 +1,100 @@
+Borough,Year,Crimes
+Barking and Dagenham,2021,6940
+Barking and Dagenham,2022,21169
+Barking and Dagenham,2023,15265
+Barnet,2021,9241
+Barnet,2022,27986
+Barnet,2023,19373
+Bexley,2021,5430
+Bexley,2022,16017
+Bexley,2023,11133
+Brent,2021,9768
+Brent,2022,30556
+Brent,2023,21165
+Bromley,2021,8276
+Bromley,2022,22899
+Bromley,2023,15763
+Camden,2021,10587
+Camden,2022,35266
+Camden,2023,26579
+Croydon,2021,11643
+Croydon,2022,34548
+Croydon,2023,22652
+Ealing,2021,10277
+Ealing,2022,30239
+Ealing,2023,21611
+Enfield,2021,10237
+Enfield,2022,30426
+Enfield,2023,20056
+Greenwich,2021,9284
+Greenwich,2022,28318
+Greenwich,2023,19698
+Hackney,2021,11559
+Hackney,2022,31931
+Hackney,2023,21285
+Hammersmith and Fulham,2021,7423
+Hammersmith and Fulham,2022,21084
+Hammersmith and Fulham,2023,15406
+Haringey,2021,10159
+Haringey,2022,29024
+Haringey,2023,20633
+Harrow,2021,5505
+Harrow,2022,16048
+Harrow,2023,11030
+Havering,2021,6048
+Havering,2022,19572
+Havering,2023,14025
+Hillingdon,2021,8226
+Hillingdon,2022,24045
+Hillingdon,2023,16625
+Hounslow,2021,8109
+Hounslow,2022,24985
+Hounslow,2023,18154
+Islington,2021,9324
+Islington,2022,28066
+Islington,2023,19560
+Kensington and Chelsea,2021,7141
+Kensington and Chelsea,2022,21194
+Kensington and Chelsea,2023,15473
+Kingston upon Thames,2021,4418
+Kingston upon Thames,2022,12366
+Kingston upon Thames,2023,8698
+Lambeth,2021,11591
+Lambeth,2022,33997
+Lambeth,2023,24187
+Lewisham,2021,9441
+Lewisham,2022,28201
+Lewisham,2023,20453
+London Heathrow and London City Airports,2021,864
+London Heathrow and London City Airports,2022,3426
+London Heathrow and London City Airports,2023,2347
+Merton,2021,4507
+Merton,2022,13972
+Merton,2023,9261
+Newham,2021,12539
+Newham,2022,36788
+Newham,2023,25427
+Redbridge,2021,8387
+Redbridge,2022,24468
+Redbridge,2023,16501
+Richmond upon Thames,2021,3785
+Richmond upon Thames,2022,11557
+Richmond upon Thames,2023,8193
+Southwark,2021,11378
+Southwark,2022,35257
+Southwark,2023,25292
+Sutton,2021,4764
+Sutton,2022,13508
+Sutton,2023,8856
+Tower Hamlets,2021,11809
+Tower Hamlets,2022,34640
+Tower Hamlets,2023,24466
+Waltham Forest,2021,7618
+Waltham Forest,2022,22936
+Waltham Forest,2023,15319
+Wandsworth,2021,9021
+Wandsworth,2022,24767
+Wandsworth,2023,17902
+Westminster,2021,22907
+Westminster,2022,78426
+Westminster,2023,58756

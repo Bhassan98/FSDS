@@ -1,0 +1,54 @@
+Borough,latitude,longitude,room_type,price,minimum_nights,number_of_reviews,reviews_per_month,calculated_host_listings_count,availability_365,number_of_reviews_ltm
+Islington,51.56861,-0.1127,Private room,79,1,41,0.26,2,360,11
+Kensington and Chelsea,51.4878,-0.16813,Entire home/apt,150,7,94,0.56,1,73,5
+Wandsworth,51.44201,-0.18739,Private room,42,2,216,1.45,1,217,9
+Westminster,51.52195,-0.14094,Entire home/apt,476,3,54,0.36,9,300,4
+Hammersmith and Fulham,51.49993,-0.21707,Entire home/apt,175,5,38,0.27,1,40,2
+Greenwich,51.47618,0.01442,Private room,46,4,180,1.21,1,196,25
+Wandsworth,51.47072,-0.16266,Entire home/apt,250,2,96,0.62,1,0,0
+Westminster,51.51881,-0.1965,Entire home/apt,371,5,24,0.16,1,266,3
+Barnet,51.57438,-0.21081,Private room,29,10,129,0.79,3,0,0
+Tower Hamlets,51.52764,-0.05293,Entire home/apt,75,2,42,0.64,1,0,0
+Tower Hamlets,51.52425,-0.06997,Entire home/apt,151,2,119,0.74,11,97,2
+Lewisham,51.44809,-0.04135,Entire home/apt,120,3,114,0.76,1,0,0
+Brent,51.5593,-0.22497,Private room,50,3,79,0.53,2,238,4
+Richmond upon Thames,51.4641,-0.32498,Private room,140,2,20,0.13,2,365,0
+Lambeth,51.42996,-0.12161,Private room,35,2,33,0.22,1,354,0
+Tower Hamlets,51.5236702,-0.068885997,Entire home/apt,106,2,119,0.74,11,41,0
+Haringey,51.57271,-0.13948,Entire home/apt,90,8,38,0.28,1,332,1
+Richmond upon Thames,51.48085,-0.28086,Entire home/apt,245,3,106,0.68,1,275,10
+Tower Hamlets,51.52819,-0.0561,Private room,55,1,4,0.04,1,0,0
+Haringey,51.58478,-0.16057,Private room,82,2,639,4.04,2,186,66
+Hammersmith and Fulham,51.50701,-0.23362,Entire home/apt,265,14,42,0.31,2,48,5
+Lambeth,51.50551,-0.10952,Private room,120,5,374,2.5,1,270,20
+Haringey,51.58684,-0.08632,Private room,55,1,1,0.05,2,89,0
+Southwark,51.4786,-0.06114,Private room,55,1,39,0.89,1,89,33
+Tower Hamlets,51.5347,-0.03215,Private room,68,3,64,0.49,3,0,0
+Westminster,51.52605,-0.19942,Private room,42,5,10,0.09,1,0,0
+Hammersmith and Fulham,51.48653171,-0.225619095,Private room,78,5,3,0.21,3,365,2
+Tower Hamlets,51.52874,-0.05396,Private room,55,3,65,0.43,1,0,0
+Barnet,51.574,-0.21058,Private room,25,10,84,0.53,3,0,0
+Barnet,51.61492,-0.25632,Entire home/apt,550,14,21,0.15,1,83,0
+Westminster,51.52055,-0.18317,Entire home/apt,221,2,655,4.42,1,219,73
+Hounslow,51.49351,-0.25568,Private room,150,1,71,0.48,1,0,0
+Islington,51.56221,-0.11687,Entire home/apt,150,1,26,0.17,1,0,15
+Southwark,51.50191,-0.10204,Private room,89,2,117,0.77,2,346,11
+Waltham Forest,51.5584,0.00258,Private room,37,2,2,0.01,1,0,0
+Enfield,51.61137,-0.11888,Private room,40,7,37,0.3,1,280,6
+Barnet,51.5859,-0.16434,Private room,65,4,549,3.48,2,214,22
+Hammersmith and Fulham,51.50155001,-0.233002224,Entire home/apt,139,5,82,0.58,1,18,11
+Hammersmith and Fulham,51.50822,-0.21562,Private room,125,1,0,,1,0,0
+Hammersmith and Fulham,51.48164,-0.21082,Private room,60,3,234,1.89,3,347,19
+Brent,51.53031,-0.21713,Entire home/apt,130,5,129,0.96,1,0,7
+Barnet,51.5979,-0.24327,Private room,43,30,1,0.01,7,365,0
+Camden,51.55952842,-0.144319163,Entire home/apt,185,2,211,1.42,1,103,10
+Richmond upon Thames,51.44777,-0.33962,Private room,1000,2,0,,1,0,0
+Camden,51.55237,-0.19954,Private room,45,2,2,0.02,1,265,0
+Lambeth,51.49148,-0.11151,Entire home/apt,100,3,137,0.94,2,8,8
+Westminster,51.51812,-0.1977,Entire home/apt,125,3,102,0.65,1,0,0
+City of London,51.51099,-0.07862,Entire home/apt,140,5,223,1.51,1,0,10
+Kensington and Chelsea,51.48063,-0.18175,Entire home/apt,185,7,0,,7,335,0
+Camden,51.52197,-0.14035,Entire home/apt,200,3,65,0.49,9,194,2
+Hackney,51.55165,-0.05215,Private room,58,3,225,1.42,1,0,0
+Hackney,51.52851,-0.08985,Entire home/apt,200,2,102,0.69,1,321,6
+Camden,51.52958,-0.14344,Private room,54,2,443,2.81,1,267,24
