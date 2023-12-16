@@ -199,26 +199,223 @@ g. Potential Discrimination and Bias: The application of the data is based on th
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
 
-::: {.duedate}
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+import geopandas as gpd
+import matplotlib.cm as cm
+```
+
+```{python}
+path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
+airbnb = pd.read_csv(path1)
+path2 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/neighbourhoods.geojson"
+boros = gpd.read_file(path2)
+```
+
+```{python}
+## Convert csv to points
+from shapely.geometry import Point
+
+geometry = [Point(xy) for xy in zip(airbnb['longitude'], airbnb['latitude'])]
+points = gpd.GeoDataFrame(airbnb, geometry=geometry, crs=boros.crs)
+```
 
 According to statistics on Airbnb listings, there are a total of 53,395 hosts for Airbnb properties  in London, which can be broadly categorized into four types: 
-a.individual hosts, who, as homeowners, may reside in the listed house or apartment.
-b.professional hosts, who are generally investors, buying property specifically for short-term lease to obtain a stable rental income. 
-c.listing management teams, companies or groups that oversee listings on behalf of property owners. Veeve, for instance, serves as a residential platform for visitors, facilitating homeowners in renting out their properties.
-d.hoteliers, who put some listings on the Airbnb platform to attract online bookings
+* **individual hosts**, who, as homeowners, may reside in the listed house or apartment.
+* **professional hosts**, who are generally investors, buying property specifically for short-term lease to obtain a stable rental income.
+* **listing management teams**, companies or groups that oversee listings on behalf of property owners. Veeve, for instance, serves as a residential platform for visitors, facilitating homeowners in renting out their properties.
+* **hoteliers**, who put some listings on the Airbnb platform to attract online bookings.
 
 As a result, Airbnb hosts in London exhibit a diverse range of characteristics, contributing to the diversity of room type.
 
 The analysis of Airbnb listings indicates that a host may choose to list separate rooms within the same apartment or offer multiple apartments or homes for rent in their entirety.
 
-Hosts with multiple listings are more likely to be professional hosts, listing management teams or hotels. Their properties are generally dispersed across various geographical locations and are commonly situated in proximity to downtown areas.
+```{python}
+# Calculate the number of airbnbs of each host
+host = airbnb.groupby('host_id')['host_name'].unique().reset_index(name='host_name')
+host_count = airbnb['host_id'].value_counts().to_frame().reset_index(drop=False).sort_values(by='host_id').reset_index(drop=True)
+host['count']=host_count['count']
 
-Airbnb hosts in London are primarily individual hosts, yet the presence of more professional landlords should not be overlooked. Among them, 1,389 hosts manage more than five listings, totaling 22,647 listings and constituting approximately 25.8 percent of all properties. Notably, STK Homes leads with the highest number of listings at 595.
-Airbnb listing room types in London are dominated by Entire home/apt(62.1%) and Private room(37.2%). In addition, there are a small number of Shared room and Hotel room.
+# Sort by number of listings
+host_sort = host.sort_values(by='count', ascending=False).reset_index(drop=True)
 
-In central London ntire home/apt accounts for a large proportion of all listings, which is contrary to the rule of Private room. In most parts of London, Entire home/apt is the main room type, except for a few boroughs on the edge of the city. This may be due to the more Entire home/apt listings in central London because these areas may have more apartments and listings for rent. In the suburbs or other areas, independent houses may be more common, and hosts prefer to use some of them for rent, such as renting private rooms.
+host_max = host_sort.iloc[:5, :]
+host_min = host_sort.iloc[-5:, :]
+print(host_max)
+print(host_min)
+```
 
-:::
+Hosts with multiple listings are more likely to be professional hosts, listing management teams or hotels. Their properties are generally dispersed across various geographical locations and are commonly situated in proximity to downtown areas, especially where tourists gather.
+
+Take **Veeve** and **Blueground** for example. The following two maps show how the two hosts' listings are distributed.
+
+```{python}
+# Plot(select some points)
+from mpl_toolkits.axes_grid1 import ImageGrid
+airbnb_select1 = airbnb[airbnb['host_name'].str.contains('Veeve', case=False, na=False)]
+airbnb_select2 = airbnb[airbnb['host_name'].str.contains('Blueground', case=False, na=False)]
+
+geometry1 = [Point(xy) for xy in zip(airbnb_select1['longitude'], airbnb_select1['latitude'])]
+points_select1 = gpd.GeoDataFrame(airbnb_select1, geometry=geometry1, crs=boros.crs)
+geometry2 = [Point(xy) for xy in zip(airbnb_select2['longitude'], airbnb_select2['latitude'])]
+points_select2 = gpd.GeoDataFrame(airbnb_select2, geometry=geometry2, crs=boros.crs)
+
+fig = plt.figure(figsize=(12, 6))
+grid = ImageGrid(fig, 111, nrows_ncols=(1, 2), axes_pad=1)
+
+boros.plot(ax=grid[0], color='lightgray', edgecolor='white')
+points_select1.plot(ax=grid[0], color='red', markersize=0.5)
+grid[0].set_title('Host:Veeve')
+
+boros.plot(ax=grid[1], color='lightgray', edgecolor='white')
+points_select2.plot(ax=grid[1], color='red', markersize=0.5)
+grid[1].set_title('Host:Blueground')
+
+plt.show()
+```
+
+By assessing the quantity of properties owned by hosts, we can gauge the distribution among various host types. Typically, hosts with a modest number (1-5) of listings are more likely to be perceived as individual owners, while those with a substantial count (more than 20) are more likely to be classified as professional hosts or listing management teams.
+
+Airbnb hosts in London are primarily individual hosts, but the presence of more professional hosts should not be overlooked. 
+Among them, 1,826 hosts manage more than 5 listings, totaling 24,832 listings and constituting approximately 28.2 percent of all properties. Notably, STK Homes leads with the highest number of listings at 595. Indeed, Airbnb hosts in London are increasingly adopting a more professional approach, indicating a trend toward greater standardization and accessibility in listings.
+
+```{python}
+# Calculate the number of hosts and total Listings in each interval
+bins = [0, 5, 10, 20, float('inf')]
+labels = ['1-5', '6-10', '11-20', '20+']
+host_sort['interval'] = pd.cut(host_sort['count'], bins=bins, labels=labels, right=False)
+
+interval = host_sort['interval'].value_counts().to_frame()
+for c in labels:
+    interval.loc[c,'total_listings'] = host_sort[host_sort['interval']==c]['count'].sum()
+
+interval['percentage'] = round(interval['total_listings']/airbnb.shape[0], 2)
+
+#interval
+```
+
+```{python}
+# plot a line chart for the number of hosts and total Listings in each interval
+fig, ax1 = plt.subplots(figsize=(5, 3))
+
+ax1.plot(interval.index, interval['count'], linewidth = 0.8, color='black', marker='o')
+ax1.set_xlabel('Category')
+ax1.set_ylabel('host count', color='black')
+ax1.tick_params(axis='y')
+
+ax2 = ax1.twinx()
+
+ax2.plot(interval.index, interval['total_listings'], linewidth = 0.8, color='skyblue', marker='s')
+ax2.set_ylabel('total_listings', color='skyblue')
+ax2.tick_params(axis='y', labelcolor='skyblue')
+
+plt.title('Line Chart for Frequency and Total Listings in each Interval')
+plt.show()
+```
+
+Airbnb listings in London encompass a diverse array of types, dominated by **"Entire home/apt"** (62.1%) and **"Private room"** (37.2%). In addition, there are a small number of "Shared room" and "Hotel room".
+
+```{python}
+# Caculate the number of Airbnb listings for each room type
+category = airbnb.room_type.value_counts().to_frame().reset_index(drop=False)
+category['pecentage']=category['count']/airbnb.shape[0]
+
+# Plot
+fig, ax = plt.subplots(figsize=(10, 2))
+category.plot(kind='barh', y='count', x='room_type', ax=ax, legend=False)
+
+for index, value in enumerate(category['count']):
+    plt.text(value + 0.1, index, str(value), ha='left', va='center')
+
+
+plt.xlabel('count')
+plt.ylabel('room_type')
+plt.tight_layout() 
+plt.show()
+```
+
+"Entire home/apt" holds a more substantial share of all listings in the central areas of London compared to other regions. This is in contrast to the trend observed in "Private room" listings, where the proportion tends to be smaller.
+
+In the majority of London's neighborhoods, "Entire home/apt" emerges as the dominant room type, while only a handful of boroughs on the city's periphery deviate from this trend, exhibiting a higher proportion of "Private room" listings.
+
+```{python}
+# Count the number of airbnbs in each neighbourhood
+airbnb_sum = airbnb.neighbourhood.value_counts().to_frame().sort_values(by='neighbourhood')
+
+# Calculate the median price of each neighbourhood
+airbnb_sum['price_median'] = airbnb.groupby('neighbourhood')['price'].median()
+
+# Count the number of each type of rooms in each neighbourhood
+room_type_sum = airbnb.groupby(['neighbourhood', 'room_type']).size().unstack(fill_value=0)
+room_type_sum.columns.name = None
+room_type_sum.columns = room_type_sum.columns.str.replace(' ', '_')
+
+# Merge dataframe
+airbnb_area = pd.concat([airbnb_sum, room_type_sum], axis=1)
+
+# Count the percentage of each type of rooms in each neighbourhood
+airbnb_area['Entire_home/apt_percent'] = airbnb_area['Entire_home/apt']/airbnb_area['count']
+airbnb_area['Hotel_room_percent'] = airbnb_area['Hotel_room']/airbnb_area['count']
+airbnb_area['Private_room_percent'] = airbnb_area['Private_room']/airbnb_area['count']
+airbnb_area['Shared_room_percent'] = airbnb_area['Shared_room']/airbnb_area['count']
+
+# Reset index
+airbnb_area = airbnb_area.reset_index(drop=False)
+
+# Calculate the main room type of each neighbourhood
+airbnb_area['main_room_type'] = max_column_names = airbnb_area.loc[:, ['Entire_home/apt','Hotel_room','Private_room','Shared_room']].idxmax(axis=1)
+```
+
+```{python}
+# Join airbnb_area to boros
+boros_joined = boros.merge(airbnb_area, how='left', left_on='neighbourhood', right_on='neighbourhood')
+
+fig = plt.figure(figsize=(12, 6))
+grid = ImageGrid(fig, 111, nrows_ncols=(1, 3), axes_pad=0.2)
+
+# Plot the proportion of Entire home/apts in each neighbourhood
+ax1 = grid[0]
+boros_joined.plot(column='Entire_home/apt_percent', cmap='Blues', linewidth=0.8, ax=ax1, edgecolor='0.8')
+ax1.set_title('Entire home/apt percentage')
+
+# Plot the proportion of Private rooms in each neighbourhood
+ax2 = grid[1]
+boros_joined.plot(column='Private_room_percent', cmap='Blues', linewidth=0.8, ax=ax2, edgecolor='0.8')
+ax2.set_title('Private room percentage')
+
+# Plot the main room type in each neighbourhood
+ax3 = grid[2]
+boros_joined.plot(column='main_room_type', categorical=True, legend=True, ax=ax3, cmap='Set3', legend_kwds={'bbox_to_anchor': (1, 1), 'prop': {'size': 7}})
+ax3.set_title('Main room type')
+
+plt.show()
+```
+
+An in-depth analysis can be conducted to understand the reasons behind this trend and the characteristics of Airbnb rentals in London.
+
+In the city center, Entire home/apt listings are more prevalent. This may be attributed to the predominantly compact nature of central areas, which are often comprised of apartments. Additionally, these locations tend to be focal points for tourist activities, making visitors more inclined to seek independent and private accommodations for short-term stays. Consequently, rental prices in these areas are higher.
+
+In the suburbs, standalone houses are more common, and hosts are more willing to rent out a portion of them, such as individual rooms.
+
+Therefore, London's Airbnb rental landscape is influenced by both geographical location and the demands of the visitors.
+
+```{python}
+fig = plt.figure(figsize=(12, 6))
+grid = ImageGrid(fig, 111, nrows_ncols=(1, 2), axes_pad=1)
+
+# Plot the number of listings in each neighbourhood
+ax1 = grid[0]
+boros_joined.plot(column='count', cmap='Blues', linewidth=0.8, ax=ax1, edgecolor='0.8', legend=False)
+ax1.set_title('Airbnb Listing Counts')
+
+# Plot the median price of listings in each neighbourhood
+ax2 = grid[1]
+boros_joined.plot(column='price_median', cmap='Blues', linewidth=0.8, ax=ax2, edgecolor='0.8', legend=False)
+ax2.set_title('Median price')
+
+plt.show()
+```
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London? 
 
