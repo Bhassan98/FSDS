@@ -158,6 +158,22 @@ Unavailable Data: Some data is not collected or available through these surveys,
 
 ## 5. What ethical considerations does the use of this data raise? 
 
+When considering ethical considerations in using data from the Inside Airbnb website, the following seven aspects are crucial:
+
+1. User Privacy and Data Security: The data contains precise geographical locations of Airbnb listings. While using this data, it's essential to ensure that personal privacy is not compromised and to comply with relevant data protection laws and standards.
+
+2. Original Data Accuracy and Reliability: Murray Cox, in his study "How Airbnb’s data hid the facts in New York City," highlighted that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability. This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation.
+
+3. Secondary Interpretation or Modification of Data: After scraping data from Airbnb, the website creator, Murray Cox, processed and filtered the data, which could introduce bias. If the original data or its processing is biased or flawed, these issues might be magnified in secondary references. Therefore, a thorough understanding of the data's original sources, processing methods, and potential limitations is necessary. There might be interpretations or modifications by the website creator to the original dataset, leading to misleading analysis outcomes. Potential information biases should be considered when using the data.
+
+4. Data Sharing and Reuse: Correct citation of data sources is crucial in academic research. When referencing website data, it's important to correctly cite both the original data sources and the processors to maintain academic integrity. Additionally, we need to ensure data use aligns with company promises.
+
+5. Consistency of Research Purpose with Data Collection: Inside Airbnb's original data might have been collected and processed to better develop Airbnb and local communities. When the data is used for different study and research purposes, it might deviate from the original intent, raising ethical issues, especially if the new usage of data is inconsistent with the expectations and consent of the data subjects. Therefore, our research scope/purpose and methods have undergone strict ethical considerations, ultimately aimed at providing data support for improving residents' environment and Airbnb's business practices.
+
+6. Impact on Public Interest: Research on Airbnb data can potentially impact the community and public interest. The public disclosure of specific location data and housing prices can affect nearby tenants, Airbnb operators, and regional public interests. For example, a high density of Airbnb listings in certain areas might affect the long-term rental market due to disturbance or tenant safety concerns, negatively impacting the community environment and resident satisfaction.
+
+7. Potential Discrimination and Bias: The application of the data is based on the distribution of London Boroughs, including factors like housing prices, which may create or exacerbate stereotypes against specific groups. For instance, market data analysis of Airbnb should not lead to adverse effects on low-income areas or specific racial communities. Analytical results should not intensify social inequalities, such as unfair treatment of listings or hosts in certain areas based on data analysis results.
+
 ::: {.duedate}
 
 ( 18 points; Answer due {{< var assess.group-date >}} )
