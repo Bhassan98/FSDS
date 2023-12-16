@@ -291,8 +291,6 @@ for c in labels:
     interval.loc[c,'total_listings'] = host_sort[host_sort['interval']==c]['count'].sum()
 
 interval['percentage'] = round(interval['total_listings']/airbnb.shape[0], 2)
-
-#interval
 ```
 
 ```{python}
