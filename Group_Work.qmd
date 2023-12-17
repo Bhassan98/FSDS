@@ -417,9 +417,15 @@ plt.show()
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London? 
 
-::: {.duedate}
+::: 
 
-( 45 points; Answer due {{< var assess.group-date >}} )
+Understanding Impact on Local Economy: By analyzing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
+
+Identifying High-Density STL Areas: The Airbnb dataset analysis could reveal boroughs with high concentrations of STLs, guiding targeted regulations.
+
+Pricing Trends: Analyzing Airbnb pricing can inform policies related to affordability and housing market impacts.
+
+Strategic Policy Development: Combining insights from these datasets can help create nuanced, area-specific regulations that balance the benefits and challenges of STLs.
 
 :::
 
