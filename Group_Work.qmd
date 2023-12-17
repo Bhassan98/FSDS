@@ -46,9 +46,9 @@ format:
 
 We, [insert your group's names], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
 
-Date:
+Date: 19.12.2023
 
-Student Numbers: 
+Student Numbers: 22226256
 
 ## Brief Group Reflection
 
@@ -106,20 +106,18 @@ else:
 
 ( 2 points; Answer due Week 7 )
 
-The data was collected by @insideairbnb which is a investigatory website with a mission driven project that provides data and advocacy about Airbnb's impact on residential communities. The data on the site is sourced from publicly available information from the Airbnb site, which is then analysed, cleansed, and aggregated to facilitate public discussion. The founder Murray Cox, is a community artist and hactivist utilising technology as a means of social change. 
+The data was collected by @insideairbnb which is a investigatory website with a mission driven project that provides data and advocacy about Airbnb's impact on residential communities (Cox et al., 2023). The data on the site is sourced from publicly available information from the Airbnb site, which is then analysed, cleansed, and aggregated to facilitate public discussion. The founder Murray Cox, is a community artist and hactivist utilising technology as a means of social change. 
 
 
 ## 2. Why did they collect it?
 
 @insideairbnb collected the data for several key reasons: 
-1. To highlight illegal renting and gentrification - highlight the financialisation of housing as speculative assets
+1. To highlight illegal renting and gentrification - highlight the financialisation of housing as speculative assets (Alexandri, 2022)
 2. To facilitate public discussion and awareness -inform public of impact of STL properties
 3. To use data for social change - influencing public policy
 4. To provide accessible data analysis - so anyone can understand its impact
 
-::: {.duedate}
-
-( 4 points; Answer due Week 7 )
+::: 
 
 :::
 
@@ -142,34 +140,34 @@ Accuracy and Limitations: The methodology aims for a high degree of accuracy, ty
 
 Unavailable Data: Some data is not collected or available through these surveys, including occupancy rates, host income, specific addresses, and guest information​​
 
-::: {.duedate}
-
-( 5 points; Answer due Week 8 )
+::: 
 
 :::
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
+
 a. Data Completeness and Accuracy:
 
-1) Data Completeness:
+1. Data Completeness:
 Using Python scripts to scrape data from the Airbnb website captures a wide range of data points. However, the accuracy of this method typically falls within 10% to 20% of the actual number of listings. While this provides a fairly good estimate, there is still a margin for inaccuracy.
-2) Data Accuracy:
+
+2. Data Accuracy:
 In the parts related to reviews in Inside Airbnb (IA), Murray Cox has confirmed that some information is “fake” or “junk” content implemented by Airbnb to prevent and deceive web scraping scripts (2016). This impacts the accuracy of the IA data and leads to a decline in the overall quality of the IA data.
-3) Limitations of Data Scope:
+
+3. Limitations of Data Scope:
 Some important data points such as occupancy rates, host income, specific addresses, and guest information are not collected. The absence of these details limits the depth of analysis, especially in understanding the economic impact of Airbnb on hosts and neighborhoods.
 
 b. Wider Issues Raised:
 
-1) Ethical and Privacy Concerns:
+1. Ethical and Privacy Concerns:
 Although data scraping is effective, it raises ethical issues regarding user privacy and consent. Even though this method does not collect sensitive personal information, scraping data from websites may be perceived as intrusive or in violation of the platform's terms of service.
-2) Impact on Policy and Social Impact Discussions:
+
+2. Impact on Policy and Social Impact Discussions:
 The data can provide valuable insights into the scale and characteristics of Airbnb in various cities, but it may not fully capture the subtle impacts on the housing market, neighborhood dynamics, and local economy, such as the effects on long-term housing supply, changes in rent levels, and potential fluctuations in the real estate market.
 
 In conclusion, while the data collection method provides a wealth of information, its limitations in scope and potential inaccuracies must be acknowledged. Additionally, this method raises ethical considerations in terms of data scraping and privacy. These factors must be considered in any analysis or policy discussions using this data.
 
-::: {.duedate}
-
-( 11 points; Answer due Week 9 )
+::: 
 
 :::
 
@@ -179,7 +177,7 @@ When considering ethical considerations in using data from the Inside Airbnb web
 
 a. User Privacy and Data Security: The data contains precise geographical locations of Airbnb listings. While using this data, it's essential to ensure that personal privacy is not compromised and to comply with relevant data protection laws and standards.
 
-b. Original Data Accuracy and Reliability: Murray Cox, in his study "How Airbnb’s data hid the facts in New York City," highlighted that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability(2016). This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation.
+b. Original Data Accuracy and Reliability: Murray Cox, in his study "How Airbnb’s data hid the facts in New York City," highlighted that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability (2016). This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation.
 
 c. Secondary Interpretation or Modification of Data: After scraping data from Airbnb, the website creator, Murray Cox, processed and filtered the data, which could introduce bias. If the original data or its processing is biased or flawed, these issues might be magnified in secondary references. Therefore, a thorough understanding of the data's original sources, processing methods, and potential limitations is necessary. There might be interpretations or modifications by the website creator to the original dataset, leading to misleading analysis outcomes. Potential information biases should be considered when using the data.
 
@@ -191,9 +189,7 @@ f. Impact on Public Interest: Research on Airbnb data can potentially impact the
 
 g. Potential Discrimination and Bias: The application of the data is based on the distribution of London Boroughs, including factors like housing prices, which may create or exacerbate stereotypes against specific groups. For instance, market data analysis of Airbnb should not lead to adverse effects on low-income areas or specific racial communities. Analytical results should not intensify social inequalities, such as unfair treatment of listings or hosts in certain areas based on data analysis results.
 
-::: {.duedate}
-
-( 18 points; Answer due {{< var assess.group-date >}} )
+::: 
 
 :::
 
@@ -439,3 +435,7 @@ Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used
 Alsudais, Abdulkareem. 2021. “Incorrect Data in the Widely Used Inside Airbnb Dataset.” Decision Support Systems 141:113453. https://doi.org/10.1016/j.dss.2020.113453.
 
 Boyd,  danah and Crawford, K. (2012) ‘CRITICAL QUESTIONS FOR BIG DATA’, Information, Communication & Society, 15(5), pp. 662–679. Available at: https://doi.org/10.1080/1369118X.2012.678878.
+
+Cox, M., Morris, J. and Higgins, T. (2023) Inside Airbnb, Inside Airbnb: Home. Available at: http://insideairbnb.com/ (Accessed: 18 December 2023). 
+
+Alexandri, G. (2022) ‘Housing financialisation a la griega’, Geoforum, 136, pp. 68–79. doi:10.1016/j.geoforum.2022.07.014. 
