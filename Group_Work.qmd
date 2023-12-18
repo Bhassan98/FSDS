@@ -879,43 +879,9 @@ for cluster_num in range(k):
 
 2. Denisty caps: Is a policy tool that establishes an upper limit on the number of Airbnb listings in a given area. This regulatory measure aims to mitigate concerns related to housing availability, affordability, noise, while preserving the spatially endowed character. It also facilitates better enforcement of environmental standards and taxation (Resch et al., 2016). 
 
-```{python}
-import pandas as pd
-import geopandas as gpd
-import matplotlib.pyplot as plt
 
-path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
-airbnb = pd.read_csv(path1)
 
-gdf_airbnb_listings = gpd.GeoDataFrame(
-    airbnb, 
-    geometry=gpd.points_from_xy(airbnb.longitude, airbnb.latitude)
-)
 
-path2 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/neighbourhoods.geojson"
-boros = gpd.read_file(path2)
-
-airbnb_counts_per_borough = gdf_airbnb_listings['Borough'].value_counts().reset_index()
-airbnb_counts_per_borough.columns = ['Borough', 'Count']
-
-boros = boros.merge(airbnb_counts_per_borough, how='left', left_on='name', right_on='Borough')
-boros['Count'] = boros['Count'].fillna(0)  # Fill NaNs with 0
-
-fig, ax = plt.subplots(1, 1, figsize=(15, 10))
-boros.plot(ax=ax, color='white', edgecolor='black')
-boros.plot(ax=ax, column='Count', cmap='Reds', legend=True, 
-                     legend_kwds={'label': "Number of Airbnb Listings"})
-plt.axis('off')  
-
-for idx, row in boros.iterrows():
-    plt.text(row['geometry'].centroid.x, row['geometry'].centroid.y, row['name'], 
-             horizontalalignment='center', fontdict={'color':'black', 'size': 8})
-
-plt.title("Airbnb Listings in London", fontsize=16)
-
-plt.show()
-
-```
 
 ### Strategic Policy Development: As Airbnbs are primarily catered to cater to the tourism sector,  
 
