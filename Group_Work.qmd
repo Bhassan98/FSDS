@@ -754,11 +754,9 @@ w = Queen.from_dataframe(gdf_boroughs)
 w.transform = 'r'
 
 for var in variables_to_analyze:
-    # Global Moran's I
     moran_global = Moran(gdf_boroughs[var], w)
     print(f"Global Moran's I for {var}: {moran_global.I}, P-value: {moran_global.p_sim}")
 
-    # local Moran's I
     moran_local = Moran_Local(gdf_boroughs[var], w)
     gdf_boroughs[f'moran_i_{var}'] = moran_local.Is
     gdf_boroughs[f'moran_p_{var}'] = moran_local.p_sim
@@ -768,11 +766,30 @@ for var in variables_to_analyze:
     gdf_boroughs.plot(column=f'moran_i_{var}', cmap='RdPu', legend=True, ax=ax)
     ax.set_title(f"Local Moran's I for {var}")
     plt.show()
+
 ```
 
 ### **Cluster**
 
+Cluster 0 (Low Airbnb Density and Nighttime Activity):
 
+Development Incentives: Encouraging the development of Airbnbs in these areas could indeed spur economic growth, especially if they are near attractions or culturally significant areas. A policy could include tax incentives or streamlined permitting processes for new Airbnbs.
+Infrastructure Improvements: Investment in infrastructure could make these areas more attractive for nighttime activities. However, it's important to consider the local residents' perspective and ensure that any development is in line with their needs and desires.
+Cluster 1 (Moderate Airbnb Density and Nighttime Activity):
+
+Support for Small Businesses: Policies that provide support and incentives for small businesses can help sustain and grow the nighttime economy. This might include grants, business development services, or special zoning considerations.
+Community Events: Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing necessary infrastructure.
+Cluster 2 (High Airbnb Density and Nighttime Economy Hotspots):
+
+Airbnb Regulation: It's crucial to strike a balance between the growth of STLs and the impact on the housing market. Regulation could include caps on the number of days a property can be let out, requiring permits, or enforcing zones where STLs are allowed.
+Support for Night Workers: As these areas are active at night, ensuring the safety and convenience of night workers is essential. This could mean enhanced public transportation services during nighttime hours or increased security measures.
+General Considerations for STL Airbnb Regulation:
+
+Housing Market Impact: Excessive STLs can pressure the local housing market, driving up prices and displacing long-term residents. Policymakers need to monitor housing stock and affordability.
+Community Services: Ensure that the growth in STLs does not overburden local services such as waste management, emergency services, and public transport.
+Noise and Nuisance: Establish clear guidelines and enforcement mechanisms for noise and nuisance to protect residents' quality of life.
+Data-Driven Approach: Continue to use data analytics to monitor the situation and adapt policies accordingly. This could involve regular reviews of Airbnb density and its impacts, using tools similar to the ones represented in the images provided.
+Ultimately, the insights suggest a nuanced approach that considers the varying impacts of Airbnbs across different areas. Policies should be tailored to the characteristics of each cluster, with ongoing evaluation and adjustment to ensure they meet the intended goals without unintended negative consequences.
 
 ```{python}
 ### **Cluster**
@@ -796,7 +813,6 @@ variables_to_analyze = [
     'Total in all sectors_workplace'
 ]
 
-
 data_for_clustering = gdf_boroughs[variables_to_analyze]
 
 # standardize the data
@@ -813,7 +829,7 @@ for n in range(2, 11):
 
 plt.figure(figsize=(10, 5))
 plt.plot(range(2, 11), inertia, marker='o')
-plt.title('Elbow Method For Optimal k')
+plt.title('Figure 7: Elbow Method For Optimal K')
 plt.xlabel('Number of clusters')
 plt.ylabel('Inertia')
 plt.show()
@@ -829,7 +845,7 @@ gdf_boroughs['cluster'] = clusters
 
 fig, ax = plt.subplots(figsize=(10, 6))
 gdf_boroughs.plot(column='cluster', categorical=True, legend=True,cmap='RdPu', ax=ax)
-ax.set_title('K-Means Clustering Results with k=3')
+ax.set_title('Figure 8: Clustering Results with K=3')
 plt.show()
 
 for cluster_num in range(k):
@@ -840,11 +856,6 @@ for cluster_num in range(k):
 
 ```
 
-***Cluster 0 represents areas with lower Airbnb density that have lower nighttime economic activity. For these areas, recommendations include: Encouraging the development of Airbnb, especially if these areas are close to tourist attractions or have distinctive cultural backgrounds, may help to increase the activity of the night-time economy. Recommend improvements to infrastructure, such as traffic and safety, to attract more nocturnal activities and visitors to local policy makers.***
-
-***Cluster 1 represents areas with moderate Airbnb density, with some degree of nighttime economic activity. Recommendations for these areas include: Support for small businesses and services in the night economy, such as catering and entertainment services, to further boost the economy. Consider hosting events such as night markets or cultural festivals in these areas to promote community engagement and the growth of the night economy.***
-
-***Cluster 2  represent areas with high Airbnb density that are hot spots for the nighttime economy. Recommendations for these areas include: Regulate Airbnb's growth to ensure its impact on local housing markets is sustainable, while ensuring that community services are not overstretched by increased visitors. More support for night workers, such as improved transport services and safety measures, to ensure the smooth running of economic activities at night.***
 
 * Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
 
@@ -890,8 +901,11 @@ plt.show()
 
 ```
 
-```{python}
 
+
+* Strategic Policy Development: Combining insights from these datasets can help create nuanced, area-specific regulations that balance the benefits and challenges of STLs.
+
+```{python}
 tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
 geojson_url = "https://skgrange.github.io/www/data/london_boroughs.json"
 
@@ -932,13 +946,6 @@ legend.get_title().set_fontsize('10')
 
 plt.tight_layout()
 plt.show()
-
-```
-
-* Strategic Policy Development: Combining insights from these datasets can help create nuanced, area-specific regulations that balance the benefits and challenges of STLs.
-
-```{python}
-
 ```
 
 :::
