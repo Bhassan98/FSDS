@@ -196,7 +196,10 @@ g. Potential Discrimination and Bias: The application of the data is based on th
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
 
 ```{python}
-
+!pip3 install --upgrade pip
+!pip3 install requests
+!pip3 install openpyxl
+!pip3 install xlrd
 !pip3 install geopandas
 
 import pandas as pd
@@ -218,7 +221,8 @@ import shutil
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from pyecharts import Map
 import re
-
+import requests
+from io import BytesIO
 ```
 
 ```{python}
@@ -442,6 +446,13 @@ plt.show()
 2. 
 
 ```{python}
+# URLs needed for analysis 
+
+night_economy_url = "https://data.london.gov.uk/download/london-night-time-economy/e554ddcd-4fb7-42dc-b0d2-d73f88938cdb/night-time-economy.xls"
+late_night_liscenses_url = "https://data.london.gov.uk/download/alcohol-and-late-night-refreshment-licensing-statistics/7836522b-3b4c-4aae-9aa3-9b2389621a96/licensed-premises-24-hour.xlsx"
+inside_airbnb_url = 'http://data.insideairbnb.com/united-kingdom/england/london/2022-12-10/visualisations/listings.csv'
+land_url = 'https://data.london.gov.uk/download/land-area-and-population-density-ward-and-borough/cc4e7e08-3071-488f-bdd9-a62cb1ed1c5c/land-area-population-density-london.xlsx'
+
 
 
 
@@ -494,20 +505,34 @@ plt.show()
 
 ```{python}
 
-tourist_attractions_path = ("/Users/bashir/Documents/UCL/FSDS Github/Modified_Tourist_Attractions_Visits_London.xlsx")
-toursit_attractions = pd.read_excel(tourist_attractions_path)
+# URLs for the data
+tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
+geojson_url = "https://skgrange.github.io/www/data/london_boroughs.json"
 
-geojson_path = '/Users/bashir/Documents/UCL/Foundations of Spatial Data Science/london_boroughs.json'
+# Fetch Tourist Attractions data from URL
+tourist_attractions_response = requests.get(tourist_attractions_url)
+tourist_attractions_path = BytesIO(tourist_attractions_response.content)
+
+# Try reading with 'xlrd' engine
+try:
+    toursit_attractions = pd.read_excel(tourist_attractions_path, engine='xlrd')
+except:
+    # If 'xlrd' engine fails, try with 'openpyxl' engine
+    toursit_attractions = pd.read_excel(tourist_attractions_path, engine='openpyxl')
+
+# Fetch London boroughs GeoJSON data from URL
+geojson_response = requests.get(geojson_url)
+geojson_path = BytesIO(geojson_response.content)
 london_boroughs_geo = gpd.read_file(geojson_path)
 
 unique_boroughs = toursit_attractions['Borough'].unique()
 borough_color_palette = sns.color_palette("husl", len(unique_boroughs)).as_hex()
 borough_attraction_color_map = {borough: color for borough, color in zip(unique_boroughs, borough_color_palette)}
 
-london_boroughs['color'] = london_boroughs['name'].map(borough_attraction_color_map).fillna('whitesmoke')
+london_boroughs_geo['color'] = london_boroughs_geo['name'].map(borough_attraction_color_map).fillna('whitesmoke')
 
 fig, ax = plt.subplots(figsize=(15, 10))
-london_boroughs.plot(ax=ax, color=london_boroughs['color'], edgecolor='black')
+london_boroughs_geo.plot(ax=ax, color=london_boroughs_geo['color'], edgecolor='black')
 
 ax.set_title('Map of Tourist Attractions in London', fontsize=20)
 ax.axis('off')
