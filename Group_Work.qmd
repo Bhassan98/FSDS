@@ -415,7 +415,12 @@ plt.show()
 
 ::: 
 
-Understanding Impact on Local Economy: By analyzing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
+* Understanding Impact on Local Economy: By analysing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
+
+1. 
+
+
+2. 
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -424,7 +429,8 @@ import geopandas as gpd
 import matplotlib.cm as cm
 ```
 
-Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
+
+* Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
 
 Regulation:
 
@@ -466,16 +472,8 @@ plt.show()
 
 ```
 
-Pricing Trends: Analyzing Airbnb pricing can inform policies related to affordability and housing market impacts.
 
-```{python}
-import matplotlib.pyplot as plt
-import numpy as np
-import geopandas as gpd
-import matplotlib.cm as cm
-```
-
-Strategic Policy Development: Combining insights from these datasets can help create nuanced, area-specific regulations that balance the benefits and challenges of STLs.
+* Strategic Policy Development: Combining insights from these datasets can help create nuanced, area-specific regulations that balance the benefits and challenges of STLs.
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -493,6 +491,7 @@ Your QMD file should automatically download your BibTeX file. We will then re-ru
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
 
 ## References
+
 Alsudais, Abdulkareem. 2021. “Incorrect Data in the Widely Used Inside Airbnb Dataset.” Decision Support Systems 141:113453. https://doi.org/10.1016/j.dss.2020.113453.
 
 Boyd,  danah and Crawford, K. (2012) ‘CRITICAL QUESTIONS FOR BIG DATA’, Information, Communication & Society, 15(5), pp. 662–679. Available at: https://doi.org/10.1080/1369118X.2012.678878.
