@@ -877,25 +877,25 @@ for cluster_num in range(k):
 
 #### Regulation:
 
-1. Zoning laws: In 20**, Portugal created laws to regular the develpoment of Airbnb style STL properties by mandating that they register with the local authority in the first instance. It was demonstrated that a 1% increase in a municipality airbnb share resulteed in a 3.7% increase in house price (Franco & Santos, 2021). Also, due to the spatial heterogeneity of Airbnbs, it was demonstated that there was a localised emphasis on building in the hitoric centres that attract toursits. 
+1. Zoning laws: Since 2008, Portugal created laws to regular the develpoment of Airbnb style STL properties by mandating that they register with the local authority in the first instance. It was demonstrated that a 1% increase in a municipality airbnb share resulteed in a 3.7% increase in house price (Franco & Santos, 2021). Also, due to the spatial heterogeneity of Airbnbs, it was demonstated that there was a localised emphasis on building in the hitoric centres that attract toursits. 
 
 2. Denisty caps: Is a policy tool that establishes an upper limit on the number of Airbnb listings in a given area. This regulatory measure aims to mitigate concerns related to housing availability, affordability, noise, while preserving the spatially endowed character. It also facilitates better enforcement of environmental standards and taxation (Resch et al., 2016). 
 
 ```{python}
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
 
 path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
 airbnb = pd.read_csv(path1)
 
-path2 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/neighbourhoods.geojson"
-boros = gpd.read_file(path2)
-
-airbnb = pd.read_csv(airbnb)
 gdf_airbnb_listings = gpd.GeoDataFrame(
-    airbnb_listings_data, 
+    airbnb, 
     geometry=gpd.points_from_xy(airbnb.longitude, airbnb.latitude)
 )
 
-boros = gpd.read_file(boros)
+path2 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/neighbourhoods.geojson"
+boros = gpd.read_file(path2)
 
 airbnb_counts_per_borough = gdf_airbnb_listings['Borough'].value_counts().reset_index()
 airbnb_counts_per_borough.columns = ['Borough', 'Count']
@@ -916,6 +916,7 @@ for idx, row in boros.iterrows():
 plt.title("Airbnb Listings in London", fontsize=16)
 
 plt.show()
+
 ```
 
 ### Strategic Policy Development: As Airbnbs are primarily catered to cater to the tourism sector,  
