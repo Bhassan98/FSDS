@@ -115,15 +115,12 @@ InsideAirbnb collected the data for several key reasons:
 
 1. To highlight illegal renting and gentrification - highlight the financialisation of housing as speculative assets (Alexandri, 2022)
 
-2. To facilitate public discussion and awareness -inform public of impact of STL properties
+2. To facilitate public discussion and galvanise awareness to the public of the impact of STL properties
 
 3. To use data for social change - influencing public policy
 
 4. To provide accessible data analysis - so anyone can understand its impact
 
-::: 
-
-:::
 
 ```{python}
 print(f"Data frame is {df.shape[0]:,} x {df.shape[1]:,}")
@@ -149,28 +146,24 @@ Unavailable Data: Some data is not collected or available through these surveys,
 
 a. Data Completeness and Accuracy:
 
-1. Data Completeness:
+i. Data Completeness:
 Using Python scripts to scrape data from the Airbnb website captures a wide range of data points. However, the accuracy of this method typically falls within 10% to 20% of the actual number of listings. While this provides a fairly good estimate, there is still a margin for inaccuracy.
 
-2. Data Accuracy:
+ii. Data Accuracy:
 In the parts related to reviews in Inside Airbnb (IA), Murray Cox has confirmed that some information is “fake” or “junk” content implemented by Airbnb to prevent and deceive web scraping scripts (2016). This impacts the accuracy of the IA data and leads to a decline in the overall quality of the IA data.
 
-3. Limitations of Data Scope:
+iii. Limitations of Data Scope:
 Some important data points such as occupancy rates, host income, specific addresses, and guest information are not collected. The absence of these details limits the depth of analysis, especially in understanding the economic impact of Airbnb on hosts and neighborhoods.
 
 b. Wider Issues Raised:
 
-1. Ethical and Privacy Concerns:
+i. Ethical and Privacy Concerns:
 Although data scraping is effective, it raises ethical issues regarding user privacy and consent. Even though this method does not collect sensitive personal information, scraping data from websites may be perceived as intrusive or in violation of the platform's terms of service.
 
-2. Impact on Policy and Social Impact Discussions:
+ii. Impact on Policy and Social Impact Discussions:
 The data can provide valuable insights into the scale and characteristics of Airbnb in various cities, but it may not fully capture the subtle impacts on the housing market, neighborhood dynamics, and local economy, such as the effects on long-term housing supply, changes in rent levels, and potential fluctuations in the real estate market.
 
 In conclusion, while the data collection method provides a wealth of information, its limitations in scope and potential inaccuracies must be acknowledged. Additionally, this method raises ethical considerations in terms of data scraping and privacy. These factors must be considered in any analysis or policy discussions using this data.
-
-::: 
-
-:::
 
 ## 5. What ethical considerations does the use of this data raise? 
 
@@ -189,10 +182,6 @@ e. Consistency of Research Purpose with Data Collection: Inside Airbnb's origina
 f. Impact on Public Interest: Research on Airbnb data can potentially impact the community and public interest. The public disclosure of specific location data and housing prices can affect nearby tenants, Airbnb operators, and regional public interests. For example, a high density of Airbnb listings in certain areas might affect the long-term rental market due to disturbance or tenant safety concerns, negatively impacting the community environment and resident satisfaction.
 
 g. Potential Discrimination and Bias: The application of the data is based on the distribution of London Boroughs, including factors like housing prices, which may create or exacerbate stereotypes against specific groups. For instance, market data analysis of Airbnb should not lead to adverse effects on low-income areas or specific racial communities. Analytical results should not intensify social inequalities, such as unfair treatment of listings or hosts in certain areas based on data analysis results.
-
-::: 
-
-:::
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
 
@@ -249,11 +238,15 @@ geometry = [Point(xy) for xy in zip(airbnb['longitude'], airbnb['latitude'])]
 points = gpd.GeoDataFrame(airbnb, geometry=geometry, crs=boros.crs)
 ```
 
-According to statistics on Airbnb listings, there are a total of 53,395 hosts for Airbnb properties  in London, which can be broadly categorized into four types: 
-* **individual hosts**, who, as homeowners, may reside in the listed house or apartment.
-* **professional hosts**, who are generally investors, buying property specifically for short-term lease to obtain a stable rental income.
-* **listing management teams**, companies or groups that oversee listings on behalf of property owners. Veeve, for instance, serves as a residential platform for visitors, facilitating homeowners in renting out their properties.
-* **hoteliers**, who put some listings on the Airbnb platform to attract online bookings.
+According to statistics from the Airbnb listings dataset, there are a total of 53,395 hosts for Airbnb properties  in London, which can be broadly categorized into four types: 
+
+* **Individual hosts**, who, as homeowners, may reside in the listed house or apartment.
+
+* **Professional hosts**, who are generally investors, buying property specifically for short-term lease to obtain a stable rental income.
+
+* **Listing management teams**, companies or groups that oversee listings on behalf of property owners. Veeve, for instance, serves as a residential platform for visitors, facilitating homeowners in renting out their properties.
+
+* **Hoteliers**, who put some listings on the Airbnb platform to attract online bookings.
 
 As a result, Airbnb hosts in London exhibit a diverse range of characteristics, contributing to the diversity of room type.
 
@@ -545,6 +538,8 @@ df_land.columns
 
 ### Understanding Impact on Local Economy: By analysing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
 
+The night-time economy is integral to London's global identity, playing a significant role in its economic, cultural, and social landscape. For policymakers, the night-time economy is not just a contributor to employment and the city's GDP; it also symbolizes the city's cultural vibrancy and appeal as a 24-hour city. It encompasses various sectors, including entertainment, food and beverage, transportation, and emergency services, all of which operate beyond the traditional daylight hours (Zhang et al., 2022).
+
 To assess the impact of STLs on the local economy, especially in the context of the night-time economy, we investigated the correlation between the density of STLs and the vibrancy of the local night-time economy. This involves examining data on late-night licenses (bars, clubs, restaurants), their locations, and their revenue trends. Additionally, we explored the employment statistics in these sectors, as STLs could potentially increase demand for local services, thereby impacting job opportunities.
 
 Here is a summary of some notable correlations: 
@@ -554,6 +549,8 @@ Here is a summary of some notable correlations:
 * Airbnb Density and Night-Time Economy Employment: Airbnb density has a strong positive correlation with employment in the cultural and leisure activities sector, potentially due to higher tourist activity.
 
 * Workplace Employees and Room Types: There are moderate to strong correlations between various room types and the number of employees in different sectors at the workplace. For example, "Entire home/apt" has a strong positive correlation with cultural and leisure activities at the workplace, suggesting that areas with more entire homes/apts might also have more employees in cultural and leisure activities.
+
+
 
 ```{python}
 
@@ -953,3 +950,5 @@ Franco, S.F. and Santos, C.D. (2021) ‘The impact of Airbnb on residential prop
 Resch, E. et al. (2016) ‘Impact of urban density and building height on energy use in cities’, Energy Procedia, 96, pp. 800–814. doi:10.1016/j.egypro.2016.09.142. 
 
 Hill, R.J., Pfeifer, N. and Steurer, M. (2023) ‘The Airbnb Rent Premium and the crowding-out of long-term rentals’, Journal of Housing Economics, 61. doi:10.1016/j.jhe.2023.101935. 
+
+Zhang, Y., Li, H. and Ren, G. (2022) ‘Quantifying the social impacts of the London night tube with a double/debiased machine learning based difference-in-differences approach’, Transportation Research Part A: Policy and Practice, 163, pp. 288–303. doi:10.1016/j.tra.2022.07.015. 
