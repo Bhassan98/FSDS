@@ -294,11 +294,11 @@ grid = ImageGrid(fig, 111, nrows_ncols=(1, 2), axes_pad=1)
 
 boros.plot(ax=grid[0], color='lightgray', edgecolor='white')
 points_select1.plot(ax=grid[0], color='red', markersize=0.5)
-grid[0].set_title('Host:Veeve')
+grid[0].set_title('Figure 6.1: Host:Veeve')
 
 boros.plot(ax=grid[1], color='lightgray', edgecolor='white')
 points_select2.plot(ax=grid[1], color='red', markersize=0.5)
-grid[1].set_title('Host:Blueground')
+grid[1].set_title('Figure 6.2: Host:Blueground')
 
 plt.show()
 ```
