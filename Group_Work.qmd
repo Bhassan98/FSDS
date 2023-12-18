@@ -739,7 +739,8 @@ for var in variables_to_analyze:
     ax.set_title(f"Figure 6.{figure_counter}: Local Moran's I for {var}")
     
     figure_counter += 1
-
+    
+    plt.axis('off')
     plt.show()
 ```
 
