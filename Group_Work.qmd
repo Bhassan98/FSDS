@@ -196,6 +196,8 @@ g. Potential Discrimination and Bias: The application of the data is based on th
 !pip3 install esda
 !pip3 install contextily
 !pip3 install pyecharts
+!pip install -U scikit-learn threadpoolctl
+
 
 import pandas as pd
 import numpy as np
@@ -739,7 +741,7 @@ for var in variables_to_analyze:
     ax.set_title(f"Figure 6.{figure_counter}: Local Moran's I for {var}")
     
     figure_counter += 1
-    
+
     plt.axis('off')
     plt.show()
 ```
