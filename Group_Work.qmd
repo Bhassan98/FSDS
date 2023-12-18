@@ -148,22 +148,17 @@ Unavailable Data: Some data is not collected or available through these surveys,
 
 a. Data Completeness and Accuracy:
 
-1. Data Completeness:
-Using Python scripts to scrape data from the Airbnb website captures a wide range of data points. However, the accuracy of this method typically falls within 10% to 20% of the actual number of listings. While this provides a fairly good estimate, there is still a margin for inaccuracy.
+Data Completeness: Using Python scripts to scrape data from the Airbnb website captures a wide range of data points. However, the accuracy of this method typically falls within 10% to 20% of the actual number of listings. While this provides a fairly good estimate, there is still a margin for inaccuracy.
 
-2. Data Accuracy:
-In the parts related to reviews in Inside Airbnb (IA), Murray Cox has confirmed that some information is “fake” or “junk” content implemented by Airbnb to prevent and deceive web scraping scripts (2016). This impacts the accuracy of the IA data and leads to a decline in the overall quality of the IA data.
+Data Accuracy: In the parts related to reviews in Inside Airbnb (IA), Murray Cox has confirmed that some information is “fake” or “junk” content implemented by Airbnb to prevent and deceive web scraping scripts (2016). This impacts the accuracy of the IA data and leads to a decline in the overall quality of the IA data.
 
-3. Limitations of Data Scope:
-Some important data points such as occupancy rates, host income, specific addresses, and guest information are not collected. The absence of these details limits the depth of analysis, especially in understanding the economic impact of Airbnb on hosts and neighborhoods.
+Limitations of Data Scope: Some important data points such as occupancy rates, host income, specific addresses, and guest information are not collected. The absence of these details limits the depth of analysis, especially in understanding the economic impact of Airbnb on hosts and neighborhoods.
 
 b. Wider Issues Raised:
 
-1. Ethical and Privacy Concerns:
-Although data scraping is effective, it raises ethical issues regarding user privacy and consent. Even though this method does not collect sensitive personal information, scraping data from websites may be perceived as intrusive or in violation of the platform's terms of service.
+Ethical and Privacy Concerns: Although data scraping is effective, it raises ethical issues regarding user privacy and consent. Even though this method does not collect sensitive personal information, scraping data from websites may be perceived as intrusive or in violation of the platform's terms of service.
 
-2. Impact on Policy and Social Impact Discussions:
-The data can provide valuable insights into the scale and characteristics of Airbnb in various cities, but it may not fully capture the subtle impacts on the housing market, neighborhood dynamics, and local economy, such as the effects on long-term housing supply, changes in rent levels, and potential fluctuations in the real estate market.
+Impact on Policy and Social Impact Discussions: The data can provide valuable insights into the scale and characteristics of Airbnb in various cities, but it may not fully capture the subtle impacts on the housing market, neighborhood dynamics, and local economy, such as the effects on long-term housing supply, changes in rent levels, and potential fluctuations in the real estate market.
 
 In conclusion, while the data collection method provides a wealth of information, its limitations in scope and potential inaccuracies must be acknowledged. Additionally, this method raises ethical considerations in terms of data scraping and privacy. These factors must be considered in any analysis or policy discussions using this data.
 
@@ -173,21 +168,19 @@ In conclusion, while the data collection method provides a wealth of information
 
 ## 5. What ethical considerations does the use of this data raise? 
 
-When considering ethical considerations in using data from the Inside Airbnb website, the following seven aspects are crucial:
+Tthe use of the IA dataset raises the following ethical issues.
 
-a. User Privacy and Data Security: The data contains precise geographical locations of Airbnb listings. While using this data, it's essential to ensure that personal privacy is not compromised and to comply with relevant data protection laws and standards.
+User Privacy and Data Security: Datasets from IA includes precise geographical locations of Airbnb listings. While using this data, it's essential to ensure that personal privacy is not compromised and to comply with relevant data protection laws and standards. Additionally, we need to ensure data use aligns with company promises.
 
-b. Original Data Accuracy and Reliability: Murray Cox, in his study "How Airbnb’s data hid the facts in New York City," highlighted that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability (2016). This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation.
+Original Data Accuracy and Reliability: Murray Cox indicates that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability (2016). This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation. When referencing website data, it's important to correctly cite both the original data sources and the processors to maintain academic integrity. 
 
-c. Secondary Interpretation or Modification of Data: After scraping data from Airbnb, the website creator, Murray Cox, processed and filtered the data, which could introduce bias. If the original data or its processing is biased or flawed, these issues might be magnified in secondary references. Therefore, a thorough understanding of the data's original sources, processing methods, and potential limitations is necessary. There might be interpretations or modifications by the website creator to the original dataset, leading to misleading analysis outcomes. Potential information biases should be considered when using the data.
+Secondary Interpretation of Data: After scraping data from Airbnb, the website creator, Murray Cox, processed and filtered the data, which could introduce bias. If the original data or its processing is biased or flawed, these issues might be magnified in secondary references (Pammer-Schindler V.,2022). Therefore, a thorough understanding of the data's original sources, processing methods, and potential limitations is necessary. There might be interpretations or modifications by the website creator to the original dataset, leading to misleading analysis outcomes. Potential information biases should be considered when using the data.
 
-d. Data Sharing and Reuse: Correct citation of data sources is crucial in academic research. When referencing website data, it's important to correctly cite both the original data sources and the processors to maintain academic integrity. Additionally, we need to ensure data use aligns with company promises.
+Consistency between research purposes and data collection: The original purpose of the IA dataset may have been to collect and process it for the better development of Airbnb and the local community. However, when data is used for different learning and research purposes, it can deviate from the original intent, raising ethical issues, especially if the new use of the data is inconsistent with the expectations and consent of the data subject. Therefore, the scope/purpose and methods of our research are subject to rigorous ethical considerations, with the ultimate aim of providing data to support the improvement of residents' environment and Airbnb's business practices.
 
-e. Consistency of Research Purpose with Data Collection: Inside Airbnb's original data might have been collected and processed to better develop Airbnb and local communities. When the data is used for different study and research purposes, it might deviate from the original intent, raising ethical issues, especially if the new usage of data is inconsistent with the expectations and consent of the data subjects. Therefore, our research scope/purpose and methods have undergone strict ethical considerations, ultimately aimed at providing data support for improving residents' environment and Airbnb's business practices.
+Impact on Public Interest: Research on Airbnb data can potentially impact the community and public interest. The public disclosure of specific location data and housing prices can affect nearby tenants, Airbnb operators, and regional public interests. For example, a high density of Airbnb listings in certain areas might affect the long-term rental market due to disturbance or tenant safety concerns, negatively impacting the community environment and resident satisfaction.
 
-f. Impact on Public Interest: Research on Airbnb data can potentially impact the community and public interest. The public disclosure of specific location data and housing prices can affect nearby tenants, Airbnb operators, and regional public interests. For example, a high density of Airbnb listings in certain areas might affect the long-term rental market due to disturbance or tenant safety concerns, negatively impacting the community environment and resident satisfaction.
-
-g. Potential Discrimination and Bias: The application of the data is based on the distribution of London Boroughs, including factors like housing prices, which may create or exacerbate stereotypes against specific groups. For instance, market data analysis of Airbnb should not lead to adverse effects on low-income areas or specific racial communities. Analytical results should not intensify social inequalities, such as unfair treatment of listings or hosts in certain areas based on data analysis results.
+Potential Discrimination and Bias: The application of the data is based on the distribution of London Boroughs, including factors like housing prices, which may create or exacerbate stereotypes against specific groups. For instance, market data analysis of Airbnb should not lead to adverse effects on low-income areas or specific racial communities. Analytical results should not intensify social inequalities, such as unfair treatment of listings or hosts in certain areas based on data analysis results.
 
 ::: 
 
@@ -903,6 +896,7 @@ Your QMD file should automatically download your BibTeX file. We will then re-ru
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
 
 ## References
+Alexandri, G. (2022) ‘Housing financialisation a la griega’, Geoforum, 136, pp. 68–79. doi:10.1016/j.geoforum.2022.07.014.
 
 Alsudais, Abdulkareem. 2021. “Incorrect Data in the Widely Used Inside Airbnb Dataset.” Decision Support Systems 141:113453. https://doi.org/10.1016/j.dss.2020.113453.
 
@@ -910,8 +904,8 @@ Boyd,  danah and Crawford, K. (2012) ‘CRITICAL QUESTIONS FOR BIG DATA’, Info
 
 Cox, M., Morris, J. and Higgins, T. (2023) Inside Airbnb, Inside Airbnb: Home. Available at: http://insideairbnb.com/ (Accessed: 18 December 2023). 
 
-Alexandri, G. (2022) ‘Housing financialisation a la griega’, Geoforum, 136, pp. 68–79. doi:10.1016/j.geoforum.2022.07.014.
-
 Franco, S.F. and Santos, C.D. (2021) ‘The impact of Airbnb on residential property values and rents: Evidence from Portugal’, Regional Science and Urban Economics, 88, p. 103667. doi:10.1016/j.regsciurbeco.2021.103667. 
+
+Pammer-Schindler, V., Rosé, C. Data-Related Ethics Issues in Technologies for Informal Professional Learning. Int J Artif Intell Educ 32, 609–635 (2022). https://doi.org/10.1007/s40593-021-00259-x
 
 Resch, E. et al. (2016) ‘Impact of urban density and building height on energy use in cities’, Energy Procedia, 96, pp. 800–814. doi:10.1016/j.egypro.2016.09.142. 
