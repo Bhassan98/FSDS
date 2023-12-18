@@ -102,10 +102,6 @@ else:
 
 ## 1. Who collected the data?
 
-::: {.duedate}
-
-( 2 points; Answer due Week 7 )
-
 The data was collected by by InsideAirbnb which is a investigatory website with a mission driven project that provides data and advocacy about Airbnb's impact on residential communities (Cox et al., 2023). The data on the site is sourced from publicly available information from the Airbnb site, which is then analysed, cleansed, and aggregated to facilitate public discussion. The founder Murray Cox, is a community artist and hactivist utilising technology as a means of social change. 
 
 
@@ -289,12 +285,13 @@ grid = ImageGrid(fig, 111, nrows_ncols=(1, 2), axes_pad=1)
 
 boros.plot(ax=grid[0], color='lightgray', edgecolor='white')
 points_select1.plot(ax=grid[0], color='red', markersize=0.5)
-grid[0].set_title('Figure 6.1: Host:Veeve')
+grid[0].set_title('Figure 6.1: Veeve (Host)')
 
 boros.plot(ax=grid[1], color='lightgray', edgecolor='white')
 points_select2.plot(ax=grid[1], color='red', markersize=0.5)
-grid[1].set_title('Figure 6.2: Host:Blueground')
+grid[1].set_title('Figure 6.2: Blueground (Host)')
 
+plt.axis('off')
 plt.show()
 ```
 
@@ -305,6 +302,7 @@ Among them, 1,826 hosts manage more than 5 listings, totaling 24,832 listings an
 
 ```{python}
 # Calculate the number of hosts and total Listings in each interval
+
 bins = [0, 5, 10, 20, float('inf')]
 labels = ['1-5', '6-10', '11-20', '20+']
 host_sort['interval'] = pd.cut(host_sort['count'], bins=bins, labels=labels, right=False)
@@ -411,6 +409,7 @@ ax3 = grid[2]
 boros_joined.plot(column='main_room_type', categorical=True, legend=True, ax=ax3, cmap='Set3', legend_kwds={'bbox_to_anchor': (1, 1), 'prop': {'size': 7}})
 ax3.set_title('Figure 6.7: Main room type')
 
+plt.axis('off')
 plt.show()
 ```
 
@@ -436,6 +435,7 @@ ax2 = grid[1]
 boros_joined.plot(column='price_median', cmap='Blues', linewidth=0.8, ax=ax2, edgecolor='0.8', legend=False)
 ax2.set_title('Figure 6.9: Median price')
 
+plt.axis('off')
 plt.show()
 ```
 
@@ -605,8 +605,8 @@ for i in range(len(corr.columns)):
             color = value  # Set the color based on the absolute correlation
             plt.scatter(i + 0.5, j + 0.5, s=size, c=color, cmap='coolwarm', marker='o', vmin=0, vmax=1)
 
-title_text = "Figure 5.1: Correlation Matrix (Pearson)"
-plt.title(title_text, fontsize=10, color="black", ha="center", va="center", fontweight="bold")
+title_text = "Figure 7.1: Correlation Matrix (Pearson)"
+plt.title(title_text, fontsize=15, color="black", ha="center", va="center", fontweight="bold")
 plt.show()
 ```
 
@@ -616,7 +616,9 @@ plt.show()
 We then investigated the distribution of Airbnb related fields and night economy related fields with strong correlation in correlation analysis.
 
 Included:
+
 * Basic statistics for each variable, such as mean, median, minimum, and maximum. 
+
 * Plot the distribution of each variable, such as a histogram or box diagram.
 
 The data on Short-Term Lettings (STL) in London points to a prevalence of affordable options within the market, as evidenced by the clustering of entire homes/apartments and shared rooms in lower value ranges. Private rooms are evenly distributed across various values, suggesting a balanced market with a range of pricing that caters to different segments of consumers. The variability in 'Sum_room' data, with its multiple peaks, indicates a diversity in consumer choice and price points. When considering the boxplot depicting different employee categories, there is a notable variation in economic impact, particularly in the 'Total Workplace' category, which shows a wider range and higher median values. This information is crucial for devising targeted policy decisions that could address housing affordability, maintain community integrity, and ensure that the benefits of STLs are equitably distributed amongst residents and workers in London. 
@@ -649,7 +651,7 @@ axes = axes.flatten()
 for i, column in enumerate(columns):
     subplot_number = i + 1  
     df_night_clean[column].hist(bins=20, ax=axes[i])
-    axes[i].set_title(f"Figure 5.2.{subplot_number}: {column}")
+    axes[i].set_title(f"Figure 7.2.{subplot_number}: {column}")
 
 plt.tight_layout()
 plt.show()
@@ -676,7 +678,7 @@ boxplot = df_night_clean[columns].boxplot(ax=ax)
 
 ax.set_xticklabels(short_labels, fontsize=10)
 
-plt.title("Figure 5.3: Boxplot")
+plt.title("Figure 7.3: Boxplot")
 
 plt.tight_layout()
 plt.show()
@@ -738,7 +740,7 @@ for var in variables_to_analyze:
 
     fig, ax = plt.subplots(figsize=(10, 6))
     gdf_boroughs.plot(column=f'moran_i_{var}', cmap='RdPu', legend=True, ax=ax)
-    ax.set_title(f"Figure 6.{figure_counter}: Local Moran's I for {var}")
+    ax.set_title(f"Figure 8.{figure_counter}: Local Moran's I for {var}")
     
     figure_counter += 1
 
@@ -811,7 +813,7 @@ for n in range(2, 11):
 
 plt.figure(figsize=(10, 5))
 plt.plot(range(2, 11), inertia, marker='o')
-plt.title('Figure 7: Elbow Method For Optimal K')
+plt.title('Figure 9: Elbow Method For Optimal K')
 plt.xlabel('Number of clusters')
 plt.ylabel('Inertia')
 plt.show()
@@ -827,7 +829,8 @@ gdf_boroughs['cluster'] = clusters
 
 fig, ax = plt.subplots(figsize=(10, 6))
 gdf_boroughs.plot(column='cluster', categorical=True, legend=True,cmap='RdPu', ax=ax)
-ax.set_title('Figure 8: Clustering Results with K=3')
+ax.set_title('Figure 10: Clustering Results with K=3')
+plt.axis('off')
 plt.show()
 
 for cluster_num in range(k):
@@ -878,7 +881,7 @@ london_boroughs_geo['color'] = london_boroughs_geo['name'].map(borough_attractio
 fig, ax = plt.subplots(figsize=(15, 10))
 london_boroughs_geo.plot(ax=ax, color=london_boroughs_geo['color'], edgecolor='black')
 
-ax.set_title('Map of Tourist Attractions in London', fontsize=20)
+ax.set_title('Figure 12: Map of Tourist Attractions in London', fontsize=20)
 ax.axis('off')
 
 legend_entries = []
