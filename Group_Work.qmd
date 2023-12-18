@@ -438,14 +438,9 @@ plt.show()
 
 ::: 
 
-* Understanding Impact on Local Economy: By analysing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
+# Understanding Impact on Local Economy: By analysing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
 
-1. 
-
-
-2. 
-
-
+1. To assess the impact of STLs on the local economy, especially in the context of the night-time economy, we investigated the correlation between the density of STLs and the vibrancy of the local night-time economy. This involves examining data on late-night licenses (bars, clubs, restaurants), their locations, and their revenue trends. Additionally, we explored the employment statistics in these sectors, as STLs could potentially increase demand for local services, thereby impacting job opportunities.
 
 ```{python}
 # URLs needed for analysis 
@@ -591,6 +586,22 @@ for i in range(len(corr.columns)):
             plt.scatter(i + 0.5, j + 0.5, s=size, c=color, cmap='coolwarm', marker='o', vmin=0, vmax=1)
 
 plt.show()
+
+```
+
+
+Here is a summary of some notable correlations: 
+
+Room Types and Night-Time Economy Employment: "Entire home/apt" and "Private room" show strong negative correlations with employees in the 24-hour health and personal social services sector, which suggests that areas with more of these Airbnb types have fewer employees in health and social services.
+
+Airbnb Density and Night-Time Economy Employment: Airbnb density has a strong positive correlation with employment in the cultural and leisure activities sector, potentially due to higher tourist activity.
+
+Workplace Employees and Room Types: There are moderate to strong correlations between various room types and the number of employees in different sectors at the workplace. For example, "Entire home/apt" has a strong positive correlation with cultural and leisure activities at the workplace, suggesting that areas with more entire homes/apts might also have more employees in cultural and leisure activities.
+
+
+
+
+```{python}
 
 #### Check field information
 
