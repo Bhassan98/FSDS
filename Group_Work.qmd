@@ -196,15 +196,21 @@ g. Potential Discrimination and Bias: The application of the data is based on th
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
 
 ```{python}
+
 !pip3 install --upgrade pip
 !pip3 install requests
 !pip3 install openpyxl
 !pip3 install xlrd
 !pip3 install geopandas
+!pip3 install libpysal
+!pip3 install esda
+!pip3 install contextily
+!pip3 install pyecharts
 
 import pandas as pd
 import numpy as np
 import geopandas as gpd
+import libpysal
 from libpysal.weights import Queen
 from esda.moran import Moran, Moran_Local
 import matplotlib.pyplot as plt
@@ -221,7 +227,7 @@ from zipfile import ZipFile
 import os
 import shutil
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-from pyecharts import Map
+# from pyecharts import Map
 import re
 import requests
 from io import BytesIO
@@ -867,43 +873,42 @@ Regulation:
 
 ```{python}
 
-airbnb_listings_path = '/Users/bashir/Documents/UCL/Foundations of Spatial Data Science/Airbnb_listings_with_boroughs.csv'
-borough_boundaries_path = '/Users/bashir/Documents/UCL/Foundations of Spatial Data Science/london_boroughs.json'
+path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
+airbnb = pd.read_csv(path1)
 
-airbnb_listings_data = pd.read_csv(airbnb_listings_path)
+path2 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/neighbourhoods.geojson"
+boros = gpd.read_file(path2)
+
+airbnb = pd.read_csv(airbnb)
 gdf_airbnb_listings = gpd.GeoDataFrame(
     airbnb_listings_data, 
-    geometry=gpd.points_from_xy(airbnb_listings_data.longitude, airbnb_listings_data.latitude)
+    geometry=gpd.points_from_xy(airbnb.longitude, airbnb.latitude)
 )
 
-london_boroughs = gpd.read_file(borough_boundaries_path)
+boros = gpd.read_file(boros)
 
 airbnb_counts_per_borough = gdf_airbnb_listings['Borough'].value_counts().reset_index()
 airbnb_counts_per_borough.columns = ['Borough', 'Count']
 
-london_boroughs = london_boroughs.merge(airbnb_counts_per_borough, how='left', left_on='name', right_on='Borough')
-london_boroughs['Count'] = london_boroughs['Count'].fillna(0)  # Fill NaNs with 0
+boros = boros.merge(airbnb_counts_per_borough, how='left', left_on='name', right_on='Borough')
+boros['Count'] = boros['Count'].fillna(0)  # Fill NaNs with 0
 
 fig, ax = plt.subplots(1, 1, figsize=(15, 10))
-london_boroughs.plot(ax=ax, color='white', edgecolor='black')
-london_boroughs.plot(ax=ax, column='Count', cmap='Reds', legend=True, 
+boros.plot(ax=ax, color='white', edgecolor='black')
+boros.plot(ax=ax, column='Count', cmap='Reds', legend=True, 
                      legend_kwds={'label': "Number of Airbnb Listings"})
 plt.axis('off')  
 
-for idx, row in london_boroughs.iterrows():
+for idx, row in boros.iterrows():
     plt.text(row['geometry'].centroid.x, row['geometry'].centroid.y, row['name'], 
              horizontalalignment='center', fontdict={'color':'black', 'size': 8})
 
 plt.title("Airbnb Listings in London", fontsize=16)
 
 plt.show()
-
-
 ```
 
-
-
-* Strategic Policy Development: Combining insights from these datasets can help create nuanced, area-specific regulations that balance the benefits and challenges of STLs.
+* Strategic Policy Development: As Airbnbs are primarily catered to cater to the tourism sector,  
 
 ```{python}
 tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
