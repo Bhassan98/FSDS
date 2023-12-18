@@ -620,11 +620,14 @@ Included:
 
 The data on Short-Term Lettings (STL) in London points to a prevalence of affordable options within the market, as evidenced by the clustering of entire homes/apartments and shared rooms in lower value ranges. Private rooms are evenly distributed across various values, suggesting a balanced market with a range of pricing that caters to different segments of consumers. The variability in 'Sum_room' data, with its multiple peaks, indicates a diversity in consumer choice and price points. When considering the boxplot depicting different employee categories, there is a notable variation in economic impact, particularly in the 'Total Workplace' category, which shows a wider range and higher median values. This information is crucial for devising targeted policy decisions that could address housing affordability, maintain community integrity, and ensure that the benefits of STLs are equitably distributed amongst residents and workers in London. Policies could include: 
 
-Regulation on the number of STLs in certain areas: 
-
 Taxation that reflects earnings from STLs to support local services:
 
+A progressive tax structure on STLs in London could channel additional resources into strained local services. By scaling taxes in line with earnings from STLs, high-earning properties contribute more, reflecting their greater usage of local infrastructure and services. This revenue can fund enhancements in public transport, sanitation, and community safety, which are often impacted by the influx of visitors. A targeted tax could also dissuade the conversion of long-term rentals into STLs, balancing the market and supporting community stability.
+
 Measures to protect long-term rental markets and resident communities (Hill et al., 2023): 
+
+Protecting London's long-term rental market is crucial in a city where housing is at a premium. A policy limiting the total number of days a property can be rented out as an STL would discourage full-time vacation rentals, thereby preserving housing for long-term residents. Additionally, requiring STL owners to obtain a license could ensure adherence to safety and community standards. Such measures, suggested by Hill et al. (2023), would safeguard against the erosion of neighborhood character and the displacement of local communities, maintaining London's diverse and vibrant residential fabric.
+
 
 ```{python}
 
