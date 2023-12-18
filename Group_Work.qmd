@@ -849,11 +849,43 @@ for cluster_num in range(k):
 
 2. Denisty caps: Is a policy tool that establishes an upper limit on the number of Airbnb listings in a given area. This regulatory measure aims to mitigate concerns related to housing availability, affordability, noise, while preserving the spatially endowed character. It also facilitates better enforcement of environmental standards and taxation (Resch et al., 2016). 
 
+```{python}
+
+path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
+airbnb = pd.read_csv(path1)
+
+path2 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/neighbourhoods.geojson"
+boros = gpd.read_file(path2)
+
+gdf_airbnb_listings = gpd.GeoDataFrame(
+    airbnb, 
+    geometry=gpd.points_from_xy(airbnb.longitude, airbnb.latitude)
+)
+
+airbnb_counts_per_borough = airbnb['neighbourhood'].value_counts().reset_index()
+airbnb_counts_per_borough.columns = ['neighbourhood', 'Count']
+
+london_boroughs = boros.merge(airbnb_counts_per_borough, how='left', on='neighbourhood')
+london_boroughs['Count'] = london_boroughs['Count'].fillna(0)  # Fill NaNs with 0
+
+fig, ax = plt.subplots(1, 1, figsize=(15, 10))
+london_boroughs.plot(ax=ax, color='white', edgecolor='black')
+london_boroughs.plot(ax=ax, column='Count', cmap='Reds', legend=True, 
+                     legend_kwds={'label': "Number of Airbnb Listings"})
+plt.axis('off')
+
+for idx, row in london_boroughs.iterrows():
+    plt.text(row['geometry'].centroid.x, row['geometry'].centroid.y, row['neighbourhood'], 
+             horizontalalignment='center', fontdict={'color':'black', 'size': 8})
+
+plt.title("Figure 11: Airbnb Listings in London", fontsize=16)
+
+plt.show()
+
+```
 
 
-
-
-### Strategic Policy Development: As Airbnbs are primarily catered to cater to the tourism sector,  
+### Strategic Policy Development: Airbnbs
 
 ```{python}
 tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
@@ -899,8 +931,6 @@ plt.show()
 ```
 
 ## Sustainable Authorship Tools
-
-Your QMD file should automatically download your BibTeX file. We will then re-run the QMD file to generate the output successfully.
 
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
 
