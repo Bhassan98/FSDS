@@ -491,6 +491,300 @@ df_night_workplace.head()
 #The dataset after cleaning should contain information about:
 # 1. Number of 24-shops liscenses
 
+# read in the data
+df_24hour_store_all = pd.read_excel(late_night_liscenses_url, sheet_name='2017', skiprows=2, na_values = ':')
+
+# set the columns names
+column_names = ['Licensing authority', 'All total', 'Pubs, bars and nightclubs'] + list(df_24hour_store_all.columns[3:])
+df_24hour_store_all.columns = column_names
+
+# select specific column and drop rows not belonging to London boroughs
+df_24hour_store = df_24hour_store_all[['Licensing authority', 'Total']].iloc[:33, [0, 1]]
+
+# have a look at the dataframe
+df_24hour_store.head()
+
+# Data cleaning and summary for the **Inside Airbnb** dataset <br>
+# **Note:** This chunck takes a little more time to load due to large file
+
+# The dataset after cleaning should contain information about: 
+# 1. Numbers of different room types in differernt boroughs
+# 2. Mean prices of airbnb in different boroughs
+
+# read in the data
+airbnb_origin = pd.read_csv(inside_airbnb_url)
+
+# calculate the counts for different room types in different boroughs
+df_airbnb = airbnb_origin.pivot_table(index='neighbourhood', columns='room_type', values='id', aggfunc='count', fill_value=0).reset_index()
+
+# calculate the mean prices in different boroughs
+average_price = airbnb_origin.groupby('neighbourhood')['price'].mean().reset_index()
+average_price.columns = ['neighbourhood', 'average price']
+
+# left join
+df_airbnb = pd.merge(df_airbnb, average_price, on='neighbourhood', how='left')
+df_airbnb['Sum_room'] = df_airbnb[['Entire home/apt', 'Hotel room', 'Private room', 'Shared room']].sum(axis=1)
+
+# have a look at the dataframe
+df_airbnb.columns
+
+#Data cleaning for the land dataset:
+
+#The dataset after cleaning should contain information about: 
+# 1. Area of different boroughs
+
+df_land_all = pd.read_excel(land_url, sheet_name='Borough', skiprows=1, na_values = '')
+
+# delete all the rows not belonging to London boroughs
+df_land = df_land_all[['Code', 'Area name', 'Total Area (Hectares)']].iloc[:34]
+#df_land = df_land[df_land_all['Code'].str.startswith('E09')]
+
+df_land.columns
+
+### **Correlation Matrix (Pearson)**
+
+# Merge all datasets into **one**
+
+df_night = pd.merge(df_airbnb, df_24hour_store, left_on='neighbourhood', right_on='Licensing authority', how='left')
+df_night = df_night.rename(columns={'Total': '24h_shop_liscense'}).drop(columns='Licensing authority')
+
+df_night_economy = pd.merge(df_night_employee, df_night_workplace, on='Area name', how='left', suffixes=('_employee', '_workplace'))
+df_night = pd.merge(df_night, df_night_economy, left_on='neighbourhood', right_on='Area name', how='left')
+df_night = df_night.rename(columns={'Area code_employee': 'Area code'}).drop(columns='Area code_workplace')
+
+df_night = pd.merge(df_night, df_land, left_on='neighbourhood', right_on='Area name', how='left')
+
+df_night['airbnb density'] = df_night['Sum_room'] / df_night['Total Area (Hectares)']
+
+df_night.columns
+
+df_night_clean = df_night.dropna()
+corr = df_night_clean[['Entire home/apt', 'Private room', 'Shared room', 'Sum_room', 'airbnb density',
+                       'average price', '24h_shop_liscense', '24-hour health and personal social services_employee',
+                       'Activities which support night time cultural and leisure activities_employee',
+                       'Activities which support wider social and economic activities_employee',
+                       'Any Night Time Economy category_employee', 'Cultural and leisure activities_employee',
+                       'Total in all sectors_employee', '24-hour health and personal social services_workplace',
+                       'Activities which support night time cultural and leisure activities_workplace',
+                       'Activities which support wider social and economic activities_workplace',
+                       'Any Night Time Economy category_workplace', 'Cultural and leisure activities_workplace',
+                       'Total in all sectors_workplace']].corr()
+
+# create a mask to only show the lower triangle of the matrix (since it's mirrored around its 
+# top-left to bottom-right diagonal)
+mask = np.triu(np.ones_like(corr, dtype=bool))
+
+# create a custom diverging palette
+cmap = sns.diverging_palette(230, 20, as_cmap=True)
+
+# draw the heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(corr, mask=mask, cmap=cmap, annot=True, fmt=".2f")
+
+# add circles with size and color proportional to the absolute correlation
+for i in range(len(corr.columns)):
+    for j in range(i):
+        if not mask[i, j]:
+            value = np.abs(corr.iloc[i, j])
+            size = value * 1000  # Set the size based on the absolute correlation
+            color = value  # Set the color based on the absolute correlation
+            plt.scatter(i + 0.5, j + 0.5, s=size, c=color, cmap='coolwarm', marker='o', vmin=0, vmax=1)
+
+plt.show()
+
+#### Check field information
+
+# Check the distribution of Airbnb related fields and night economy related fields with strong correlation in correlation analysis.
+
+# It is expected to include:
+# Basic statistics for each variable, such as mean, median, minimum, and maximum. Plot the distribution of each variable, such as a histogram or box diagram.
+
+stats = df_night_clean[['Entire home/apt', 'Private room', 'Shared room', 'Sum_room',
+            'airbnb density', '24-hour health and personal social services_employee',
+            'Any Night Time Economy category_employee',
+            'Cultural and leisure activities_employee',
+            'Activities which support wider social and economic activities_workplace',
+            'Any Night Time Economy category_workplace',
+            'Cultural and leisure activities_workplace',
+            'Total in all sectors_workplace']].describe()
+
+print(stats)
+
+
+df_night_clean[['Entire home/apt', 'Private room', 'Shared room', 'Sum_room',
+    'airbnb density']].hist(bins=20, figsize=(10, 7))
+plt.tight_layout()
+plt.show()
+
+
+df_night_clean[['24-hour health and personal social services_employee',
+    'Any Night Time Economy category_employee',
+    'Cultural and leisure activities_employee',
+    'Activities which support wider social and economic activities_workplace',
+    'Any Night Time Economy category_workplace',
+    'Cultural and leisure activities_workplace',
+    'Total in all sectors_workplace']].boxplot(figsize=(10, 7))
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+### **Spatial Autocorrelation Analysis （Moran's I）**
+
+geo_url = 'https://data.london.gov.uk/download/statistical-gis-boundary-files-london/9ba8c833-6370-4b11-abdc-314aa020d5e0/statistical-gis-boundaries-london.zip'
+response = requests.get(geo_url)
+
+# create a temporary file folder
+temp_folder = 'temp_geo_data'
+os.makedirs(temp_folder, exist_ok=True)
+
+# unzip files to the temporary file folder
+with ZipFile(BytesIO(response.content)) as zip_file:
+    zip_file.extractall(temp_folder)
+
+all_files = []
+for root, dirs, files in os.walk(temp_folder):
+    for file in files:
+        all_files.append(os.path.join(root, file))
+
+# look for shapefile
+shp_files = [file for file in all_files if file.endswith('.shp')]
+
+# select shapefile
+if shp_files:
+    selected_shp_file = shp_files[0]
+    gdf_boroughs = gpd.read_file(selected_shp_file)
+    print(gdf_boroughs.head())
+else:
+    print("No SHP files found in the ZIP archive.")
+
+# delete the temporary folder
+shutil.rmtree(temp_folder)
+
+# Take the column 'Entire home/apt' as an example, do the **Moran's I and it's P value**  
+
+# Adding the results to dataframe  
+
+# Change the content of **variables** to change output map
+
+# Transform the dataframe to **geodataframe**, and visualize the result on maps
+
+# Merge Airbnb data
+gdf_boroughs = gdf_boroughs.merge(df_night, left_on='NAME', right_on='neighbourhood', how='left')
+
+print(gdf_boroughs.columns)
+
+import geopandas as gpd
+from libpysal.weights import Queen
+from esda.moran import Moran, Moran_Local
+import matplotlib.pyplot as plt
+
+variables_to_analyze = [
+    'Entire home/apt',
+    'Private room',
+    'Shared room',
+    'Sum_room',
+    'airbnb density',
+    '24-hour health and personal social services_employee',
+    'Any Night Time Economy category_employee',
+    'Cultural and leisure activities_employee',
+    'Activities which support wider social and economic activities_workplace',
+    'Any Night Time Economy category_workplace',
+    'Cultural and leisure activities_workplace',
+    'Total in all sectors_workplace'
+  
+]
+
+gdf_boroughs['airbnb density'] = pd.to_numeric(gdf_boroughs['airbnb density'], errors='coerce')
+
+w = Queen.from_dataframe(gdf_boroughs)
+w.transform = 'r'
+
+for var in variables_to_analyze:
+    # Global Moran's I
+    moran_global = Moran(gdf_boroughs[var], w)
+    print(f"Global Moran's I for {var}: {moran_global.I}, P-value: {moran_global.p_sim}")
+
+    # local Moran's I
+    moran_local = Moran_Local(gdf_boroughs[var], w)
+    gdf_boroughs[f'moran_i_{var}'] = moran_local.Is
+    gdf_boroughs[f'moran_p_{var}'] = moran_local.p_sim
+
+    plt.style.use('default')
+    fig, ax = plt.subplots(figsize=(10, 6))
+    gdf_boroughs.plot(column=f'moran_i_{var}', cmap='RdPu', legend=True, ax=ax)
+    ax.set_title(f"Local Moran's I for {var}")
+    plt.show()
+
+    ### **Cluster**
+
+    # ***Selected factors*** Based on the results of spatial autocorrelation, I select the data columns
+
+# Entire home/apt, Sum_room, airbnb density, 24-hour health and personal social services_employee, Any Night Time Economy category_employee, Cultral and leisure activities_employee Activities which ssupport wider social and economic activities_workplace, Any Night Time Economy category_workplace, Cultral and leisure activities_workplace, Total in all sectors_workplace
+
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+variables_to_analyze = [
+    'Entire home/apt', 'Sum_room', 'airbnb density',
+    '24-hour health and personal social services_employee',
+    'Any Night Time Economy category_employee',
+    'Cultural and leisure activities_employee',
+    'Activities which support wider social and economic activities_workplace',
+    'Any Night Time Economy category_workplace',
+    'Cultural and leisure activities_workplace',
+    'Total in all sectors_workplace'
+]
+
+
+data_for_clustering = gdf_boroughs[variables_to_analyze]
+
+# standardize the data
+scaler = StandardScaler()
+data_for_clustering_scaled = scaler.fit_transform(data_for_clustering)
+
+#!pip install -U scikit-learn threadpoolctl
+
+inertia = []
+for n in range(2, 11):
+    kmeans = KMeans(n_clusters=n, random_state=0)
+    kmeans.fit(data_for_clustering_scaled)
+    inertia.append(kmeans.inertia_)
+
+plt.figure(figsize=(10, 5))
+plt.plot(range(2, 11), inertia, marker='o')
+plt.title('Elbow Method For Optimal k')
+plt.xlabel('Number of clusters')
+plt.ylabel('Inertia')
+plt.show()
+
+# Based on the line diagram in the diagram, I chose a K value of 3 as reasonable 
+
+k = 3
+
+kmeans = KMeans(n_clusters=k, random_state=0)
+clusters = kmeans.fit_predict(data_for_clustering_scaled)
+
+gdf_boroughs['cluster'] = clusters
+
+fig, ax = plt.subplots(figsize=(10, 6))
+gdf_boroughs.plot(column='cluster', categorical=True, legend=True,cmap='RdPu', ax=ax)
+ax.set_title('K-Means Clustering Results with k=3')
+plt.show()
+
+for cluster_num in range(k):
+    boroughs_in_cluster = gdf_boroughs.loc[gdf_boroughs['cluster'] == cluster_num, 'NAME']
+    print(f"Boroughs in cluster {cluster_num}:")
+    print(boroughs_in_cluster.to_list())
+    print("\n")
+
+# ***Cluster 0 represents areas with lower Airbnb density that have lower nighttime economic activity. For these areas, recommendations include: Encouraging the development of Airbnb, especially if these areas are close to tourist attractions or have distinctive cultural backgrounds, may help to increase the activity of the night-time economy. Recommend improvements to infrastructure, such as traffic and safety, to attract more nocturnal activities and visitors to local policy makers.***
+
+# ***Cluster 1 represents areas with moderate Airbnb density, with some degree of nighttime economic activity. Recommendations for these areas include: Support for small businesses and services in the night economy, such as catering and entertainment services, to further boost the economy. Consider hosting events such as night markets or cultural festivals in these areas to promote community engagement and the growth of the night economy.***
+
+# ***Cluster 2  represent areas with high Airbnb density that are hot spots for the nighttime economy. Recommendations for these areas include: Regulate Airbnb's growth to ensure its impact on local housing markets is sustainable, while ensuring that community services are not overstretched by increased visitors. More support for night workers, such as improved transport services and safety measures, to ensure the smooth running of economic activities at night.***
+
+
 ```
 
 
