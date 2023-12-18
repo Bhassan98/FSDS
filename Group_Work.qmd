@@ -148,17 +148,22 @@ Unavailable Data: Some data is not collected or available through these surveys,
 
 a. Data Completeness and Accuracy:
 
-Data Completeness: Using Python scripts to scrape data from the Airbnb website captures a wide range of data points. However, the accuracy of this method typically falls within 10% to 20% of the actual number of listings. While this provides a fairly good estimate, there is still a margin for inaccuracy.
+1. Data Completeness:
+Using Python scripts to scrape data from the Airbnb website captures a wide range of data points. However, the accuracy of this method typically falls within 10% to 20% of the actual number of listings. While this provides a fairly good estimate, there is still a margin for inaccuracy.
 
-Data Accuracy: In the parts related to reviews in Inside Airbnb (IA), Murray Cox has confirmed that some information is “fake” or “junk” content implemented by Airbnb to prevent and deceive web scraping scripts (2016). This impacts the accuracy of the IA data and leads to a decline in the overall quality of the IA data.
+2. Data Accuracy:
+In the parts related to reviews in Inside Airbnb (IA), Murray Cox has confirmed that some information is “fake” or “junk” content implemented by Airbnb to prevent and deceive web scraping scripts (2016). This impacts the accuracy of the IA data and leads to a decline in the overall quality of the IA data.
 
-Limitations of Data Scope: Some important data points such as occupancy rates, host income, specific addresses, and guest information are not collected. The absence of these details limits the depth of analysis, especially in understanding the economic impact of Airbnb on hosts and neighborhoods.
+3. Limitations of Data Scope:
+Some important data points such as occupancy rates, host income, specific addresses, and guest information are not collected. The absence of these details limits the depth of analysis, especially in understanding the economic impact of Airbnb on hosts and neighborhoods.
 
 b. Wider Issues Raised:
 
-Ethical and Privacy Concerns: Although data scraping is effective, it raises ethical issues regarding user privacy and consent. Even though this method does not collect sensitive personal information, scraping data from websites may be perceived as intrusive or in violation of the platform's terms of service.
+1. Ethical and Privacy Concerns:
+Although data scraping is effective, it raises ethical issues regarding user privacy and consent. Even though this method does not collect sensitive personal information, scraping data from websites may be perceived as intrusive or in violation of the platform's terms of service.
 
-Impact on Policy and Social Impact Discussions: The data can provide valuable insights into the scale and characteristics of Airbnb in various cities, but it may not fully capture the subtle impacts on the housing market, neighborhood dynamics, and local economy, such as the effects on long-term housing supply, changes in rent levels, and potential fluctuations in the real estate market.
+2. Impact on Policy and Social Impact Discussions:
+The data can provide valuable insights into the scale and characteristics of Airbnb in various cities, but it may not fully capture the subtle impacts on the housing market, neighborhood dynamics, and local economy, such as the effects on long-term housing supply, changes in rent levels, and potential fluctuations in the real estate market.
 
 In conclusion, while the data collection method provides a wealth of information, its limitations in scope and potential inaccuracies must be acknowledged. Additionally, this method raises ethical considerations in terms of data scraping and privacy. These factors must be considered in any analysis or policy discussions using this data.
 
@@ -168,19 +173,21 @@ In conclusion, while the data collection method provides a wealth of information
 
 ## 5. What ethical considerations does the use of this data raise? 
 
-Tthe use of the IA dataset raises the following ethical issues.
+When considering ethical considerations in using data from the Inside Airbnb website, the following seven aspects are crucial:
 
-User Privacy and Data Security: Datasets from IA includes precise geographical locations of Airbnb listings. While using this data, it's essential to ensure that personal privacy is not compromised and to comply with relevant data protection laws and standards. Additionally, we need to ensure data use aligns with company promises.
+a. User Privacy and Data Security: The data contains precise geographical locations of Airbnb listings. While using this data, it's essential to ensure that personal privacy is not compromised and to comply with relevant data protection laws and standards.
 
-Original Data Accuracy and Reliability: Murray Cox indicates that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability (2016). This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation. When referencing website data, it's important to correctly cite both the original data sources and the processors to maintain academic integrity. 
+b. Original Data Accuracy and Reliability: Murray Cox, in his study "How Airbnb’s data hid the facts in New York City," highlighted that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability (2016). This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation.
 
-Secondary Interpretation of Data: After scraping data from Airbnb, the website creator, Murray Cox, processed and filtered the data, which could introduce bias. If the original data or its processing is biased or flawed, these issues might be magnified in secondary references (Pammer-Schindler V.,2022). Therefore, a thorough understanding of the data's original sources, processing methods, and potential limitations is necessary. There might be interpretations or modifications by the website creator to the original dataset, leading to misleading analysis outcomes. Potential information biases should be considered when using the data.
+c. Secondary Interpretation or Modification of Data: After scraping data from Airbnb, the website creator, Murray Cox, processed and filtered the data, which could introduce bias. If the original data or its processing is biased or flawed, these issues might be magnified in secondary references. Therefore, a thorough understanding of the data's original sources, processing methods, and potential limitations is necessary. There might be interpretations or modifications by the website creator to the original dataset, leading to misleading analysis outcomes. Potential information biases should be considered when using the data.
 
-Consistency between research purposes and data collection: The original purpose of the IA dataset may have been to collect and process it for the better development of Airbnb and the local community. However, when data is used for different learning and research purposes, it can deviate from the original intent, raising ethical issues, especially if the new use of the data is inconsistent with the expectations and consent of the data subject. Therefore, the scope/purpose and methods of our research are subject to rigorous ethical considerations, with the ultimate aim of providing data to support the improvement of residents' environment and Airbnb's business practices.
+d. Data Sharing and Reuse: Correct citation of data sources is crucial in academic research. When referencing website data, it's important to correctly cite both the original data sources and the processors to maintain academic integrity. Additionally, we need to ensure data use aligns with company promises.
 
-Impact on Public Interest: Research on Airbnb data can potentially impact the community and public interest. The public disclosure of specific location data and housing prices can affect nearby tenants, Airbnb operators, and regional public interests. For example, a high density of Airbnb listings in certain areas might affect the long-term rental market due to disturbance or tenant safety concerns, negatively impacting the community environment and resident satisfaction.
+e. Consistency of Research Purpose with Data Collection: Inside Airbnb's original data might have been collected and processed to better develop Airbnb and local communities. When the data is used for different study and research purposes, it might deviate from the original intent, raising ethical issues, especially if the new usage of data is inconsistent with the expectations and consent of the data subjects. Therefore, our research scope/purpose and methods have undergone strict ethical considerations, ultimately aimed at providing data support for improving residents' environment and Airbnb's business practices.
 
-Potential Discrimination and Bias: The application of the data is based on the distribution of London Boroughs, including factors like housing prices, which may create or exacerbate stereotypes against specific groups. For instance, market data analysis of Airbnb should not lead to adverse effects on low-income areas or specific racial communities. Analytical results should not intensify social inequalities, such as unfair treatment of listings or hosts in certain areas based on data analysis results.
+f. Impact on Public Interest: Research on Airbnb data can potentially impact the community and public interest. The public disclosure of specific location data and housing prices can affect nearby tenants, Airbnb operators, and regional public interests. For example, a high density of Airbnb listings in certain areas might affect the long-term rental market due to disturbance or tenant safety concerns, negatively impacting the community environment and resident satisfaction.
+
+g. Potential Discrimination and Bias: The application of the data is based on the distribution of London Boroughs, including factors like housing prices, which may create or exacerbate stereotypes against specific groups. For instance, market data analysis of Airbnb should not lead to adverse effects on low-income areas or specific racial communities. Analytical results should not intensify social inequalities, such as unfair treatment of listings or hosts in certain areas based on data analysis results.
 
 ::: 
 
@@ -431,10 +438,6 @@ plt.show()
 
 ::: 
 
-# Understanding Impact on Local Economy: By analysing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
-
-1. To assess the impact of STLs on the local economy, especially in the context of the night-time economy, we investigated the correlation between the density of STLs and the vibrancy of the local night-time economy. This involves examining data on late-night licenses (bars, clubs, restaurants), their locations, and their revenue trends. Additionally, we explored the employment statistics in these sectors, as STLs could potentially increase demand for local services, thereby impacting job opportunities.
-
 ```{python}
 # URLs needed for analysis 
 
@@ -529,6 +532,22 @@ df_land = df_land_all[['Code', 'Area name', 'Total Area (Hectares)']].iloc[:34]
 
 df_land.columns
 
+```
+
+# Understanding Impact on Local Economy: By analysing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
+
+1. To assess the impact of STLs on the local economy, especially in the context of the night-time economy, we investigated the correlation between the density of STLs and the vibrancy of the local night-time economy. This involves examining data on late-night licenses (bars, clubs, restaurants), their locations, and their revenue trends. Additionally, we explored the employment statistics in these sectors, as STLs could potentially increase demand for local services, thereby impacting job opportunities.
+
+Here is a summary of some notable correlations: 
+
+* Room Types and Night-Time Economy Employment: "Entire home/apt" and "Private room" show strong negative correlations with employees in the 24-hour health and personal social services sector, which suggests that areas with more of these Airbnb types have fewer employees in health and social services.
+
+* Airbnb Density and Night-Time Economy Employment: Airbnb density has a strong positive correlation with employment in the cultural and leisure activities sector, potentially due to higher tourist activity.
+
+* Workplace Employees and Room Types: There are moderate to strong correlations between various room types and the number of employees in different sectors at the workplace. For example, "Entire home/apt" has a strong positive correlation with cultural and leisure activities at the workplace, suggesting that areas with more entire homes/apts might also have more employees in cultural and leisure activities.
+
+```{python}
+
 ### **Correlation Matrix (Pearson)**
 
 # Merge all datasets into **one**
@@ -578,30 +597,23 @@ for i in range(len(corr.columns)):
             color = value  # Set the color based on the absolute correlation
             plt.scatter(i + 0.5, j + 0.5, s=size, c=color, cmap='coolwarm', marker='o', vmin=0, vmax=1)
 
+title_text = "Figure 5.1: Correlation Matrix"
+plt.title(title_text, fontsize=10, color="black", ha="center", va="center", fontweight="bold")
 plt.show()
 
 ```
 
 
-Here is a summary of some notable correlations: 
+#### Check field information
 
-* Room Types and Night-Time Economy Employment: "Entire home/apt" and "Private room" show strong negative correlations with employees in the 24-hour health and personal social services sector, which suggests that areas with more of these Airbnb types have fewer employees in health and social services.
+We then investigated the distribution of Airbnb related fields and night economy related fields with strong correlation in correlation analysis.
 
-* Airbnb Density and Night-Time Economy Employment: Airbnb density has a strong positive correlation with employment in the cultural and leisure activities sector, potentially due to higher tourist activity.
-
-* Workplace Employees and Room Types: There are moderate to strong correlations between various room types and the number of employees in different sectors at the workplace. For example, "Entire home/apt" has a strong positive correlation with cultural and leisure activities at the workplace, suggesting that areas with more entire homes/apts might also have more employees in cultural and leisure activities.
-
-
+Included:
+* Basic statistics for each variable, such as mean, median, minimum, and maximum. 
+* Plot the distribution of each variable, such as a histogram or box diagram.
 
 
 ```{python}
-
-#### Check field information
-
-# Check the distribution of Airbnb related fields and night economy related fields with strong correlation in correlation analysis.
-
-# It is expected to include:
-# Basic statistics for each variable, such as mean, median, minimum, and maximum. Plot the distribution of each variable, such as a histogram or box diagram.
 
 stats = df_night_clean[['Entire home/apt', 'Private room', 'Shared room', 'Sum_room',
             'airbnb density', '24-hour health and personal social services_employee',
@@ -614,25 +626,55 @@ stats = df_night_clean[['Entire home/apt', 'Private room', 'Shared room', 'Sum_r
 
 print(stats)
 
+columns = ['Entire home/apt', 'Private room', 'Shared room', 'Sum_room']
 
-df_night_clean[['Entire home/apt', 'Private room', 'Shared room', 'Sum_room',
-    'airbnb density']].hist(bins=20, figsize=(10, 7))
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(12, 10))
+
+axes = axes.flatten()
+
+for i, column in enumerate(columns):
+    subplot_number = i + 1  
+    df_night_clean[column].hist(bins=20, ax=axes[i])
+    axes[i].set_title(f"Figure 5.2.{subplot_number}: {column}")
+
 plt.tight_layout()
 plt.show()
 
 
-df_night_clean[['24-hour health and personal social services_employee',
-    'Any Night Time Economy category_employee',
-    'Cultural and leisure activities_employee',
-    'Activities which support wider social and economic activities_workplace',
-    'Any Night Time Economy category_workplace',
-    'Cultural and leisure activities_workplace',
-    'Total in all sectors_workplace']].boxplot(figsize=(10, 7))
-plt.xticks(rotation=45)
+columns = ['24-hour health and personal social services_employee',
+           'Any Night Time Economy category_employee',
+           'Cultural and leisure activities_employee',
+           'Activities which support wider social and economic activities_workplace',
+           'Any Night Time Economy category_workplace',
+           'Cultural and leisure activities_workplace',
+           'Total in all sectors_workplace']
+
+short_labels = ['24-hr Health\nServices Employee',
+                'Night Economy\nEmployee',
+                'Cultural &\nLeisure Employmee',
+                'Social & Economic\nSupport Employee',
+                'Night Economy\nWorkplace',
+                'Cultural & Leisure\n Workplace',
+                'Total\nWorkplace']
+
+fig, ax = plt.subplots(figsize=(12, 7))
+boxplot = df_night_clean[columns].boxplot(ax=ax)
+
+ax.set_xticklabels(short_labels, fontsize=10)
+
+plt.title("Figure 5.2.5: Boxplot")
+
 plt.tight_layout()
 plt.show()
+
+```
 
 ### **Spatial Autocorrelation Analysis （Moran's I）**
+
+
+
+
+```{python}
 
 geo_url = 'https://data.london.gov.uk/download/statistical-gis-boundary-files-london/9ba8c833-6370-4b11-abdc-314aa020d5e0/statistical-gis-boundaries-london.zip'
 response = requests.get(geo_url)
@@ -782,14 +824,13 @@ for cluster_num in range(k):
     print(boroughs_in_cluster.to_list())
     print("\n")
 
-# ***Cluster 0 represents areas with lower Airbnb density that have lower nighttime economic activity. For these areas, recommendations include: Encouraging the development of Airbnb, especially if these areas are close to tourist attractions or have distinctive cultural backgrounds, may help to increase the activity of the night-time economy. Recommend improvements to infrastructure, such as traffic and safety, to attract more nocturnal activities and visitors to local policy makers.***
-
-# ***Cluster 1 represents areas with moderate Airbnb density, with some degree of nighttime economic activity. Recommendations for these areas include: Support for small businesses and services in the night economy, such as catering and entertainment services, to further boost the economy. Consider hosting events such as night markets or cultural festivals in these areas to promote community engagement and the growth of the night economy.***
-
-# ***Cluster 2  represent areas with high Airbnb density that are hot spots for the nighttime economy. Recommendations for these areas include: Regulate Airbnb's growth to ensure its impact on local housing markets is sustainable, while ensuring that community services are not overstretched by increased visitors. More support for night workers, such as improved transport services and safety measures, to ensure the smooth running of economic activities at night.***
-
-
 ```
+
+***Cluster 0 represents areas with lower Airbnb density that have lower nighttime economic activity. For these areas, recommendations include: Encouraging the development of Airbnb, especially if these areas are close to tourist attractions or have distinctive cultural backgrounds, may help to increase the activity of the night-time economy. Recommend improvements to infrastructure, such as traffic and safety, to attract more nocturnal activities and visitors to local policy makers.***
+
+***Cluster 1 represents areas with moderate Airbnb density, with some degree of nighttime economic activity. Recommendations for these areas include: Support for small businesses and services in the night economy, such as catering and entertainment services, to further boost the economy. Consider hosting events such as night markets or cultural festivals in these areas to promote community engagement and the growth of the night economy.***
+
+***Cluster 2  represent areas with high Airbnb density that are hot spots for the nighttime economy. Recommendations for these areas include: Regulate Airbnb's growth to ensure its impact on local housing markets is sustainable, while ensuring that community services are not overstretched by increased visitors. More support for night workers, such as improved transport services and safety measures, to ensure the smooth running of economic activities at night.***
 
 
 * Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
@@ -896,7 +937,6 @@ Your QMD file should automatically download your BibTeX file. We will then re-ru
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
 
 ## References
-Alexandri, G. (2022) ‘Housing financialisation a la griega’, Geoforum, 136, pp. 68–79. doi:10.1016/j.geoforum.2022.07.014.
 
 Alsudais, Abdulkareem. 2021. “Incorrect Data in the Widely Used Inside Airbnb Dataset.” Decision Support Systems 141:113453. https://doi.org/10.1016/j.dss.2020.113453.
 
@@ -904,8 +944,8 @@ Boyd,  danah and Crawford, K. (2012) ‘CRITICAL QUESTIONS FOR BIG DATA’, Info
 
 Cox, M., Morris, J. and Higgins, T. (2023) Inside Airbnb, Inside Airbnb: Home. Available at: http://insideairbnb.com/ (Accessed: 18 December 2023). 
 
-Franco, S.F. and Santos, C.D. (2021) ‘The impact of Airbnb on residential property values and rents: Evidence from Portugal’, Regional Science and Urban Economics, 88, p. 103667. doi:10.1016/j.regsciurbeco.2021.103667. 
+Alexandri, G. (2022) ‘Housing financialisation a la griega’, Geoforum, 136, pp. 68–79. doi:10.1016/j.geoforum.2022.07.014.
 
-Pammer-Schindler, V., Rosé, C. Data-Related Ethics Issues in Technologies for Informal Professional Learning. Int J Artif Intell Educ 32, 609–635 (2022). https://doi.org/10.1007/s40593-021-00259-x
+Franco, S.F. and Santos, C.D. (2021) ‘The impact of Airbnb on residential property values and rents: Evidence from Portugal’, Regional Science and Urban Economics, 88, p. 103667. doi:10.1016/j.regsciurbeco.2021.103667. 
 
 Resch, E. et al. (2016) ‘Impact of urban density and building height on energy use in cities’, Energy Procedia, 96, pp. 800–814. doi:10.1016/j.egypro.2016.09.142. 
