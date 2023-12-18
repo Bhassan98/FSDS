@@ -613,7 +613,7 @@ plt.show()
 ```
 
 
-#### Check field information
+### Check field information
 
 We then investigated the distribution of Airbnb related fields and night economy related fields with strong correlation in correlation analysis.
 
@@ -776,20 +776,20 @@ for var in variables_to_analyze:
 
 ```
 
-## **Cluster**
+### **Cluster**
 
-### Cluster 0 (Low Airbnb Density and Nighttime Activity):
+#### Cluster 0 (Low Airbnb Density and Nighttime Activity):
 
 * Development Incentives: Encouraging the development of Airbnbs in these areas could indeed spur economic growth, especially if they are near attractions or culturally significant areas. A policy could include tax incentives or streamlined permitting processes for new Airbnbs.
 Infrastructure Improvements: Investment in infrastructure could make these areas more attractive for nighttime activities. However, it's important to consider the local residents' perspective and ensure that any development is in line with their needs and desires.
 
-### Cluster 1 (Moderate Airbnb Density and Nighttime Activity): 
+#### Cluster 1 (Moderate Airbnb Density and Nighttime Activity): 
 
 * Support for Small Businesses: Policies that provide support and incentives for small businesses can help sustain and grow the nighttime economy. This might include grants, business development services, or special zoning considerations.
 
 * Community Events: Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing necessary infrastructure.
 
-### Cluster 2 (High Airbnb Density and Nighttime Economy Hotspots):
+#### Cluster 2 (High Airbnb Density and Nighttime Economy Hotspots):
 
 * Airbnb Regulation: It's crucial to strike a balance between the growth of STLs and the impact on the housing market. Regulation could include caps on the number of days a property can be let out, requiring permits, or enforcing zones where STLs are allowed.
 
@@ -868,10 +868,9 @@ for cluster_num in range(k):
 
 ```
 
+### Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regul# ations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
 
-* Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
-
-Regulation:
+#### Regulation:
 
 1. Zoning laws: In 20**, Portugal created laws to regular the develpoment of Airbnb style STL properties by mandating that they register with the local authority in the first instance. It was demonstrated that a 1% increase in a municipality airbnb share resulteed in a 3.7% increase in house price (Franco & Santos, 2021). Also, due to the spatial heterogeneity of Airbnbs, it was demonstated that there was a localised emphasis on building in the hitoric centres that attract toursits. 
 
@@ -914,7 +913,7 @@ plt.title("Airbnb Listings in London", fontsize=16)
 plt.show()
 ```
 
-* Strategic Policy Development: As Airbnbs are primarily catered to cater to the tourism sector,  
+### Strategic Policy Development: As Airbnbs are primarily catered to cater to the tourism sector,  
 
 ```{python}
 tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
