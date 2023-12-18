@@ -445,6 +445,8 @@ plt.show()
 
 2. 
 
+
+
 ```{python}
 # URLs needed for analysis 
 
@@ -453,8 +455,41 @@ late_night_liscenses_url = "https://data.london.gov.uk/download/alcohol-and-late
 inside_airbnb_url = 'http://data.insideairbnb.com/united-kingdom/england/london/2022-12-10/visualisations/listings.csv'
 land_url = 'https://data.london.gov.uk/download/land-area-and-population-density-ward-and-borough/cc4e7e08-3071-488f-bdd9-a62cb1ed1c5c/land-area-population-density-london.xlsx'
 
+#Data cleaning for the **Night Time Economy** dataset
 
+#The dataset after cleaning should contain information about numbers of employees and workplaces in: 
 
+# 1. Cultural and leisure activities
+# 2. Activities which support night time cultural and leisure activities
+# 3. 24-hour health and personal social services
+# 4. Activities which support wider social and economic activities
+# 5. Any Night Time Economy category
+# 6. Total in all sectors
+
+# read in different data from different sheets
+df_night_employee_all = pd.read_excel(night_economy_url, sheet_name='NTE employees London boroughs', skiprows=3)
+df_night_workplace_all = pd.read_excel(night_economy_url, sheet_name='NTE businesses London boroughs', skiprows=3)
+
+# set the columns names
+column_names = ['Area code', 'Area name', 'Night Time Economy category'] + list(df_night_employee_all.columns[3:])
+df_night_employee_all.columns = column_names
+df_night_workplace_all.columns = column_names
+
+# divide night time economy types to different columns
+df_night_employee = df_night_employee_all.pivot_table(index=['Area code', 'Area name'], columns='Night Time Economy category', values=2017, aggfunc='first').reset_index()
+df_night_workplace = df_night_workplace_all.pivot_table(index=['Area code', 'Area name'], columns='Night Time Economy category', values=2017, aggfunc='first').reset_index()
+
+# delete all the rows not belonging to London boroughs
+df_night_employee = df_night_employee[df_night_employee['Area code'].str.startswith('E09')]
+df_night_workplace = df_night_workplace[df_night_workplace['Area code'].str.startswith('E09')]
+
+# have a look at the dataframes
+# df_night_employee.head()
+df_night_workplace.head()
+
+# Data cleaning for the **Late Night Freshment Liscenses** dataset
+#The dataset after cleaning should contain information about:
+# 1. Number of 24-shops liscenses
 
 ```
 
@@ -505,22 +540,18 @@ plt.show()
 
 ```{python}
 
-# URLs for the data
 tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
 geojson_url = "https://skgrange.github.io/www/data/london_boroughs.json"
 
-# Fetch Tourist Attractions data from URL
 tourist_attractions_response = requests.get(tourist_attractions_url)
 tourist_attractions_path = BytesIO(tourist_attractions_response.content)
 
-# Try reading with 'xlrd' engine
 try:
     toursit_attractions = pd.read_excel(tourist_attractions_path, engine='xlrd')
 except:
     # If 'xlrd' engine fails, try with 'openpyxl' engine
     toursit_attractions = pd.read_excel(tourist_attractions_path, engine='openpyxl')
 
-# Fetch London boroughs GeoJSON data from URL
 geojson_response = requests.get(geojson_url)
 geojson_path = BytesIO(geojson_response.content)
 london_boroughs_geo = gpd.read_file(geojson_path)
@@ -550,16 +581,12 @@ legend.get_title().set_fontsize('10')
 plt.tight_layout()
 plt.show()
 
-
 ```
 
 * Strategic Policy Development: Combining insights from these datasets can help create nuanced, area-specific regulations that balance the benefits and challenges of STLs.
 
 ```{python}
-import matplotlib.pyplot as plt
-import numpy as np
-import geopandas as gpd
-import matplotlib.cm as cm
+
 ```
 
 :::
