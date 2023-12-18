@@ -885,7 +885,9 @@ plt.show()
 ```
 
 
-### Strategic Policy Development: Airbnbs
+### Strategic Policy Development: 
+
+Airbnbs are principally structured to serve the toursim sector. Tourist attractions are mostly clustered 
 
 ```{python}
 tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
@@ -929,6 +931,44 @@ legend.get_title().set_fontsize('10')
 plt.tight_layout()
 plt.show()
 ```
+
+```{python}
+
+path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
+airbnb_listings_data = pd.read_csv(path1)
+
+tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
+tourist_attractions = pd.read_excel(tourist_attractions_url)
+
+boroughs = ["Kensington and Chelsea", "Camden", "Southwark", "Lambeth", "Westminster", 
+            "Tower Hamlets", "Richmond upon Thames", "Greenwich", "City of London", "Lewisham"]
+
+airbnb_filtered = airbnb_listings_data[airbnb_listings_data['neighbourhood'].isin(boroughs)]
+tourist_filtered = tourist_attractions[tourist_attractions['Borough'].isin(boroughs)]
+
+airbnb_grouped = airbnb_filtered.groupby('neighbourhood').size().reset_index(name='num_airbnb')
+
+tourist_grouped = tourist_filtered.groupby('Borough')['Visits_2022'].sum().reset_index()
+
+merged_data_specific = pd.merge(airbnb_grouped, tourist_grouped, left_on='neighbourhood', right_on='Borough', how='inner')
+
+X = merged_data_specific['num_airbnb']  
+Y = merged_data_specific['Visits_2022']  
+
+X = sm.add_constant(X)  #
+
+model = sm.OLS(Y, X).fit()  
+model_summary = model.summary()  
+print(model_summary)
+```
+
+### Conclusion: What can policy do?
+
+In conclusion, this report underscores the significant potential for policy intervention to regulate short-term lets, such as Airbnb, in London, and how this can contribute to addressing the broader housing crisis and inequality in the city. The proliferation of short-term lets has been identified as a contributing factor to the scarcity of affordable housing in London, exacerbating the challenges faced by residents in finding stable, long-term accommodation. By implementing targeted regulations on short-term lets, policymakers have an opportunity to ensure a more balanced housing market, which prioritizes the needs of permanent residents over the demands of the temporary rental market.
+
+The Mayor of London, along with borough councils, play a crucial role in shaping these policies. They can work collaboratively to monitor the impact of short-term lets on their communities and respond with appropriate regulatory measures. Central government support is also crucial, particularly in terms of providing the legal framework and resources necessary for effective implementation and enforcement of these regulations.
+
+In essence, the strategic regulation of short-term lets is an essential component of a broader strategy to tackle the housing crisis in London. By taking decisive action in this area, policymakers can make a tangible difference in improving housing affordability and equity, thus contributing to the overall reduction of poverty and inequality in the city.
 
 ## Sustainable Authorship Tools
 
