@@ -681,7 +681,7 @@ plt.show()
 
 ```
 
-### **Spatial Autocorrelation Analysis（Moran's I）**
+### **Spatial Autocorrelation Analysis (Moran's I)**
 
 The Local Moran's I map for Airbnb density and the provided Global Moran's I statistics reveal spatial clustering in the distribution of Airbnb listings and various workforce and workplace categories across London. The high Global Moran's I for Airbnb density (0.44) with a significant p-value (0.001) indicates a strong clustered pattern of Airbnb listings, which suggests that Airbnbs are not evenly spread out but rather concentrated in specific areas.
 
@@ -698,48 +698,10 @@ The p-values associated with the Global Moran's I statistics are also critical, 
 
 ```{python}
 
-geo_url = 'https://data.london.gov.uk/download/statistical-gis-boundary-files-london/9ba8c833-6370-4b11-abdc-314aa020d5e0/statistical-gis-boundaries-london.zip'
-response = requests.get(geo_url)
-
-# create a temporary file folder
-temp_folder = 'temp_geo_data'
-os.makedirs(temp_folder, exist_ok=True)
-
-# unzip files to the temporary file folder
-with ZipFile(BytesIO(response.content)) as zip_file:
-    zip_file.extractall(temp_folder)
-
-all_files = []
-for root, dirs, files in os.walk(temp_folder):
-    for file in files:
-        all_files.append(os.path.join(root, file))
-
-# look for shapefile
-shp_files = [file for file in all_files if file.endswith('.shp')]
-
-# select shapefile
-if shp_files:
-    selected_shp_file = shp_files[0]
-    gdf_boroughs = gpd.read_file(selected_shp_file)
-    print(gdf_boroughs.head())
-else:
-    print("No SHP files found in the ZIP archive.")
-
-# delete the temporary folder
-shutil.rmtree(temp_folder)
-
-# Take the column 'Entire home/apt' as an example, do the **Moran's I and it's P value**  
-
-# Adding the results to dataframe  
-
-# Change the content of **variables** to change output map
-
-# Transform the dataframe to **geodataframe**, and visualize the result on maps
-
-# Merge Airbnb data
-gdf_boroughs = gdf_boroughs.merge(df_night, left_on='NAME', right_on='neighbourhood', how='left')
-
-print(gdf_boroughs.columns)
+import geopandas as gpd
+from libpysal.weights import Queen
+from esda.moran import Moran, Moran_Local
+import matplotlib.pyplot as plt
 
 variables_to_analyze = [
     'Entire home/apt',
@@ -762,6 +724,8 @@ gdf_boroughs['airbnb density'] = pd.to_numeric(gdf_boroughs['airbnb density'], e
 w = Queen.from_dataframe(gdf_boroughs)
 w.transform = 'r'
 
+figure_counter = 1
+
 for var in variables_to_analyze:
     moran_global = Moran(gdf_boroughs[var], w)
     print(f"Global Moran's I for {var}: {moran_global.I}, P-value: {moran_global.p_sim}")
@@ -770,12 +734,13 @@ for var in variables_to_analyze:
     gdf_boroughs[f'moran_i_{var}'] = moran_local.Is
     gdf_boroughs[f'moran_p_{var}'] = moran_local.p_sim
 
-    plt.style.use('default')
     fig, ax = plt.subplots(figsize=(10, 6))
     gdf_boroughs.plot(column=f'moran_i_{var}', cmap='RdPu', legend=True, ax=ax)
-    ax.set_title(f"Local Moran's I for {var}")
-    plt.show()
+    ax.set_title(f"Figure 6.{figure_counter}: Local Moran's I for {var}")
+    
+    figure_counter += 1
 
+    plt.show()
 ```
 
 ### **Cluster**
@@ -870,7 +835,7 @@ for cluster_num in range(k):
 
 ```
 
-### Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regul# ations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
+### Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
 
 #### Regulation:
 
@@ -926,8 +891,6 @@ legend.get_title().set_fontsize('10')
 plt.tight_layout()
 plt.show()
 ```
-
-:::
 
 ## Sustainable Authorship Tools
 
