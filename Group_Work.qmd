@@ -5,9 +5,9 @@ title: A geodemographic profile of London Boroughs in context to the location of
 execute:
   echo: false
 jupyter: python3
-format: 
-  html:
-    theme:
+format:
+ html:
+  theme:
       - minty
       - css/web.scss
     code-copy: true
@@ -597,7 +597,7 @@ for i in range(len(corr.columns)):
             color = value  # Set the color based on the absolute correlation
             plt.scatter(i + 0.5, j + 0.5, s=size, c=color, cmap='coolwarm', marker='o', vmin=0, vmax=1)
 
-title_text = "Figure 5.1: Correlation Matrix"
+title_text = "Figure 5.1: Correlation Matrix (Pearson)"
 plt.title(title_text, fontsize=10, color="black", ha="center", va="center", fontweight="bold")
 plt.show()
 
@@ -669,7 +669,7 @@ plt.show()
 
 ```
 
-### **Spatial Autocorrelation Analysis （Moran's I）**
+### **Spatial Autocorrelation Analysis（Moran's I）**
 
 
 
