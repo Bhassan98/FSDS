@@ -40,7 +40,6 @@ format:
     number-sections: false
     colorlinks: true
     highlight-style: github
-
 ---
 
 ## Declaration of Authorship {.unnumbered .unlisted}
@@ -206,6 +205,8 @@ g. Potential Discrimination and Bias: The application of the data is based on th
 import pandas as pd
 import numpy as np
 import geopandas as gpd
+from libpysal.weights import Queen
+from esda.moran import Moran, Moran_Local
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import json
@@ -613,7 +614,7 @@ Included:
 * Basic statistics for each variable, such as mean, median, minimum, and maximum. 
 * Plot the distribution of each variable, such as a histogram or box diagram.
 
-The data on Short-Term Lettings (STL) in London points to a prevalence of affordable options within the market, as evidenced by the clustering of entire homes/apartments and shared rooms in lower value ranges. Private rooms are evenly distributed across various values, suggesting a balanced market with a range of pricing that caters to different segments of consumers. The variability in 'Sum_room' data, with its multiple peaks, indicates a diversity in consumer choice and price points. When considering the boxplot depicting different employee categories, there is a notable variation in economic impact, particularly in the 'Total Workplace' category, which shows a wider range and higher median values. This information is crucial for devising targeted policy decisions that could address housing affordability, maintain community integrity, and ensure that the benefits of STLs are equitably distributed amongst residents and workers in London. Policies could include regulation on the number of STLs in certain areas, taxation that reflects earnings from STLs to support local services, or measures to protect long-term rental markets and resident communities.
+The data on Short-Term Lettings (STL) in London points to a prevalence of affordable options within the market, as evidenced by the clustering of entire homes/apartments and shared rooms in lower value ranges. Private rooms are evenly distributed across various values, suggesting a balanced market with a range of pricing that caters to different segments of consumers. The variability in 'Sum_room' data, with its multiple peaks, indicates a diversity in consumer choice and price points. When considering the boxplot depicting different employee categories, there is a notable variation in economic impact, particularly in the 'Total Workplace' category, which shows a wider range and higher median values. This information is crucial for devising targeted policy decisions that could address housing affordability, maintain community integrity, and ensure that the benefits of STLs are equitably distributed amongst residents and workers in London. Policies could include regulation on the number of STLs in certain areas, taxation that reflects earnings from STLs to support local services, or measures to protect long-term rental markets and resident communities (Hill et al., 2023).
 
 ```{python}
 
@@ -664,7 +665,7 @@ boxplot = df_night_clean[columns].boxplot(ax=ax)
 
 ax.set_xticklabels(short_labels, fontsize=10)
 
-plt.title("Figure 5.2.5: Boxplot")
+plt.title("Figure 5.3: Boxplot")
 
 plt.tight_layout()
 plt.show()
@@ -673,7 +674,17 @@ plt.show()
 
 ### **Spatial Autocorrelation Analysis（Moran's I）**
 
+The Local Moran's I map for Airbnb density and the provided Global Moran's I statistics reveal spatial clustering in the distribution of Airbnb listings and various workforce and workplace categories across London. The high Global Moran's I for Airbnb density (0.44) with a significant p-value (0.001) indicates a strong clustered pattern of Airbnb listings, which suggests that Airbnbs are not evenly spread out but rather concentrated in specific areas.
 
+The positive Global Moran's I values for private and shared rooms, as well as for sum_rooms, show moderate spatial clustering, with sum_rooms exhibiting a stronger clustering tendency (I = 0.24, P-value = 0.014). This might indicate areas of potential over-saturation or under-service in the STL market.
+
+The workforce and workplace categories, specifically "Any Night Time Economy category" and "Cultural and leisure activities," both for employees and workplaces, also show positive Global Moran's I values, which implies geographic clustering in these sectors. This could suggest that certain areas may be experiencing more significant economic impacts from STLs due to a higher concentration of employees and businesses in these sectors.
+
+For policy-making, these insights could lead to targeted regulatory approaches. For instance, implementing geographically differentiated regulations that focus on areas with high Airbnb density could help to avoid exacerbating housing shortages or pricing local residents out of the market. Additionally, zoning adjustments or permitting processes might be considered to ensure a balanced distribution of STLs that supports tourism and local economies without compromising the needs of the local workforce, particularly in the night-time economy and cultural sectors.
+
+Moreover, the analysis could inform policies that aim to redistribute the economic benefits of STLs more evenly across the city, potentially by incentivizing Airbnb listings in areas with lower densities. This would help mitigate the risks of over-tourism and its associated strains on local communities and infrastructure.
+
+The p-values associated with the Global Moran's I statistics are also critical, as they suggest the likelihood that the observed spatial patterns did not occur by chance. Particularly for categories with p-values below 0.05, such as "Cultural and leisure activities" for both employees and workplaces, the evidence supports the need for policy interventions that are sensitive to the specific dynamics of these sectors.
 
 
 ```{python}
@@ -721,11 +732,6 @@ gdf_boroughs = gdf_boroughs.merge(df_night, left_on='NAME', right_on='neighbourh
 
 print(gdf_boroughs.columns)
 
-import geopandas as gpd
-from libpysal.weights import Queen
-from esda.moran import Moran, Moran_Local
-import matplotlib.pyplot as plt
-
 variables_to_analyze = [
     'Entire home/apt',
     'Private room',
@@ -762,10 +768,16 @@ for var in variables_to_analyze:
     gdf_boroughs.plot(column=f'moran_i_{var}', cmap='RdPu', legend=True, ax=ax)
     ax.set_title(f"Local Moran's I for {var}")
     plt.show()
+```
 
-    ### **Cluster**
+### **Cluster**
 
-    # ***Selected factors*** Based on the results of spatial autocorrelation, I select the data columns
+
+
+```{python}
+### **Cluster**
+
+# ***Selected factors*** Based on the results of spatial autocorrelation, I select the data columns
 
 # Entire home/apt, Sum_room, airbnb density, 24-hour health and personal social services_employee, Any Night Time Economy category_employee, Cultral and leisure activities_employee Activities which ssupport wider social and economic activities_workplace, Any Night Time Economy category_workplace, Cultral and leisure activities_workplace, Total in all sectors_workplace
 
@@ -833,7 +845,6 @@ for cluster_num in range(k):
 ***Cluster 1 represents areas with moderate Airbnb density, with some degree of nighttime economic activity. Recommendations for these areas include: Support for small businesses and services in the night economy, such as catering and entertainment services, to further boost the economy. Consider hosting events such as night markets or cultural festivals in these areas to promote community engagement and the growth of the night economy.***
 
 ***Cluster 2  represent areas with high Airbnb density that are hot spots for the nighttime economy. Recommendations for these areas include: Regulate Airbnb's growth to ensure its impact on local housing markets is sustainable, while ensuring that community services are not overstretched by increased visitors. More support for night workers, such as improved transport services and safety measures, to ensure the smooth running of economic activities at night.***
-
 
 * Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
 
@@ -951,3 +962,5 @@ Alexandri, G. (2022) ‘Housing financialisation a la griega’, Geoforum, 136, 
 Franco, S.F. and Santos, C.D. (2021) ‘The impact of Airbnb on residential property values and rents: Evidence from Portugal’, Regional Science and Urban Economics, 88, p. 103667. doi:10.1016/j.regsciurbeco.2021.103667. 
 
 Resch, E. et al. (2016) ‘Impact of urban density and building height on energy use in cities’, Energy Procedia, 96, pp. 800–814. doi:10.1016/j.egypro.2016.09.142. 
+
+Hill, R.J., Pfeifer, N. and Steurer, M. (2023) ‘The Airbnb Rent Premium and the crowding-out of long-term rentals’, Journal of Housing Economics, 61. doi:10.1016/j.jhe.2023.101935. 
