@@ -592,11 +592,11 @@ plt.show()
 
 Here is a summary of some notable correlations: 
 
-Room Types and Night-Time Economy Employment: "Entire home/apt" and "Private room" show strong negative correlations with employees in the 24-hour health and personal social services sector, which suggests that areas with more of these Airbnb types have fewer employees in health and social services.
+* Room Types and Night-Time Economy Employment: "Entire home/apt" and "Private room" show strong negative correlations with employees in the 24-hour health and personal social services sector, which suggests that areas with more of these Airbnb types have fewer employees in health and social services.
 
-Airbnb Density and Night-Time Economy Employment: Airbnb density has a strong positive correlation with employment in the cultural and leisure activities sector, potentially due to higher tourist activity.
+* Airbnb Density and Night-Time Economy Employment: Airbnb density has a strong positive correlation with employment in the cultural and leisure activities sector, potentially due to higher tourist activity.
 
-Workplace Employees and Room Types: There are moderate to strong correlations between various room types and the number of employees in different sectors at the workplace. For example, "Entire home/apt" has a strong positive correlation with cultural and leisure activities at the workplace, suggesting that areas with more entire homes/apts might also have more employees in cultural and leisure activities.
+* Workplace Employees and Room Types: There are moderate to strong correlations between various room types and the number of employees in different sectors at the workplace. For example, "Entire home/apt" has a strong positive correlation with cultural and leisure activities at the workplace, suggesting that areas with more entire homes/apts might also have more employees in cultural and leisure activities.
 
 
 
