@@ -628,7 +628,6 @@ Measures to protect long-term rental markets and resident communities (Hill et a
 
 Protecting London's long-term rental market is crucial in a city where housing is at a premium. A policy limiting the total number of days a property can be rented out as an STL would discourage full-time vacation rentals, thereby preserving housing for long-term residents. Additionally, requiring STL owners to obtain a license could ensure adherence to safety and community standards. Such measures, suggested by Hill et al. (2023), would safeguard against the erosion of neighborhood character and the displacement of local communities, maintaining London's diverse and vibrant residential fabric.
 
-
 ```{python}
 
 stats = df_night_clean[['Entire home/apt', 'Private room', 'Shared room', 'Sum_room',
