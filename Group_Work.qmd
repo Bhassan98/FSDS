@@ -949,6 +949,8 @@ model = sm.OLS(Y, X).fit()
 
 model_summary_df = pd.read_html(model.summary().tables[1].as_html(), header=0, index_col=0)[0]
 
+model_summary_df.index.name = 'Figure 13: Linear Regression Analysis'
+
 print(model_summary_df)
 ```
 
