@@ -457,11 +457,11 @@ The night-time economy is crucial to London's identity, significantly impacting 
 
 Key correlations include:
 
-"Entire home/apt" and "Private room" are negatively correlated with employees in health and personal social services, indicating fewer such employees in areas with more of these Airbnb types.
+* "Entire home/apt" and "Private room" are negatively correlated with employees in health and personal social services, indicating fewer such employees in areas with more of these Airbnb types.
 
-Airbnb density is positively correlated with employment in cultural and leisure activities, likely due to higher tourist activity.
+* Airbnb density is positively correlated with employment in cultural and leisure activities, likely due to higher tourist activity.
 
-Various room types have moderate to strong correlations with workplace employees in different sectors. For instance, "Entire home/apt" correlates positively with cultural and leisure activities employees, suggesting more of these employees in areas with more entire homes/apts.ivities.
+* Various room types have moderate to strong correlations with workplace employees in different sectors. For instance, "Entire home/apt" correlates positively with cultural and leisure activities employees, suggesting more of these employees in areas with more entire homes/apts.ivities.
 
 ```{python}
 
@@ -519,6 +519,12 @@ plt.title(title_text, fontsize=15, color="black", ha="center", va="center", font
 plt.show()
 ```
 
+
+
+
+
+
+
 ### **Spatial Autocorrelation Analysis (Moran's I)**
 
 The Local Moran's I map for Airbnb density and the provided Global Moran's I statistics reveal spatial clustering in the distribution of Airbnb listings and various workforce and workplace categories across London. The high Global Moran's I for Airbnb density (0.44) with a significant p-value (0.001) indicates a strong clustered pattern of Airbnb listings, which suggests that Airbnbs are not evenly spread out but rather concentrated in specific areas; specifically central London.
@@ -527,7 +533,7 @@ The positive Global Moran's I values for private and shared rooms, as well as fo
 
 The Night Time Economy category and Cultural and leisure activities both for employees and workplaces, also show positive Global Moran's I values, which implies geographic clustering in these sectors. This suggests that certain areas may be experiencing more significant economic impacts from STLs due to a higher concentration of employees and businesses in these sectors. This is normally as a result of urban agglomeration (Fang & Yu, 2017). 
 
-For policy-making, these insights could lead to targeted regulatory approaches. For instance, implementing geographically differentiated regulations that focus on areas with high Airbnb density could help to avoid exacerbating housing shortages or pricing local residents out of the market. Additionally, zoning adjustments or permitting processes might be considered to ensure a balanced distribution of STLs that supports tourism and local economies without compromising the needs of the local workforce, particularly in the night-time economy and cultural sectors.fabric.
+For policy-making, these insights could lead to targeted regulatory approaches. For instance, implementing geographically differentiated regulations that focus on areas with high Airbnb density could help to avoid exacerbating housing shortages or pricing local residents out of the market. Additionally, zoning adjustments or permitting processes might be considered to ensure a balanced distribution of STLs that supports tourism and local economies without compromising the needs of the local workforce, particularly in the night-time economy and cultural sectors preserving the local urban fabric.
 
 ```{python}
 #| scrolled: true
@@ -592,7 +598,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-### **Cluster**
+### **Clustering**
 
 #### Cluster 0 (Low Airbnb Density and Night-time Activity):
 
