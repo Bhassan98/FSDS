@@ -704,8 +704,18 @@ variables_to_analyze = [
     'Any Night Time Economy category_workplace',
     'Cultural and leisure activities_workplace',
     'Total in all sectors_workplace'
+ ]
+
+short_labels = {
+    '24-hour health and personal social services_employee': '24-hr Health\nServices Emp',
+    'Any Night Time Economy category_employee': 'Night Economy\nEmployee',
+    'Cultural and leisure activities_employee': 'Cultural & Leisure\nEmployee',
+    'Activities which support wider social and economic activities_workplace': 'Social & Economic\n Activities',
+    'Any Night Time Economy category_workplace': 'Night Economy\nWorkplace',
+    'Cultural and leisure activities_workplace': 'Cultural & Leisure\nWorkplace',
+    'Total in all sectors_workplace': 'Total\nWorkplace'
   
-]
+}
 
 gdf_boroughs['airbnb density'] = pd.to_numeric(gdf_boroughs['airbnb density'], errors='coerce')
 
@@ -724,29 +734,32 @@ for var in variables_to_analyze:
 
     fig, ax = plt.subplots(figsize=(10, 6))
     gdf_boroughs.plot(column=f'moran_i_{var}', cmap='RdPu', legend=True, ax=ax)
-    ax.set_title(f"Figure 8.{figure_counter}: Local Moran's I for {var}")
+    ax.set_title(f"Figure 6.{figure_counter}: Local Moran's I for {var}")
+    
+    title = short_labels.get(var, var)
+    ax.set_title(f"Figure 6.{figure_counter}: Local Moran's I for {title}")
     
     figure_counter += 1
-
     plt.axis('off')
     plt.show()
+
 ```
 
 ### **Cluster**
 
-#### Cluster 0 (Low Airbnb Density and Nighttime Activity):
+#### Cluster 0 (Low Airbnb Density and Night-time Activity):
 
-- Development Incentives: Encouraging the development of Airbnbs in these areas could indeed spur economic growth, especially if they are near attractions or culturally significant areas. A policy could include tax incentives or streamlined permitting processes for new Airbnbs.
+- Encouraging the development of Airbnbs in these areas could indeed spur economic growth, which as an adjunct can bring attnention to more local  culturally significant areas. A policy could include tax incentives or streamlined permitting processes for new Airbnbs.
 
-- Infrastructure Improvements: Investment in infrastructure could make these areas more attractive for nighttime activities. However, it's important to consider the local residents' perspective and ensure that any development is in line with their needs and desires.
+- Investment in infrastructure could make these areas more attractive for nighttime activities. However, it's important to consider the local residents' perspective and ensure that any development is in line with their needs and desires.
 
-#### Cluster 1 (Moderate Airbnb Density and Nighttime Activity): 
+#### Cluster 1 (Moderate Airbnb Density and Night-time Activity): 
 
 - Support for Small Businesses: Policies that provide support and incentives for small businesses can help sustain and grow the nighttime economy. This might include grants, business development services, or special zoning considerations.
 
-- Community Events: Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing necessary infrastructure.
+- Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing necessary infrastructure.
 
-#### Cluster 2 (High Airbnb Density and Nighttime Economy Hotspots):
+#### Cluster 2 (High Airbnb Density and Night-time Economy Hotspots):
 
 - Airbnb Regulation: It's crucial to strike a balance between the growth of STLs and the impact on the housing market. Regulation could include caps on the number of days a property can be let out, requiring permits, or enforcing zones where STLs are allowed.
 
