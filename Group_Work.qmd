@@ -45,7 +45,7 @@ We, [Bashir Hassan, Yanxu Lyu, Chuyue Wang, Han Jiang, Oujin Zhang], confirm tha
 
 Date: 19.12.2023
 
-Student Numbers: 22226256, 2303338, 23039200, 23203113, 23204533
+Student Numbers: 22226256, 23033381, 23039200, 23203113, 23204533
 
 ## Brief Group Reflection
 
@@ -116,7 +116,6 @@ InsideAirbnb collected the data for several key reasons:
 ## 3. How was the data collected?  
 
 Source Code and Technology: Data was scraped from the Airbnb website ("https://zh.airbnb.com") using Python, with results stored in a PostgreSQL database. Some of the Python code used can be found at "https://github.com/tomslee/airbnb-data-collection" (Abdulkareem Alsudais, 2021). They may have also used an extraction tool named import.io ("https://www.import.io/products").
-Source Code and Technology: Data was scraped from the Airbnb website ("https://zh.airbnb.com") using Python, with results stored in a PostgreSQL database. Some of the Python code used can be found at "https://github.com/tomslee/airbnb-data-collection" (Abdulkareem Alsudais, 2021). They may have also used an extraction tool named import.io ("https://www.import.io/products").
 
 Data Collection Details: The scraping script gathers multiple sets of data for each Airbnb listing, including host ID, room type, country, city, neighborhood, address, number of reviews, overall satisfaction rating, accommodation details, price, minimum stay duration, last modified timestamp, latitude, and longitude. Notably, certain data like occupancy rates, specific addresses, and guest information were not collected.
 
@@ -154,7 +153,7 @@ Impact on Public Interest: Airbnb data research can significantly affect communi
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
 
 ```{python}
-
+# !pip install pyecharts==1.9.0
 
 import pandas as pd
 import numpy as np
@@ -176,7 +175,7 @@ from zipfile import ZipFile
 import os
 import shutil
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-from pyecharts import Map
+# from pyecharts import Map
 import re
 import requests
 from io import BytesIO
@@ -257,6 +256,10 @@ ax3 = ax1.twinx()
 ax3.plot(interval.index, interval['total_listings'], linewidth=0.8, color='darkblue', marker='s')
 ax3.set_ylabel('total_listings', color='darkblue')
 ax3.tick_params(axis='y', labelcolor='darkblue')
+
+# Caculate the number of Airbnb listings for each room type
+category = airbnb.room_type.value_counts().to_frame().reset_index(drop=False)
+category['pecentage']=category['count']/airbnb.shape[0]
 
 category.plot(kind='barh', y='count', x='room_type', ax=ax2, legend=False)
 for index, value in enumerate(category['count']):
@@ -357,7 +360,6 @@ Therefore, the pattern of Airbnb rentals in London is influenced by both geograp
 ::: 
 
 ```{python}
-
 # URLs
 night_economy_url = "https://data.london.gov.uk/download/london-night-time-economy/e554ddcd-4fb7-42dc-b0d2-d73f88938cdb/night-time-economy.xls"
 late_night_liscenses_url = "https://data.london.gov.uk/download/alcohol-and-late-night-refreshment-licensing-statistics/7836522b-3b4c-4aae-9aa3-9b2389621a96/licensed-premises-24-hour.xlsx"
@@ -464,7 +466,6 @@ Key correlations include:
 * Various room types have moderate to strong correlations with workplace employees in different sectors. For instance, "Entire home/apt" correlates positively with cultural and leisure activities employees, suggesting more of these employees in areas with more entire homes/apts.ivities.
 
 ```{python}
-
 ### **Correlation Matrix (Pearson)**
 
 # Merge all datasets into **one**
@@ -519,12 +520,6 @@ plt.title(title_text, fontsize=15, color="black", ha="center", va="center", font
 plt.show()
 ```
 
-
-
-
-
-
-
 ### **Spatial Autocorrelation Analysis (Moran's I)**
 
 The Local Moran's I map for Airbnb density and the provided Global Moran's I statistics reveal spatial clustering in the distribution of Airbnb listings and various workforce and workplace categories across London. The high Global Moran's I for Airbnb density (0.44) with a significant p-value (0.001) indicates a strong clustered pattern of Airbnb listings, which suggests that Airbnbs are not evenly spread out but rather concentrated in specific areas; specifically central London.
@@ -541,6 +536,47 @@ import geopandas as gpd
 from libpysal.weights import Queen
 from esda.moran import Moran, Moran_Local
 import matplotlib.pyplot as plt
+
+geo_url = 'https://data.london.gov.uk/download/statistical-gis-boundary-files-london/9ba8c833-6370-4b11-abdc-314aa020d5e0/statistical-gis-boundaries-london.zip'
+response = requests.get(geo_url)
+
+# create a temporary file folder
+temp_folder = 'temp_geo_data'
+os.makedirs(temp_folder, exist_ok=True)
+
+# unzip files to the temporary file folder
+with ZipFile(BytesIO(response.content)) as zip_file:
+    zip_file.extractall(temp_folder)
+
+all_files = []
+for root, dirs, files in os.walk(temp_folder):
+    for file in files:
+        all_files.append(os.path.join(root, file))
+
+# look for shapefile
+shp_files = [file for file in all_files if file.endswith('.shp')]
+
+# select shapefile
+if shp_files:
+    selected_shp_file = shp_files[0]
+    gdf_boroughs = gpd.read_file(selected_shp_file)
+    # print(gdf_boroughs.head())
+else:
+    print("No SHP files found in the ZIP archive.")
+
+# delete the temporary folder
+shutil.rmtree(temp_folder)
+
+# Take the column 'Entire home/apt' as an example, do the **Moran's I and it's P value**  
+
+# Adding the results to dataframe  
+
+# Change the content of **variables** to change output map
+
+# Transform the dataframe to **geodataframe**, and visualize the result on maps
+
+# Merge Airbnb data
+gdf_boroughs = gdf_boroughs.merge(df_night, left_on='NAME', right_on='neighbourhood', how='left')
 
 variables_to_analyze = [
     'Entire home/apt',
@@ -671,10 +707,22 @@ ax.axis('off')
 
 plt.show()
 
+def print_list_in_lines(lst, max_length_per_line):
+    line = ""
+    for item in lst:
+        new_line = f"{item}, "
+        if len(line) + len(new_line) > max_length_per_line:
+            print(line)
+            line = new_line
+        else:
+            line += new_line
+    if line:
+        print(line)
+
 for cluster_num in range(k):
     boroughs_in_cluster = gdf_boroughs.loc[gdf_boroughs['cluster'] == cluster_num, 'NAME']
     print(f"Boroughs in cluster {cluster_num}:")
-    print(boroughs_in_cluster.to_list())
+    print_list_in_lines(boroughs_in_cluster.to_list(), 85)
     print("\n")
 ```
 
