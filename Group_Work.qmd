@@ -116,6 +116,7 @@ InsideAirbnb collected the data for several key reasons:
 ## 3. How was the data collected?  
 
 Source Code and Technology: Data was scraped from the Airbnb website ("https://zh.airbnb.com") using Python, with results stored in a PostgreSQL database. Some of the Python code used can be found at "https://github.com/tomslee/airbnb-data-collection" (Abdulkareem Alsudais, 2021). They may have also used an extraction tool named import.io ("https://www.import.io/products").
+Source Code and Technology: Data was scraped from the Airbnb website ("https://zh.airbnb.com") using Python, with results stored in a PostgreSQL database. Some of the Python code used can be found at "https://github.com/tomslee/airbnb-data-collection" (Abdulkareem Alsudais, 2021). They may have also used an extraction tool named import.io ("https://www.import.io/products").
 
 Data Collection Details: The scraping script gathers multiple sets of data for each Airbnb listing, including host ID, room type, country, city, neighborhood, address, number of reviews, overall satisfaction rating, accommodation details, price, minimum stay duration, last modified timestamp, latitude, and longitude. Notably, certain data like occupancy rates, specific addresses, and guest information were not collected.
 
@@ -352,6 +353,8 @@ Therefore, the pattern of Airbnb rentals in London is influenced by both geograp
 ```
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London? 
+
+::: 
 
 ```{python}
 
