@@ -1,10 +1,9 @@
 ---
 bibliography: bio.bib
 csl: harvard-cite-them-right.csl
-title: A geodemographic profile of London Boroughs in context to the location of Airbnb properties 
+title: A geodemographic profile of London Boroughs in context to the location of Airbnb properties
 execute:
   echo: false
-jupyter: python3
 format:
   html:
     theme:
@@ -12,23 +11,20 @@ format:
       - css/web.scss
     code-copy: true
     code-link: true
-    #cover-image: cover.png
     toc: true
-    toc-title: "On this page"
+    toc-title: On this page
     toc-depth: 2
     toc_float:
       collapsed: false
-      smooth_scroll: true    
+      smooth_scroll: true
   pdf:
+    latex-engine: xelatex
     include-in-header:
       text: |
         \addtokomafont{disposition}{\rmfamily}
-    #documentclass: report
-    # If using Quarto in Docker, available fonts are: `fc-list : family | sort | uniq`
-    # If using Quarto on local machine then you can usually pick them from the list of installed fonts
-    mainfont: "Spectral" # https://fonts.google.com/specimen/Spectral
-    sansfont: "Roboto"   # https://fonts.google.com/specimen/Roboto
-    monofont: "JetBrainsMono-Regular" # https://fonts.google.com/specimen/JetBrains%20Mono
+    mainfont: Times New Roman
+    sansfont: Times New Roman
+    monofont: Times New Roman
     papersize: a4
     geometry:
       - top=25mm
@@ -40,22 +36,23 @@ format:
     number-sections: false
     colorlinks: true
     highlight-style: github
+jupyter: python3
 ---
 
 ## Declaration of Authorship {.unnumbered .unlisted}
 
-We, [Bashir Hassan, ], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
+We, [Bashir Hassan, Yanxu Lyu, Chuyue Wang, Han Jiang, Oujin Zhang], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
 
 Date: 19.12.2023
 
-Student Numbers: 22226256
+Student Numbers: 22226256, 2303338, 23039200, 23203113, 23204533
 
 ## Brief Group Reflection
 
 | What Went Well | What Was Challenging |
 | -------------- | -------------------- |
-| A              | B                    |
-| C              | D                    |
+| A correlation  | B   data collection  |
+| C cluster      | D   data cleaning    |
 
 ## Priorities for Feedback
 
@@ -102,8 +99,7 @@ else:
 
 ## 1. Who collected the data?
 
-The data was collected by by InsideAirbnb which is a investigatory website with a mission driven project that provides data and advocacy about Airbnb's impact on residential communities (Cox et al., 2023). The data on the site is sourced from publicly available information from the Airbnb site, which is then analysed, cleansed, and aggregated to facilitate public discussion. The founder Murray Cox, is a community artist and hactivist utilising technology as a means of social change. 
-
+The data was collected by InsideAirbnb, an investigative website with a mission-driven project that offers data and advocacy regarding Airbnb's effects on residential communities (Cox et al., 2023). They source data from publicly available Airbnb information, which is then analyzed, cleaned, and aggregated for public discussion.
 
 ## 2. Why did they collect it?
 
@@ -117,82 +113,46 @@ InsideAirbnb collected the data for several key reasons:
 
 4. To provide accessible data analysis - so anyone can understand its impact
 
-
-```{python}
-print(f"Data frame is {df.shape[0]:,} x {df.shape[1]:,}")
-```
-
-```{python}
-ax = df.host_listings_count.plot.hist(bins=50);
-ax.set_xlim([0,500]);
-ax.set_xlabel("Host Listings Count")
-```
-
 ## 3. How was the data collected?  
 
-Source Code and Technology: The data is scraped from the Airbnb website ("https://zh.airbnb.com") using Python, and the results are stored in a PostgreSQL database. Each data collection for a city is referred to as a "survey".  Part of the Python codes they use can be found from the url "https://github.com/tomslee/airbnb-data-collection" (Abdulkareem Alsudais, 2021). And also they may used a tool called import.io, whose website is "https://www.import.io/products" to extract the data
+Source Code and Technology: Data was scraped from the Airbnb website ("https://zh.airbnb.com") using Python, with results stored in a PostgreSQL database. Some of the Python code used can be found at "https://github.com/tomslee/airbnb-data-collection" (Abdulkareem Alsudais, 2021). They may have also used an extraction tool named import.io ("https://www.import.io/products").
 
-Data Collection Details: The scraping script collects various data points for each Airbnb listing, including host ID, room type, country, city, neighborhood, address, number of reviews, overall satisfaction rating, accommodation details (like the number of bedrooms, bathrooms), price, minimum stay, last modified timestamp, latitude, longitude, and survey ID. Notably, certain data like occupancy rates, host income, specific addresses, and guest information are not collected
+Data Collection Details: The scraping script gathers multiple sets of data for each Airbnb listing, including host ID, room type, country, city, neighborhood, address, number of reviews, overall satisfaction rating, accommodation details, price, minimum stay duration, last modified timestamp, latitude, and longitude. Notably, certain data like occupancy rates, specific addresses, and guest information were not collected.
 
-Accuracy and Limitations: The methodology aims for a high degree of accuracy, typically within 10% to 20% of the actual number of listings. The process does not use "trip dates" in searches, which means listings marked as unavailable are not excluded. There can be challenges in ensuring the accuracy of location data and neighborhood boundaries, and sometimes listings outside city boundaries are included. Despite these challenges, the data is generally considered reliable for policy and social impact discussions
-
-Unavailable Data: Some data is not collected or available through these surveys, including occupancy rates, host income, specific addresses, and guest information.
+Accuracy and Limitations: The method aims for high accuracy, typically within 10% to 20% of the actual number of listings. The process did not use "trip dates" in searches, meaning listings marked as unavailable were not excluded. There may be challenges in ensuring accuracy of location data and neighborhood boundaries, sometimes including listings outside city boundaries. Despite these challenges, this data is generally considered suitable for policy and societal impact discussions.
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
-a. Data Completeness and Accuracy:
+a. Data Integrity and Accuracy:
 
-i. Data Completeness:
-Using Python scripts to scrape data from the Airbnb website captures a wide range of data points. However, the accuracy of this method typically falls within 10% to 20% of the actual number of listings. While this provides a fairly good estimate, there is still a margin for inaccuracy.
+i. Data Integrity: IA data covers various points but is generally accurate within 10% to 20% of actual listings, providing a reasonable estimate with some inaccuracies.
 
-ii. Data Accuracy:
-In the parts related to reviews in Inside Airbnb (IA), Murray Cox has confirmed that some information is “fake” or “junk” content implemented by Airbnb to prevent and deceive web scraping scripts (2016). This impacts the accuracy of the IA data and leads to a decline in the overall quality of the IA data.
+ii. Data Accuracy: Some 2016 IA reviews were identified as "fake" or "spam," affecting data accuracy and quality.
 
-iii. Limitations of Data Scope:
-Some important data points such as occupancy rates, host income, specific addresses, and guest information are not collected. The absence of these details limits the depth of analysis, especially in understanding the economic impact of Airbnb on hosts and neighborhoods.
+iii. Data Scope Limits: Key details like occupancy rates, specific addresses, and guest information were missing, limiting analysis depth, especially regarding Airbnb's impact on hosts and local economies.
 
-b. Wider Issues Raised:
+b. Broader Issues:
 
 i. Ethical and Privacy Concerns:
-Although data scraping is effective, it raises ethical issues regarding user privacy and consent. Even though this method does not collect sensitive personal information, scraping data from websites may be perceived as intrusive or in violation of the platform's terms of service.
+IA data collection raises ethical concerns about user privacy and consent, potentially seen as intrusive or violating platform terms.
 
-ii. Impact on Policy and Social Impact Discussions:
-The data can provide valuable insights into the scale and characteristics of Airbnb in various cities, but it may not fully capture the subtle impacts on the housing market, neighborhood dynamics, and local economy, such as the effects on long-term housing supply, changes in rent levels, and potential fluctuations in the real estate market.
-
-In conclusion, while the data collection method provides a wealth of information, its limitations in scope and potential inaccuracies must be acknowledged. Additionally, this method raises ethical considerations in terms of data scraping and privacy. These factors must be considered in any analysis or policy discussions using this data.
+ii. Impact on Policies and Society:
+While the data offers insights into Airbnb's scale and nature in cities, it may not fully reflect nuanced impacts on real estate, neighborhoods, and local economies, including long-term housing availability and market dynamics.
 
 ## 5. What ethical considerations does the use of this data raise? 
 
-When considering ethical considerations in using data from the Inside Airbnb website, the following seven aspects are crucial:
+User Privacy and Data Security: The Inside Airbnb (IA) database, while lacking sensitive information, requires adherence to data protection laws and Airbnb's privacy policies to ensure user privacy is respected.
 
-a. User Privacy and Data Security: The data contains precise geographical locations of Airbnb listings. While using this data, it's essential to ensure that personal privacy is not compromised and to comply with relevant data protection laws and standards.
+Reliability of Original Data: Murray Cox's 2016 investigation into data manipulation before its release in New York City highlights the need for further validation of data reliability and transparency.
 
-b. Original Data Accuracy and Reliability: Murray Cox, in his study "How Airbnb’s data hid the facts in New York City," highlighted that Data Manipulation Before Public Release can significantly affect data integrity and accuracy, raising broader issues about data transparency and operability (2016). This indicates a clear bias in data research. While the report mentions only New York City's data being explicitly altered, London's Airbnb data might still be accurate and reliable, but this requires further substantiation.
+Secondary Data Interpretation: Murray Cox's processing of Airbnb data might introduce biases, necessitating a thorough understanding of the original data and methods to avoid misleading conclusions.
 
-c. Secondary Interpretation or Modification of Data: After scraping data from Airbnb, the website creator, Murray Cox, processed and filtered the data, which could introduce bias. If the original data or its processing is biased or flawed, these issues might be magnified in secondary references. Therefore, a thorough understanding of the data's original sources, processing methods, and potential limitations is necessary. There might be interpretations or modifications by the website creator to the original dataset, leading to misleading analysis outcomes. Potential information biases should be considered when using the data.
+Impact on Public Interest: Airbnb data research can significantly affect communities and public interest. For example, areas with high Airbnb density could influence long-term rental markets, community satisfaction, and potentially reinforce stereotypes in diverse or low-income neighborhoods.
 
-d. Data Sharing and Reuse: Correct citation of data sources is crucial in academic research. When referencing website data, it's important to correctly cite both the original data sources and the processors to maintain academic integrity. Additionally, we need to ensure data use aligns with company promises.
-
-e. Consistency of Research Purpose with Data Collection: Inside Airbnb's original data might have been collected and processed to better develop Airbnb and local communities. When the data is used for different study and research purposes, it might deviate from the original intent, raising ethical issues, especially if the new usage of data is inconsistent with the expectations and consent of the data subjects. Therefore, our research scope/purpose and methods have undergone strict ethical considerations, ultimately aimed at providing data support for improving residents' environment and Airbnb's business practices.
-
-f. Impact on Public Interest: Research on Airbnb data can potentially impact the community and public interest. The public disclosure of specific location data and housing prices can affect nearby tenants, Airbnb operators, and regional public interests. For example, a high density of Airbnb listings in certain areas might affect the long-term rental market due to disturbance or tenant safety concerns, negatively impacting the community environment and resident satisfaction.
-
-g. Potential Discrimination and Bias: The application of the data is based on the distribution of London Boroughs, including factors like housing prices, which may create or exacerbate stereotypes against specific groups. For instance, market data analysis of Airbnb should not lead to adverse effects on low-income areas or specific racial communities. Analytical results should not intensify social inequalities, such as unfair treatment of listings or hosts in certain areas based on data analysis results.
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
 
 ```{python}
-
-!pip3 install --upgrade pip
-!pip3 install requests
-!pip3 install openpyxl
-!pip3 install xlrd
-!pip3 install geopandas
-!pip3 install libpysal
-!pip3 install esda
-!pip3 install contextily
-!pip3 install pyecharts
-!pip install -U scikit-learn threadpoolctl
 
 
 import pandas as pd
@@ -215,7 +175,7 @@ from zipfile import ZipFile
 import os
 import shutil
 from mpl_toolkits.axes_grid1 import make_axes_locatable
-# from pyecharts import Map
+from pyecharts import Map
 import re
 import requests
 from io import BytesIO
@@ -226,6 +186,9 @@ path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/v
 airbnb = pd.read_csv(path1)
 path2 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/neighbourhoods.geojson"
 boros = gpd.read_file(path2)
+
+import warnings
+warnings.filterwarnings('ignore')
 ```
 
 ```{python}
@@ -236,19 +199,17 @@ geometry = [Point(xy) for xy in zip(airbnb['longitude'], airbnb['latitude'])]
 points = gpd.GeoDataFrame(airbnb, geometry=geometry, crs=boros.crs)
 ```
 
-According to statistics from the Airbnb listings dataset, there are a total of 53,395 hosts for Airbnb properties  in London, which can be broadly categorized into four types: 
+Statistics on Airbnb listings shows a total of 53,395 hosts, broadly categorized into four types: 
 
 * **Individual hosts**, who, as homeowners, may reside in the listed house or apartment.
 
-* **Professional hosts**, who are generally investors, buying property specifically for short-term lease to obtain a stable rental income.
+* **Professional hosts**, generally investors buying property specifically for short-term lease to obtain stable rental income.
 
-* **Listing management teams**, companies or groups that oversee listings on behalf of property owners. Veeve, for instance, serves as a residential platform for visitors, facilitating homeowners in renting out their properties.
+* **Listing management teams**, companies or groups overseeing listings on behalf of property owners. 
 
-* **Hoteliers**, who put some listings on the Airbnb platform to attract online bookings.
+* **Hoteliers**, who put listings on Airbnb to attract online bookings.
 
-As a result, Airbnb hosts in London exhibit a diverse range of characteristics, contributing to the diversity of room type.
-
-The analysis of Airbnb listings indicates that a host may choose to list separate rooms within the same apartment or offer multiple apartments or homes for rent in their entirety.
+The listings indicates a host may choose to list separate rooms within the same apartment or offer multiple apartments in their entirety.
 
 ```{python}
 # Calculate the number of airbnbs of each host
@@ -261,48 +222,14 @@ host_sort = host.sort_values(by='count', ascending=False).reset_index(drop=True)
 
 host_max = host_sort.iloc[:5, :]
 host_min = host_sort.iloc[-5:, :]
-print(host_max)
-print(host_min)
 ```
 
-Hosts with multiple listings are more likely to be professional hosts, listing management teams or hotels. Their properties are generally dispersed across various geographical locations and are commonly situated in proximity to downtown areas, especially where tourists gather.
+Analyzing host property ownership reveals host types. Few listings (1-5) indicate individual hosts, while many (over 20) suggest professional hosts or teams.
 
-Take **Veeve** and **Blueground** for example. The following two maps show how the two hosts' listings are distributed.
-
-```{python}
-# Plot(select some points)
-from mpl_toolkits.axes_grid1 import ImageGrid
-airbnb_select1 = airbnb[airbnb['host_name'].str.contains('Veeve', case=False, na=False)]
-airbnb_select2 = airbnb[airbnb['host_name'].str.contains('Blueground', case=False, na=False)]
-
-geometry1 = [Point(xy) for xy in zip(airbnb_select1['longitude'], airbnb_select1['latitude'])]
-points_select1 = gpd.GeoDataFrame(airbnb_select1, geometry=geometry1, crs=boros.crs)
-geometry2 = [Point(xy) for xy in zip(airbnb_select2['longitude'], airbnb_select2['latitude'])]
-points_select2 = gpd.GeoDataFrame(airbnb_select2, geometry=geometry2, crs=boros.crs)
-
-fig = plt.figure(figsize=(12, 6))
-grid = ImageGrid(fig, 111, nrows_ncols=(1, 2), axes_pad=1)
-
-boros.plot(ax=grid[0], color='lightgray', edgecolor='white')
-points_select1.plot(ax=grid[0], color='red', markersize=0.5)
-grid[0].set_title('Figure 6.1: Veeve (Host)')
-
-boros.plot(ax=grid[1], color='lightgray', edgecolor='white')
-points_select2.plot(ax=grid[1], color='red', markersize=0.5)
-grid[1].set_title('Figure 6.2: Blueground (Host)')
-
-plt.axis('off')
-plt.show()
-```
-
-By assessing the quantity of properties owned by hosts, we can gauge the distribution among various host types. Typically, hosts with a modest number (1-5) of listings are more likely to be perceived as individual owners, while those with a substantial count (more than 20) are more likely to be classified as professional hosts or listing management teams.
-
-Airbnb hosts in London are primarily individual hosts, but the presence of more professional hosts should not be overlooked. 
-Among them, 1,826 hosts manage more than 5 listings, totaling 24,832 listings and constituting approximately 28.2 percent of all properties. Notably, STK Homes leads with the highest number of listings at 595. Indeed, Airbnb hosts in London are increasingly adopting a more professional approach, indicating a trend toward greater standardization and accessibility in listings.
+In London, most Airbnb hosts are individuals, but professional hosts are notable. Specifically, 1,826 hosts manage over 5 listings each, totaling 24,832 listings (28.2% of all properties). STK Homes leads with 595 listings, indicating a trend towards standardization and accessibility.
 
 ```{python}
 # Calculate the number of hosts and total Listings in each interval
-
 bins = [0, 5, 10, 20, float('inf')]
 labels = ['1-5', '6-10', '11-20', '20+']
 host_sort['interval'] = pd.cut(host_sort['count'], bins=bins, labels=labels, right=False)
@@ -316,48 +243,34 @@ interval['percentage'] = round(interval['total_listings']/airbnb.shape[0], 2)
 
 ```{python}
 # plot a line chart for the number of hosts and total Listings in each interval
-fig, ax1 = plt.subplots(figsize=(5, 3))
+import matplotlib.pyplot as plt
 
-ax1.plot(interval.index, interval['count'], linewidth = 0.8, color='black', marker='o')
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+
+ax1.plot(interval.index, interval['count'], linewidth=0.8, color='black', marker='o')
 ax1.set_xlabel('Category')
 ax1.set_ylabel('host count', color='black')
 ax1.tick_params(axis='y')
 
-ax2 = ax1.twinx()
+ax3 = ax1.twinx()
+ax3.plot(interval.index, interval['total_listings'], linewidth=0.8, color='darkblue', marker='s')
+ax3.set_ylabel('total_listings', color='darkblue')
+ax3.tick_params(axis='y', labelcolor='darkblue')
 
-ax2.plot(interval.index, interval['total_listings'], linewidth = 0.8, color='skyblue', marker='s')
-ax2.set_ylabel('total_listings', color='skyblue')
-ax2.tick_params(axis='y', labelcolor='skyblue')
-
-plt.title('Figure 6.3: Number of hosts and total listings in each interval')
-plt.show()
-```
-
-Airbnb listings in London encompass a diverse array of types, dominated by **"Entire home/apt"** (62.1%) and **"Private room"** (37.2%). In addition, there are a small number of "Shared room" and "Hotel room".
-
-```{python}
-# Caculate the number of Airbnb listings for each room type
-category = airbnb.room_type.value_counts().to_frame().reset_index(drop=False)
-category['pecentage']=category['count']/airbnb.shape[0]
-
-# Plot
-fig, ax = plt.subplots(figsize=(10, 2))
-category.plot(kind='barh', y='count', x='room_type', ax=ax, legend=False)
-
+category.plot(kind='barh', y='count', x='room_type', ax=ax2, legend=False)
 for index, value in enumerate(category['count']):
-    plt.text(value + 0.1, index, str(value), ha='left', va='center')
+    ax2.text(value + 0.1, index, str(value), ha='left', va='center')
 
+ax2.set_xlabel('count')
+ax2.set_ylabel('room_type')
 
-plt.xlabel('count')
-plt.ylabel('room_type')
-plt.title('Figure 6.4: Number of Airbnb listings for each room type')
-plt.tight_layout() 
+plt.suptitle('Figure 6.1: Comparative Analysis of Airbnb Data')
+
+plt.tight_layout()
 plt.show()
 ```
 
-"Entire home/apt" holds a more substantial share of all listings in the central areas of London compared to other regions. This is in contrast to the trend observed in "Private room" listings, where the proportion tends to be smaller.
-
-In the majority of London's neighborhoods, "Entire home/apt" emerges as the dominant room type, while only a handful of boroughs on the city's periphery deviate from this trend, exhibiting a higher proportion of "Private room" listings.
+Different types of hosts contribute a variety of room types, predominantly "entire house/apt" (62.1%) and "private rooms" (37.2%). Additionally, there are a small number of "shared rooms" and "hotel rooms."
 
 ```{python}
 # Count the number of airbnbs in each neighbourhood
@@ -388,57 +301,55 @@ airbnb_area['main_room_type'] = max_column_names = airbnb_area.loc[:, ['Entire_h
 ```
 
 ```{python}
-# Join airbnb_area to boros
-boros_joined = boros.merge(airbnb_area, how='left', left_on='neighbourhood', right_on='neighbourhood')
+## Join airbnb_area to boros
 
-fig = plt.figure(figsize=(12, 6))
-grid = ImageGrid(fig, 111, nrows_ncols=(1, 3), axes_pad=0.2)
+# boros_joined = boros.merge(airbnb_area, how='left', left_on='neighbourhood', right_on='neighbourhood')
 
-# Plot the proportion of Entire home/apts in each neighbourhood
-ax1 = grid[0]
-boros_joined.plot(column='Entire_home/apt_percent', cmap='Blues', linewidth=0.8, ax=ax1, edgecolor='0.8')
-ax1.set_title('Figure 6.5: Entire home/apt percentage')
+# fig = plt.figure(figsize=(12, 6))
+# grid = ImageGrid(fig, 111, nrows_ncols=(1, 3), axes_pad=0.2)
 
-# Plot the proportion of Private rooms in each neighbourhood
-ax2 = grid[1]
-boros_joined.plot(column='Private_room_percent', cmap='Blues', linewidth=0.8, ax=ax2, edgecolor='0.8')
-ax2.set_title('Figure 6.6: Private room percentage')
+## Plot the proportion of Entire home/apts in each neighbourhood
+# ax1 = grid[0]
+# boros_joined.plot(column='Entire_home/apt_percent', cmap='Blues', linewidth=0.8, ax=ax1, edgecolor='0.8')
+# ax1.set_title('Figure 6.5: Entire home/apt percentage')
 
-# Plot the main room type in each neighbourhood
-ax3 = grid[2]
-boros_joined.plot(column='main_room_type', categorical=True, legend=True, ax=ax3, cmap='Set3', legend_kwds={'bbox_to_anchor': (1, 1), 'prop': {'size': 7}})
-ax3.set_title('Figure 6.7: Main room type')
+## Plot the proportion of Private rooms in each neighbourhood
+# ax2 = grid[1]
+# boros_joined.plot(column='Private_room_percent', cmap='Blues', linewidth=0.8, ax=ax2, edgecolor='0.8')
+# ax2.set_title('Figure 6.6: Private room percentage')
 
-plt.axis('off')
-plt.show()
+## Plot the main room type in each neighbourhood
+# ax3 = grid[2]
+# boros_joined.plot(column='main_room_type', categorical=True, legend=True, ax=ax3, cmap='Set3', legend_kwds={'bbox_to_anchor': (1, 1), 'prop': {'size': 7}})
+# ax3.set_title('Figure 6.7: Main room type')
+
+# plt.axis('off')
+# plt.show()
 ```
 
-An in-depth analysis can be conducted to understand the reasons behind this trend and the characteristics of Airbnb rentals in London.
+In central London, there is a higher proportion of entire homes/apartments and a lower proportion of private rooms. This trend deviates in a few suburban areas, where there is a higher percentage of private rooms.
 
-In the city center, Entire home/apt listings are more prevalent. This may be attributed to the predominantly compact nature of central areas, which are often comprised of apartments. Additionally, these locations tend to be focal points for tourist activities, making visitors more inclined to seek independent and private accommodations for short-term stays. Consequently, rental prices in these areas are higher.
+Further analysis reveals that entire home/apartment listings are prevalent in central areas due to their compact, apartment-dominated nature. These areas attract tourists, driving demand for entire homes and higher rental prices. Suburban areas, with detached houses, favor individual room rentals.
 
-In the suburbs, standalone houses are more common, and hosts are more willing to rent out a portion of them, such as individual rooms.
-
-Therefore, London's Airbnb rental landscape is influenced by both geographical location and the demands of the visitors.
+Therefore, the pattern of Airbnb rentals in London is influenced by both geographical location and tourist demand.
 
 ```{python}
-fig = plt.figure(figsize=(12, 6))
-grid = ImageGrid(fig, 111, nrows_ncols=(1, 2), axes_pad=1)
+# fig = plt.figure(figsize=(12, 6))
+# grid = ImageGrid(fig, 111, nrows_ncols=(1, 2), axes_pad=1)
 
 # Plot the number of listings in each neighbourhood
-ax1 = grid[0]
-boros_joined.plot(column='count', cmap='Blues', linewidth=0.8, ax=ax1, edgecolor='0.8', legend=False)
-ax1.set_title('Figure 6.8: Airbnb listings count')
+# ax1 = grid[0]
+# boros_joined.plot(column='count', cmap='Blues', linewidth=0.8, ax=ax1, edgecolor='0.8', legend=False)
+# ax1.set_title('Figure 6.8: Airbnb listings count')
 
 # Plot the median price of listings in each neighbourhood
-ax2 = grid[1]
-boros_joined.plot(column='price_median', cmap='Blues', linewidth=0.8, ax=ax2, edgecolor='0.8', legend=False)
-ax2.set_title('Figure 6.9: Median price')
+# ax2 = grid[1]
+# boros_joined.plot(column='price_median', cmap='Blues', linewidth=0.8, ax=ax2, edgecolor='0.8', legend=False)
+# ax2.set_title('Figure 6.9: Median price')
 
-plt.axis('off')
-plt.show()
+# plt.axis('off')
+# plt.show()
 ```
-
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London? 
 
@@ -521,7 +432,7 @@ df_airbnb = pd.merge(df_airbnb, average_price, on='neighbourhood', how='left')
 df_airbnb['Sum_room'] = df_airbnb[['Entire home/apt', 'Hotel room', 'Private room', 'Shared room']].sum(axis=1)
 
 # have a look at the dataframe
-df_airbnb.columns
+# df_airbnb.columns
 
 #Data cleaning for the land dataset:
 
@@ -534,21 +445,20 @@ df_land_all = pd.read_excel(land_url, sheet_name='Borough', skiprows=1, na_value
 df_land = df_land_all[['Code', 'Area name', 'Total Area (Hectares)']].iloc[:34]
 #df_land = df_land[df_land_all['Code'].str.startswith('E09')]
 
-df_land.columns
-
+# df_land.columns
 ```
 
 ### Understanding Impact on Local Economy: By analysing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
 
-The night-time economy is integral to London's global identity, playing a significant role in its economic, cultural, and social landscape. For policymakers, the night-time economy is not just a contributor to employment and the city's GDP; it also symbolizes the city's cultural vibrancy and appeal as a 24-hour city (Zhang et al., 2022). To assess the impact of STLs on the night-time economy, we investigated the correlation between the density of STLs and the vibrancy of the local night-time economy. This involves examining data on late-night licenses (bars, clubs, restaurants), their locations, and their revenue trends. Additionally, we explored the employment statistics in these sectors, as STLs could potentially increase demand for local services, thereby impacting job opportunities.
+The night-time economy is crucial to London's identity, significantly impacting its economy, culture, and social fabric. Policymakers recognize it not only for its contribution to employment and GDP but also as a symbol of cultural vibrancy in a 24-hour city (Zhang et al., 2022). To understand the impact of short-term lets (STLs) on this sector, we analyzed the correlation between STL density and night-time economy activity. This included reviewing data on late-night venues (bars, clubs, restaurants), their locations, revenue trends, and employment statistics in these areas, considering STLs' potential to boost local service demand and job opportunities.
 
-Here is a summary of some notable correlations: 
+Key correlations include:
 
-* Room Types and Night-Time Economy Employment: "Entire home/apt" and "Private room" show strong negative correlations with employees in the 24-hour health and personal social services sector, which suggests that areas with more of these Airbnb types have fewer employees in health and social services.
+"Entire home/apt" and "Private room" are negatively correlated with employees in health and personal social services, indicating fewer such employees in areas with more of these Airbnb types.
 
-* Airbnb Density and Night-Time Economy Employment: Airbnb density has a strong positive correlation with employment in the cultural and leisure activities sector, potentially due to higher tourist activity.
+Airbnb density is positively correlated with employment in cultural and leisure activities, likely due to higher tourist activity.
 
-* Workplace Employees and Room Types: There are moderate to strong correlations between various room types and the number of employees in different sectors at the workplace. For example, "Entire home/apt" has a strong positive correlation with cultural and leisure activities at the workplace, suggesting that areas with more entire homes/apts might also have more employees in cultural and leisure activities.
+Various room types have moderate to strong correlations with workplace employees in different sectors. For instance, "Entire home/apt" correlates positively with cultural and leisure activities employees, suggesting more of these employees in areas with more entire homes/apts.ivities.
 
 ```{python}
 
@@ -606,74 +516,6 @@ plt.title(title_text, fontsize=15, color="black", ha="center", va="center", font
 plt.show()
 ```
 
-### Correlation Analysis
-
-We then investigated the distribution of Airbnb related fields and night economy related fields with strong correlation in correlation analysis.
-
-The data on Short-Term Lettings (STL) in London points to a prevalence of affordable options within the market, as evidenced by the clustering of entire homes/apartments and shared rooms in lower value ranges. Private rooms are evenly distributed across various values, suggesting a balanced market with a range of pricing that caters to different segments of consumers. The variability in 'Sum_room' data, with its multiple peaks, indicates a diversity in consumer choice and price points. When considering the boxplot depicting different employee categories, there is a notable variation in economic impact, particularly in the 'Total Workplace' category, which shows a wider range and higher median values. This information is crucial for devising targeted policy decisions that could address housing affordability, maintain community integrity, and ensure that the benefits of STLs are equitably distributed amongst residents and workers in London. 
-
-Policies could include: 
-
-Taxation that reflects earnings from STLs to support local services - A progressive tax structure on STLs in London could channel additional resources into strained local services (Fox et al., 2022). By scaling taxes in line with earnings from STLs, high-earning properties contribute more, reflecting their greater usage of local infrastructure and services. This revenue can fund enhancements in public transport, sanitation, and community safety, which are often impacted by the influx of visitors. 
-
-Measures to protect long-term rental markets and resident communities - Protecting London's long-term rental market is crucial in a city where housing is at a premium. A policy limiting the total number of days a property can be rented out as an STL would discourage full-time vacation rentals, thereby preserving housing for long-term residents. Additionally, requiring STL owners to obtain a license could ensure adherence to safety and community standards. Such measures, suggested by Hill et al. (2023), would safeguard against the erosion of neighbourhood character and the displacement of local communities, maintaining London's diverse and vibrant residential fabric.
-
-```{python}
-
-stats = df_night_clean[['Entire home/apt', 'Private room', 'Shared room', 'Sum_room',
-            'airbnb density', '24-hour health and personal social services_employee',
-            'Any Night Time Economy category_employee',
-            'Cultural and leisure activities_employee',
-            'Activities which support wider social and economic activities_workplace',
-            'Any Night Time Economy category_workplace',
-            'Cultural and leisure activities_workplace',
-            'Total in all sectors_workplace']].describe()
-
-print(stats)
-
-columns = ['Entire home/apt', 'Private room', 'Shared room', 'Sum_room']
-
-fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(12, 10))
-
-axes = axes.flatten()
-
-for i, column in enumerate(columns):
-    subplot_number = i + 1  
-    df_night_clean[column].hist(bins=20, ax=axes[i])
-    axes[i].set_title(f"Figure 7.2.{subplot_number}: {column}")
-
-plt.tight_layout()
-plt.show()
-
-
-columns = ['24-hour health and personal social services_employee',
-           'Any Night Time Economy category_employee',
-           'Cultural and leisure activities_employee',
-           'Activities which support wider social and economic activities_workplace',
-           'Any Night Time Economy category_workplace',
-           'Cultural and leisure activities_workplace',
-           'Total in all sectors_workplace']
-
-short_labels = ['24-hr Health\nServices Employee',
-                'Night Economy\nEmployee',
-                'Cultural &\nLeisure Employmee',
-                'Social & Economic\nSupport Employee',
-                'Night Economy\nWorkplace',
-                'Cultural & Leisure\n Workplace',
-                'Total\nWorkplace']
-
-fig, ax = plt.subplots(figsize=(12, 7))
-boxplot = df_night_clean[columns].boxplot(ax=ax)
-
-ax.set_xticklabels(short_labels, fontsize=10)
-
-plt.title("Figure 7.3: Boxplot")
-
-plt.tight_layout()
-plt.show()
-
-```
-
 ### **Spatial Autocorrelation Analysis (Moran's I)**
 
 The Local Moran's I map for Airbnb density and the provided Global Moran's I statistics reveal spatial clustering in the distribution of Airbnb listings and various workforce and workplace categories across London. The high Global Moran's I for Airbnb density (0.44) with a significant p-value (0.001) indicates a strong clustered pattern of Airbnb listings, which suggests that Airbnbs are not evenly spread out but rather concentrated in specific areas; specifically central London.
@@ -682,10 +524,10 @@ The positive Global Moran's I values for private and shared rooms, as well as fo
 
 The Night Time Economy category and Cultural and leisure activities both for employees and workplaces, also show positive Global Moran's I values, which implies geographic clustering in these sectors. This suggests that certain areas may be experiencing more significant economic impacts from STLs due to a higher concentration of employees and businesses in these sectors. This is normally as a result of urban agglomeration (Fang & Yu, 2017). 
 
-For policy-making, these insights could lead to targeted regulatory approaches. For instance, implementing geographically differentiated regulations that focus on areas with high Airbnb density could help to avoid exacerbating housing shortages or pricing local residents out of the market. Additionally, zoning adjustments or permitting processes might be considered to ensure a balanced distribution of STLs that supports tourism and local economies without compromising the needs of the local workforce, particularly in the night-time economy and cultural sectors.
+For policy-making, these insights could lead to targeted regulatory approaches. For instance, implementing geographically differentiated regulations that focus on areas with high Airbnb density could help to avoid exacerbating housing shortages or pricing local residents out of the market. Additionally, zoning adjustments or permitting processes might be considered to ensure a balanced distribution of STLs that supports tourism and local economies without compromising the needs of the local workforce, particularly in the night-time economy and cultural sectors.fabric.
 
 ```{python}
-
+#| scrolled: true
 import geopandas as gpd
 from libpysal.weights import Queen
 from esda.moran import Moran, Moran_Local
@@ -722,48 +564,50 @@ gdf_boroughs['airbnb density'] = pd.to_numeric(gdf_boroughs['airbnb density'], e
 w = Queen.from_dataframe(gdf_boroughs)
 w.transform = 'r'
 
-figure_counter = 1
 
-for var in variables_to_analyze:
+fig, axes = plt.subplots(2, 6, figsize=(30, 10))  
+
+fig.patch.set_linewidth(2)  
+fig.patch.set_edgecolor('black')  
+
+for i, var in enumerate(variables_to_analyze):
     moran_global = Moran(gdf_boroughs[var], w)
-    print(f"Global Moran's I for {var}: {moran_global.I}, P-value: {moran_global.p_sim}")
 
     moran_local = Moran_Local(gdf_boroughs[var], w)
     gdf_boroughs[f'moran_i_{var}'] = moran_local.Is
     gdf_boroughs[f'moran_p_{var}'] = moran_local.p_sim
 
-    fig, ax = plt.subplots(figsize=(10, 6))
+    ax = axes[i // 6, i % 6]  
     gdf_boroughs.plot(column=f'moran_i_{var}', cmap='RdPu', legend=True, ax=ax)
-    ax.set_title(f"Figure 6.{figure_counter}: Local Moran's I for {var}")
-    
     title = short_labels.get(var, var)
-    ax.set_title(f"Figure 6.{figure_counter}: Local Moran's I for {title}")
-    
-    figure_counter += 1
-    plt.axis('off')
-    plt.show()
+    ax.set_title(f"Local Moran's I for {title}\nMoran's I: {moran_global.I:.2f}, P-value: {moran_global.p_sim:.4f}")
+    ax.axis('off')  
 
+plt.suptitle("Figure: 7.2: Local Moran's I Analysis", fontsize=16, y=1.02)
+
+plt.tight_layout()
+plt.show()
 ```
 
 ### **Cluster**
 
 #### Cluster 0 (Low Airbnb Density and Night-time Activity):
 
-- Encouraging the development of Airbnbs in these areas could indeed spur economic growth, which as an adjunct can bring attnention to more local  culturally significant areas. A policy could include tax incentives or streamlined permitting processes for new Airbnbs.
+- Encouraging the development of Airbnb in these areas can promote economic growth and attract more attention to culturally significant local areas. Policies might include tax incentives for new Airbnb listings or streamlined permitting processes.
 
-- Investment in infrastructure could make these areas more attractive for nighttime activities. However, it's important to consider the local residents' perspective and ensure that any development is in line with their needs and desires.
+- Investment in infrastructure can make these areas more attractive for night activities. However, considering the perspectives of local residents is crucial to ensure development aligns with their needs and desires.
 
 #### Cluster 1 (Moderate Airbnb Density and Night-time Activity): 
 
-- Policies that provide support and incentives for small businesses can help sustain and grow the night-time economy. This might include grants and business development services.
+- Provide support and incentives to help small businesses sustain and grow the night-time economy. This could include grants and business development services.
 
-- Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing the necessary infrastructure.
+- Organizing community-driven events is an excellent way to boost local economy and engagement. Policymakers can support this through funding, promotion, and providing necessary infrastructure.
 
 #### Cluster 2 (High Airbnb Density and Night-time Economy Hotspots):
 
 - It's crucial to strike a balance between the growth of STLs and the impact on the housing market. Regulation could include caps on the number of days a property can be let out, requiring permits, or enforcing zones where STLs are allowed.
 
-- As these areas are active at night, ensuring the safety and convenience of night workers is essential. This could mean enhanced public transportation services during nighttime hours or increased security measures.
+- As these areas are active at night, ensuring the safety and convenience of night workers is essential. This could mean enhanced public transportation services during nighttime hours or increased security measures.curity measures.
 
 ```{python}
 ### **Cluster**
@@ -801,13 +645,6 @@ for n in range(2, 11):
     kmeans.fit(data_for_clustering_scaled)
     inertia.append(kmeans.inertia_)
 
-plt.figure(figsize=(10, 5))
-plt.plot(range(2, 11), inertia, marker='o')
-plt.title('Figure 9: Elbow Method For Optimal K')
-plt.xlabel('Number of clusters')
-plt.ylabel('Inertia')
-plt.show()
-
 # Based on the line diagram in the diagram, I chose a K value of 3 as reasonable 
 
 k = 3
@@ -818,9 +655,11 @@ clusters = kmeans.fit_predict(data_for_clustering_scaled)
 gdf_boroughs['cluster'] = clusters
 
 fig, ax = plt.subplots(figsize=(10, 6))
-gdf_boroughs.plot(column='cluster', categorical=True, legend=True,cmap='RdPu', ax=ax)
-ax.set_title('Figure 10: Clustering Results with K=3')
-plt.axis('off')
+gdf_boroughs.plot(column='cluster', categorical=True, legend=True, cmap='RdPu', ax=ax)
+ax.set_title('Figure 7.3: Clustering Results with K=3')
+
+ax.axis('off')
+
 plt.show()
 
 for cluster_num in range(k):
@@ -828,143 +667,25 @@ for cluster_num in range(k):
     print(f"Boroughs in cluster {cluster_num}:")
     print(boroughs_in_cluster.to_list())
     print("\n")
-
 ```
 
-### Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations. The map shows the distribution of airbnb listings revealing high densities of STLs particularly in Westminster and Kensington and Chelsea. 
-
-#### Regulation:
+### Identifying High-Density STL Areas: The Airbnb dataset analysis revealed particular boroughs with high concentrations of STLs; guiding targeted regulations.  
 
 1. Since 2008, Portugal created laws to regulate the develpoment of Airbnb style STL properties by mandating that they register with the local authority in the first instance. It was demonstrated that a 1% increase in a municipality airbnb share resulteed in a 3.7% increase in house price (Franco & Santos, 2021). Also, due to the spatial heterogeneity of Airbnbs, it was demonstated that there was a localised emphasis on building in the hitoric centres that attract toursits.
 
-2. Denisty caps is a policy tool that establishes an upper limit on the number of Airbnb listings in a given area. This regulatory measure aims to mitigate concerns related to housing availability, affordability, noise, while preserving the spatially endowed character. It also facilitates better enforcement of environmental standards and taxation (Resch et al., 2016). 
-
-```{python}
-
-path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
-airbnb = pd.read_csv(path1)
-
-path2 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/neighbourhoods.geojson"
-boros = gpd.read_file(path2)
-
-gdf_airbnb_listings = gpd.GeoDataFrame(
-    airbnb, 
-    geometry=gpd.points_from_xy(airbnb.longitude, airbnb.latitude)
-)
-
-airbnb_counts_per_borough = airbnb['neighbourhood'].value_counts().reset_index()
-airbnb_counts_per_borough.columns = ['neighbourhood', 'Count']
-
-london_boroughs = boros.merge(airbnb_counts_per_borough, how='left', on='neighbourhood')
-london_boroughs['Count'] = london_boroughs['Count'].fillna(0)  # Fill NaNs with 0
-
-fig, ax = plt.subplots(1, 1, figsize=(15, 10))
-london_boroughs.plot(ax=ax, color='white', edgecolor='black')
-london_boroughs.plot(ax=ax, column='Count', cmap='Reds', legend=True, 
-                     legend_kwds={'label': "Number of Airbnb Listings"})
-plt.axis('off')
-
-for idx, row in london_boroughs.iterrows():
-    plt.text(row['geometry'].centroid.x, row['geometry'].centroid.y, row['neighbourhood'], 
-             horizontalalignment='center', fontdict={'color':'black', 'size': 8})
-
-plt.title("Figure 11: Airbnb Listings in London", fontsize=16)
-
-plt.show()
-
-```
-
-### Strategic Policy Development: 
-
-Airbnbs are principally structured to serve the toursim sector. Tourist attractions are mostly clustered across central London which is where the majority of airbnb properties are co-located. Given the statistically significant relationship between the choice of residential location with attraction location, policies can safeguard the urban fabric to prevent over-saturation of STLs. 
-
-```{python}
-tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
-geojson_url = "https://skgrange.github.io/www/data/london_boroughs.json"
-
-tourist_attractions_response = requests.get(tourist_attractions_url)
-tourist_attractions_path = BytesIO(tourist_attractions_response.content)
-
-try:
-    toursit_attractions = pd.read_excel(tourist_attractions_path, engine='xlrd')
-except:
-    # If 'xlrd' engine fails, try with 'openpyxl' engine
-    toursit_attractions = pd.read_excel(tourist_attractions_path, engine='openpyxl')
-
-geojson_response = requests.get(geojson_url)
-geojson_path = BytesIO(geojson_response.content)
-london_boroughs_geo = gpd.read_file(geojson_path)
-
-unique_boroughs = toursit_attractions['Borough'].unique()
-borough_color_palette = sns.color_palette("husl", len(unique_boroughs)).as_hex()
-borough_attraction_color_map = {borough: color for borough, color in zip(unique_boroughs, borough_color_palette)}
-
-london_boroughs_geo['color'] = london_boroughs_geo['name'].map(borough_attraction_color_map).fillna('whitesmoke')
-
-fig, ax = plt.subplots(figsize=(15, 10))
-london_boroughs_geo.plot(ax=ax, color=london_boroughs_geo['color'], edgecolor='black')
-
-ax.set_title('Figure 12: Map of Tourist Attractions in London', fontsize=20)
-ax.axis('off')
-
-legend_entries = []
-for borough, attractions in toursit_attractions.groupby('Borough')['Attraction']:
-    label_text = f"{borough}:\n" + "\n".join(f"- {attraction}" for attraction in attractions)
-    color = borough_attraction_color_map[borough]
-    patch = mpatches.Patch(color=color, label=label_text)
-    legend_entries.append(patch)
-
-legend = ax.legend(handles=legend_entries, loc='center left', bbox_to_anchor=(1, 0.5), title='Tourist Attractions', frameon=False, fontsize=8)
-legend.get_title().set_fontsize('10')
-
-plt.tight_layout()
-plt.show()
-```
-
-```{python}
-path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
-airbnb_listings_data = pd.read_csv(path1)
-
-tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
-tourist_attractions = pd.read_excel(tourist_attractions_url)
-
-boroughs = ["Kensington and Chelsea", "Camden", "Southwark", "Lambeth", "Westminster", 
-            "Tower Hamlets", "Richmond upon Thames", "Greenwich", "City of London", "Lewisham"]
-
-airbnb_filtered = airbnb_listings_data[airbnb_listings_data['neighbourhood'].isin(boroughs)]
-tourist_filtered = tourist_attractions[tourist_attractions['Borough'].isin(boroughs)]
-
-airbnb_grouped = airbnb_filtered.groupby('neighbourhood').size().reset_index(name='num_airbnb')
-
-tourist_grouped = tourist_filtered.groupby('Borough')['Visits_2022'].sum().reset_index()
-
-merged_data_specific = pd.merge(airbnb_grouped, tourist_grouped, left_on='neighbourhood', right_on='Borough', how='inner')
-
-X = merged_data_specific['num_airbnb']  
-Y = merged_data_specific['Visits_2022']  
-
-X = sm.add_constant(X)  #
-
-model = sm.OLS(Y, X).fit()  
-
-model_summary_df = pd.read_html(model.summary().tables[1].as_html(), header=0, index_col=0)[0]
-
-model_summary_df.index.name = 'Figure 13: Linear Regression Analysis'
-
-print(model_summary_df)
-```
+2. Denisty caps is a policy tool that establishes an upper limit on the number of Airbnb listings in a given area. This regulatory measure aims to mitigate concerns related to housing availability, affordability, noise, while preserving the spatially endowed character. It also facilitates better enforcement of environmental standards and taxation (Resch et al., 2016).  
 
 ### Conclusion: What can policy do?
 
-In conclusion, this report underscores the significant potential for policy intervention to regulate short-term lets, such as Airbnb, in London, and how this can contribute to addressing the broader housing crisis and inequality in the city (Shabrina et al., 2021). The proliferation of short-term lets has been identified as a contributing factor to the scarcity of affordable housing in London, exacerbating the challenges faced by residents in finding stable, long-term accommodation. By implementing targeted regulations on short-term lets, policymakers have an opportunity to ensure a more balanced housing market, which prioritizes the needs of permanent residents over the demands of the temporary rental market.
+In summary, this report highlights the potential of policy interventions to address Airbnb's impact on London's night-time economy and address broader housing and inequality issues (Shabrina et al., 2021). Through targeted short-term rental regulations, policymakers can create a more balanced housing market and support the stable development of the local night-time economy.
 
-The Mayor of London, along with borough councils, play a crucial role in shaping these policies. They can work collaboratively to monitor the impact of short-term lets on their communities and respond with appropriate regulatory measures. Central government support is also crucial, particularly in terms of providing the legal framework and resources necessary for effective implementation and enforcement of these regulations.
-
-In essence, the strategic regulation of short-term lets is an essential component of a broader strategy to tackle the housing crisis in London. By taking decisive action in this area, policymakers can make a tangible difference in improving housing affordability and equity, thus contributing to the overall reduction of poverty and inequality in the city.
+The Mayor of London and borough councils have key roles in shaping these policies and can collaborate to monitor and implement necessary regulations. Central government support is essential for providing the legal framework and resources needed for effective enforcement.
 
 ## Sustainable Authorship Tools
 
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
+
+21. doi:10.1177/0042098020970865. 
 
 ## References
 
@@ -973,6 +694,10 @@ Alsudais, Abdulkareem. 2021. “Incorrect Data in the Widely Used Inside Airbnb 
 Boyd,  danah and Crawford, K. (2012) ‘CRITICAL QUESTIONS FOR BIG DATA’, Information, Communication & Society, 15(5), pp. 662–679. Available at: https://doi.org/10.1080/1369118X.2012.678878.
 
 Cox, M., Morris, J. and Higgins, T. (2023) Inside Airbnb, Inside Airbnb: Home. Available at: http://insideairbnb.com/ (Accessed: 18 December 2023). 
+
+Chica-Olmo, J., González-Morales, J. and Zafra-Gómez, J. (2020) ‘Effects of location on Airbnb apartment pricing in Malaga’, TOURISM MANAGEMENT, 77. Available at: https://doi.org/10.1016/j.tourman.2019.103981.
+
+Serrano, L., Sianes, A. and Ariza-Montes, A. (2020) ‘Understanding the Implementation of Airbnb in Urban Contexts: Towards a Categorization of European Cities’, LAND, 9(12). Available at: https://doi.org/10.3390/land9120522.
 
 Alexandri, G. (2022) ‘Housing financialisation a la griega’, Geoforum, 136, pp. 68–79. doi:10.1016/j.geoforum.2022.07.014.
 
@@ -989,3 +714,4 @@ Fox, W.F., Hargaden, E.P. and Luna, L. (2022) ‘Statutory incidence and sales t
 Fang, C. and Yu, D. (2017) ‘Urban agglomeration: An evolving concept of an emerging phenomenon’, Landscape and Urban Planning, 162, pp. 126–136. doi:10.1016/j.landurbplan.2017.02.014. 
 
 Shabrina, Z., Arcaute, E. and Batty, M. (2021) ‘Airbnb and its potential impact on the London housing market’, Urban Studies, 59(1), pp. 197–221. doi:10.1177/0042098020970865. 
+
