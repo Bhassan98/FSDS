@@ -141,7 +141,7 @@ While the data offers insights into Airbnb's scale and nature in cities, it may 
 
 ## 5. What ethical considerations does the use of this data raise? 
 
-User Privacy and Data Security: The Inside Airbnb (IA) database, while lacking sensitive information, requires adherence to data protection laws and Airbnb's privacy policies to ensure user privacy is respected.
+User Privacy and Data Security: The Inside Airbnb (IA) database, while lacking sensitive information, requires adherence to data protection laws and Airbnb's privacy policies across multiple jurisdictions to ensure user privacy is respected.
 
 Reliability of Original Data: Murray Cox's 2016 investigation into data manipulation before its release in New York City highlights the need for further validation of data reliability and transparency.
 
@@ -355,9 +355,7 @@ Therefore, the pattern of Airbnb rentals in London is influenced by both geograp
 # plt.show()
 ```
 
-## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London? 
-
-::: 
+## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London?  
 
 ```{python}
 # URLs
