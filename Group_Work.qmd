@@ -755,23 +755,15 @@ for var in variables_to_analyze:
 
 #### Cluster 1 (Moderate Airbnb Density and Night-time Activity): 
 
-- Support for Small Businesses: Policies that provide support and incentives for small businesses can help sustain and grow the nighttime economy. This might include grants, business development services, or special zoning considerations.
+- Policies that provide support and incentives for small businesses can help sustain and grow the night-time economy. This might include grants and business development services.
 
-- Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing necessary infrastructure.
+- Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing the necessary infrastructure.
 
 #### Cluster 2 (High Airbnb Density and Night-time Economy Hotspots):
 
-- Airbnb Regulation: It's crucial to strike a balance between the growth of STLs and the impact on the housing market. Regulation could include caps on the number of days a property can be let out, requiring permits, or enforcing zones where STLs are allowed.
+- It's crucial to strike a balance between the growth of STLs and the impact on the housing market. Regulation could include caps on the number of days a property can be let out, requiring permits, or enforcing zones where STLs are allowed.
 
-- Support for Night Workers: As these areas are active at night, ensuring the safety and convenience of night workers is essential. This could mean enhanced public transportation services during nighttime hours or increased security measures.
-General Considerations for STL Airbnb Regulation:
-
-- Housing Market Impact: Excessive STLs can pressure the local housing market, driving up prices and displacing long-term residents. Policymakers need to monitor housing stock and affordability.
-Community Services: Ensure that the growth in STLs does not overburden local services such as waste management, emergency services, and public transport.
-
-- Noise and Nuisance: Establish clear guidelines and enforcement mechanisms for noise and nuisance to protect residents' quality of life.
-
-- Data-Driven Approach: Continue to use data analytics to monitor the situation and adapt policies accordingly. This could involve regular reviews of Airbnb density and its impacts, using tools similar to the ones represented in the images provided. Ultimately, the insights suggest a nuanced approach that considers the varying impacts of Airbnbs across different areas. Policies should be tailored to the characteristics of each cluster, with ongoing evaluation and adjustment to ensure they meet the intended goals without unintended negative consequences.
+- As these areas are active at night, ensuring the safety and convenience of night workers is essential. This could mean enhanced public transportation services during nighttime hours or increased security measures.
 
 ```{python}
 ### **Cluster**
@@ -843,9 +835,9 @@ for cluster_num in range(k):
 
 #### Regulation:
 
-1. Zoning laws: Since 2008, Portugal created laws to regular the develpoment of Airbnb style STL properties by mandating that they register with the local authority in the first instance. It was demonstrated that a 1% increase in a municipality airbnb share resulteed in a 3.7% increase in house price (Franco & Santos, 2021). Also, due to the spatial heterogeneity of Airbnbs, it was demonstated that there was a localised emphasis on building in the hitoric centres that attract toursits. 
+1. Since 2008, Portugal created laws to regulate the develpoment of Airbnb style STL properties by mandating that they register with the local authority in the first instance. It was demonstrated that a 1% increase in a municipality airbnb share resulteed in a 3.7% increase in house price (Franco & Santos, 2021). Also, due to the spatial heterogeneity of Airbnbs, it was demonstated that there was a localised emphasis on building in the hitoric centres that attract toursits.
 
-2. Denisty caps: Is a policy tool that establishes an upper limit on the number of Airbnb listings in a given area. This regulatory measure aims to mitigate concerns related to housing availability, affordability, noise, while preserving the spatially endowed character. It also facilitates better enforcement of environmental standards and taxation (Resch et al., 2016). 
+2. Denisty caps is a policy tool that establishes an upper limit on the number of Airbnb listings in a given area. This regulatory measure aims to mitigate concerns related to housing availability, affordability, noise, while preserving the spatially endowed character. It also facilitates better enforcement of environmental standards and taxation (Resch et al., 2016). 
 
 ```{python}
 
@@ -881,7 +873,6 @@ plt.title("Figure 11: Airbnb Listings in London", fontsize=16)
 plt.show()
 
 ```
-
 
 ### Strategic Policy Development: 
 
@@ -963,7 +954,7 @@ print(model_summary_df)
 
 ### Conclusion: What can policy do?
 
-In conclusion, this report underscores the significant potential for policy intervention to regulate short-term lets, such as Airbnb, in London, and how this can contribute to addressing the broader housing crisis and inequality in the city. The proliferation of short-term lets has been identified as a contributing factor to the scarcity of affordable housing in London, exacerbating the challenges faced by residents in finding stable, long-term accommodation. By implementing targeted regulations on short-term lets, policymakers have an opportunity to ensure a more balanced housing market, which prioritizes the needs of permanent residents over the demands of the temporary rental market.
+In conclusion, this report underscores the significant potential for policy intervention to regulate short-term lets, such as Airbnb, in London, and how this can contribute to addressing the broader housing crisis and inequality in the city (Shabrina et al., 2021). The proliferation of short-term lets has been identified as a contributing factor to the scarcity of affordable housing in London, exacerbating the challenges faced by residents in finding stable, long-term accommodation. By implementing targeted regulations on short-term lets, policymakers have an opportunity to ensure a more balanced housing market, which prioritizes the needs of permanent residents over the demands of the temporary rental market.
 
 The Mayor of London, along with borough councils, play a crucial role in shaping these policies. They can work collaboratively to monitor the impact of short-term lets on their communities and respond with appropriate regulatory measures. Central government support is also crucial, particularly in terms of providing the legal framework and resources necessary for effective implementation and enforcement of these regulations.
 
@@ -994,3 +985,5 @@ Zhang, Y., Li, H. and Ren, G. (2022) ‘Quantifying the social impacts of the Lo
 Fox, W.F., Hargaden, E.P. and Luna, L. (2022) ‘Statutory incidence and sales tax compliance: Evidence from wayfair’, Journal of Public Economics, 213, p. 104716. doi:10.1016/j.jpubeco.2022.104716. 
 
 Fang, C. and Yu, D. (2017) ‘Urban agglomeration: An evolving concept of an emerging phenomenon’, Landscape and Urban Planning, 162, pp. 126–136. doi:10.1016/j.landurbplan.2017.02.014. 
+
+Shabrina, Z., Arcaute, E. and Batty, M. (2021) ‘Airbnb and its potential impact on the London housing market’, Urban Studies, 59(1), pp. 197–221. doi:10.1177/0042098020970865. 
