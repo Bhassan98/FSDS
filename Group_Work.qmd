@@ -540,9 +540,7 @@ df_land.columns
 
 ### Understanding Impact on Local Economy: By analysing the night-time economy and late-night licenses data, regulators can assess how STLs affect local businesses and services.
 
-The night-time economy is integral to London's global identity, playing a significant role in its economic, cultural, and social landscape. For policymakers, the night-time economy is not just a contributor to employment and the city's GDP; it also symbolizes the city's cultural vibrancy and appeal as a 24-hour city. It encompasses various sectors, including entertainment, food and beverage, transportation, and emergency services, all of which operate beyond the traditional daylight hours (Zhang et al., 2022).
-
-To assess the impact of STLs on the local economy, especially in the context of the night-time economy, we investigated the correlation between the density of STLs and the vibrancy of the local night-time economy. This involves examining data on late-night licenses (bars, clubs, restaurants), their locations, and their revenue trends. Additionally, we explored the employment statistics in these sectors, as STLs could potentially increase demand for local services, thereby impacting job opportunities.
+The night-time economy is integral to London's global identity, playing a significant role in its economic, cultural, and social landscape. For policymakers, the night-time economy is not just a contributor to employment and the city's GDP; it also symbolizes the city's cultural vibrancy and appeal as a 24-hour city (Zhang et al., 2022). To assess the impact of STLs on the night-time economy, we investigated the correlation between the density of STLs and the vibrancy of the local night-time economy. This involves examining data on late-night licenses (bars, clubs, restaurants), their locations, and their revenue trends. Additionally, we explored the employment statistics in these sectors, as STLs could potentially increase demand for local services, thereby impacting job opportunities.
 
 Here is a summary of some notable correlations: 
 
@@ -551,8 +549,6 @@ Here is a summary of some notable correlations:
 * Airbnb Density and Night-Time Economy Employment: Airbnb density has a strong positive correlation with employment in the cultural and leisure activities sector, potentially due to higher tourist activity.
 
 * Workplace Employees and Room Types: There are moderate to strong correlations between various room types and the number of employees in different sectors at the workplace. For example, "Entire home/apt" has a strong positive correlation with cultural and leisure activities at the workplace, suggesting that areas with more entire homes/apts might also have more employees in cultural and leisure activities.
-
-
 
 ```{python}
 
@@ -610,24 +606,17 @@ plt.title(title_text, fontsize=15, color="black", ha="center", va="center", font
 plt.show()
 ```
 
-
-### Check field information
+### Correlation Analysis
 
 We then investigated the distribution of Airbnb related fields and night economy related fields with strong correlation in correlation analysis.
-
-Included:
-
-* Basic statistics for each variable, such as mean, median, minimum, and maximum. 
-
-* Plot the distribution of each variable, such as a histogram or box diagram.
 
 The data on Short-Term Lettings (STL) in London points to a prevalence of affordable options within the market, as evidenced by the clustering of entire homes/apartments and shared rooms in lower value ranges. Private rooms are evenly distributed across various values, suggesting a balanced market with a range of pricing that caters to different segments of consumers. The variability in 'Sum_room' data, with its multiple peaks, indicates a diversity in consumer choice and price points. When considering the boxplot depicting different employee categories, there is a notable variation in economic impact, particularly in the 'Total Workplace' category, which shows a wider range and higher median values. This information is crucial for devising targeted policy decisions that could address housing affordability, maintain community integrity, and ensure that the benefits of STLs are equitably distributed amongst residents and workers in London. 
 
 Policies could include: 
 
-Taxation that reflects earnings from STLs to support local services - A progressive tax structure on STLs in London could channel additional resources into strained local services. By scaling taxes in line with earnings from STLs, high-earning properties contribute more, reflecting their greater usage of local infrastructure and services. This revenue can fund enhancements in public transport, sanitation, and community safety, which are often impacted by the influx of visitors. A targeted tax could also dissuade the conversion of long-term rentals into STLs, balancing the market and supporting community stability.
+Taxation that reflects earnings from STLs to support local services - A progressive tax structure on STLs in London could channel additional resources into strained local services (Fox et al., 2022). By scaling taxes in line with earnings from STLs, high-earning properties contribute more, reflecting their greater usage of local infrastructure and services. This revenue can fund enhancements in public transport, sanitation, and community safety, which are often impacted by the influx of visitors. 
 
-Measures to protect long-term rental markets and resident communities (Hill et al., 2023) - Protecting London's long-term rental market is crucial in a city where housing is at a premium. A policy limiting the total number of days a property can be rented out as an STL would discourage full-time vacation rentals, thereby preserving housing for long-term residents. Additionally, requiring STL owners to obtain a license could ensure adherence to safety and community standards. Such measures, suggested by Hill et al. (2023), would safeguard against the erosion of neighborhood character and the displacement of local communities, maintaining London's diverse and vibrant residential fabric.
+Measures to protect long-term rental markets and resident communities - Protecting London's long-term rental market is crucial in a city where housing is at a premium. A policy limiting the total number of days a property can be rented out as an STL would discourage full-time vacation rentals, thereby preserving housing for long-term residents. Additionally, requiring STL owners to obtain a license could ensure adherence to safety and community standards. Such measures, suggested by Hill et al. (2023), would safeguard against the erosion of neighbourhood character and the displacement of local communities, maintaining London's diverse and vibrant residential fabric.
 
 ```{python}
 
@@ -687,18 +676,13 @@ plt.show()
 
 ### **Spatial Autocorrelation Analysis (Moran's I)**
 
-The Local Moran's I map for Airbnb density and the provided Global Moran's I statistics reveal spatial clustering in the distribution of Airbnb listings and various workforce and workplace categories across London. The high Global Moran's I for Airbnb density (0.44) with a significant p-value (0.001) indicates a strong clustered pattern of Airbnb listings, which suggests that Airbnbs are not evenly spread out but rather concentrated in specific areas.
+The Local Moran's I map for Airbnb density and the provided Global Moran's I statistics reveal spatial clustering in the distribution of Airbnb listings and various workforce and workplace categories across London. The high Global Moran's I for Airbnb density (0.44) with a significant p-value (0.001) indicates a strong clustered pattern of Airbnb listings, which suggests that Airbnbs are not evenly spread out but rather concentrated in specific areas; specifically central London.
 
-The positive Global Moran's I values for private and shared rooms, as well as for sum_rooms, show moderate spatial clustering, with sum_rooms exhibiting a stronger clustering tendency (I = 0.24, P-value = 0.014). This might indicate areas of potential over-saturation or under-service in the STL market.
+The positive Global Moran's I values for private and shared rooms, as well as for sum_rooms, show moderate spatial clustering, with sum_rooms exhibiting a stronger clustering tendency (I = 0.24, P-value = 0.014). This might indicate areas of over-saturation in the STL market.
 
-The workforce and workplace categories, specifically "Any Night Time Economy category" and "Cultural and leisure activities," both for employees and workplaces, also show positive Global Moran's I values, which implies geographic clustering in these sectors. This could suggest that certain areas may be experiencing more significant economic impacts from STLs due to a higher concentration of employees and businesses in these sectors.
+The Night Time Economy category and Cultural and leisure activities both for employees and workplaces, also show positive Global Moran's I values, which implies geographic clustering in these sectors. This suggests that certain areas may be experiencing more significant economic impacts from STLs due to a higher concentration of employees and businesses in these sectors. This is normally as a result of urban agglomeration (Fang & Yu, 2017). 
 
 For policy-making, these insights could lead to targeted regulatory approaches. For instance, implementing geographically differentiated regulations that focus on areas with high Airbnb density could help to avoid exacerbating housing shortages or pricing local residents out of the market. Additionally, zoning adjustments or permitting processes might be considered to ensure a balanced distribution of STLs that supports tourism and local economies without compromising the needs of the local workforce, particularly in the night-time economy and cultural sectors.
-
-Moreover, the analysis could inform policies that aim to redistribute the economic benefits of STLs more evenly across the city, potentially by incentivizing Airbnb listings in areas with lower densities. This would help mitigate the risks of over-tourism and its associated strains on local communities and infrastructure.
-
-The p-values associated with the Global Moran's I statistics are also critical, as they suggest the likelihood that the observed spatial patterns did not occur by chance. Particularly for categories with p-values below 0.05, such as "Cultural and leisure activities" for both employees and workplaces, the evidence supports the need for policy interventions that are sensitive to the specific dynamics of these sectors.
-
 
 ```{python}
 
@@ -752,28 +736,29 @@ for var in variables_to_analyze:
 
 #### Cluster 0 (Low Airbnb Density and Nighttime Activity):
 
-* Development Incentives: Encouraging the development of Airbnbs in these areas could indeed spur economic growth, especially if they are near attractions or culturally significant areas. A policy could include tax incentives or streamlined permitting processes for new Airbnbs.
-Infrastructure Improvements: Investment in infrastructure could make these areas more attractive for nighttime activities. However, it's important to consider the local residents' perspective and ensure that any development is in line with their needs and desires.
+- Development Incentives: Encouraging the development of Airbnbs in these areas could indeed spur economic growth, especially if they are near attractions or culturally significant areas. A policy could include tax incentives or streamlined permitting processes for new Airbnbs.
+
+- Infrastructure Improvements: Investment in infrastructure could make these areas more attractive for nighttime activities. However, it's important to consider the local residents' perspective and ensure that any development is in line with their needs and desires.
 
 #### Cluster 1 (Moderate Airbnb Density and Nighttime Activity): 
 
-* Support for Small Businesses: Policies that provide support and incentives for small businesses can help sustain and grow the nighttime economy. This might include grants, business development services, or special zoning considerations.
+- Support for Small Businesses: Policies that provide support and incentives for small businesses can help sustain and grow the nighttime economy. This might include grants, business development services, or special zoning considerations.
 
-* Community Events: Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing necessary infrastructure.
+- Community Events: Hosting community-driven events can be a great way to boost local economies and engagement. Policymakers could support this through funding, promotion, and providing necessary infrastructure.
 
 #### Cluster 2 (High Airbnb Density and Nighttime Economy Hotspots):
 
-* Airbnb Regulation: It's crucial to strike a balance between the growth of STLs and the impact on the housing market. Regulation could include caps on the number of days a property can be let out, requiring permits, or enforcing zones where STLs are allowed.
+- Airbnb Regulation: It's crucial to strike a balance between the growth of STLs and the impact on the housing market. Regulation could include caps on the number of days a property can be let out, requiring permits, or enforcing zones where STLs are allowed.
 
-* Support for Night Workers: As these areas are active at night, ensuring the safety and convenience of night workers is essential. This could mean enhanced public transportation services during nighttime hours or increased security measures.
+- Support for Night Workers: As these areas are active at night, ensuring the safety and convenience of night workers is essential. This could mean enhanced public transportation services during nighttime hours or increased security measures.
 General Considerations for STL Airbnb Regulation:
 
-* Housing Market Impact: Excessive STLs can pressure the local housing market, driving up prices and displacing long-term residents. Policymakers need to monitor housing stock and affordability.
+- Housing Market Impact: Excessive STLs can pressure the local housing market, driving up prices and displacing long-term residents. Policymakers need to monitor housing stock and affordability.
 Community Services: Ensure that the growth in STLs does not overburden local services such as waste management, emergency services, and public transport.
 
-Noise and Nuisance: Establish clear guidelines and enforcement mechanisms for noise and nuisance to protect residents' quality of life.
+- Noise and Nuisance: Establish clear guidelines and enforcement mechanisms for noise and nuisance to protect residents' quality of life.
 
-Data-Driven Approach: Continue to use data analytics to monitor the situation and adapt policies accordingly. This could involve regular reviews of Airbnb density and its impacts, using tools similar to the ones represented in the images provided. Ultimately, the insights suggest a nuanced approach that considers the varying impacts of Airbnbs across different areas. Policies should be tailored to the characteristics of each cluster, with ongoing evaluation and adjustment to ensure they meet the intended goals without unintended negative consequences.
+- Data-Driven Approach: Continue to use data analytics to monitor the situation and adapt policies accordingly. This could involve regular reviews of Airbnb density and its impacts, using tools similar to the ones represented in the images provided. Ultimately, the insights suggest a nuanced approach that considers the varying impacts of Airbnbs across different areas. Policies should be tailored to the characteristics of each cluster, with ongoing evaluation and adjustment to ensure they meet the intended goals without unintended negative consequences.
 
 ```{python}
 ### **Cluster**
@@ -887,7 +872,7 @@ plt.show()
 
 ### Strategic Policy Development: 
 
-Airbnbs are principally structured to serve the toursim sector. Tourist attractions are mostly clustered 
+Airbnbs are principally structured to serve the toursim sector. Tourist attractions are mostly clustered across central London which is where the majority of airbnb properties are co-located. Given the statistically significant relationship between the choice of residential location with attraction location, policies can safeguard the urban fabric to prevent over-saturation of STLs. 
 
 ```{python}
 tourist_attractions_url = "https://github.com/Bhassan98/FSDS/raw/13893c7c9b30386271d353b2799fcb6bc4f119cc/Modified_Tourist_Attractions_Visits_London.xlsx"
@@ -933,7 +918,6 @@ plt.show()
 ```
 
 ```{python}
-
 path1 = "http://data.insideairbnb.com/united-kingdom/england/london/2023-09-06/visualisations/listings.csv"
 airbnb_listings_data = pd.read_csv(path1)
 
@@ -958,8 +942,10 @@ Y = merged_data_specific['Visits_2022']
 X = sm.add_constant(X)  #
 
 model = sm.OLS(Y, X).fit()  
-model_summary = model.summary()  
-print(model_summary)
+
+model_summary_df = pd.read_html(model.summary().tables[1].as_html(), header=0, index_col=0)[0]
+
+print(model_summary_df)
 ```
 
 ### Conclusion: What can policy do?
@@ -991,3 +977,7 @@ Resch, E. et al. (2016) ‘Impact of urban density and building height on energy
 Hill, R.J., Pfeifer, N. and Steurer, M. (2023) ‘The Airbnb Rent Premium and the crowding-out of long-term rentals’, Journal of Housing Economics, 61. doi:10.1016/j.jhe.2023.101935. 
 
 Zhang, Y., Li, H. and Ren, G. (2022) ‘Quantifying the social impacts of the London night tube with a double/debiased machine learning based difference-in-differences approach’, Transportation Research Part A: Policy and Practice, 163, pp. 288–303. doi:10.1016/j.tra.2022.07.015. 
+
+Fox, W.F., Hargaden, E.P. and Luna, L. (2022) ‘Statutory incidence and sales tax compliance: Evidence from wayfair’, Journal of Public Economics, 213, p. 104716. doi:10.1016/j.jpubeco.2022.104716. 
+
+Fang, C. and Yu, D. (2017) ‘Urban agglomeration: An evolving concept of an emerging phenomenon’, Landscape and Urban Planning, 162, pp. 126–136. doi:10.1016/j.landurbplan.2017.02.014. 
