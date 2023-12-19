@@ -125,18 +125,18 @@ Accuracy and Limitations: The method aims for high accuracy, typically within 10
 
 a. Data Integrity and Accuracy:
 
-i. Data Integrity: IA data covers various points but is generally accurate within 10% to 20% of actual listings, providing a reasonable estimate with some inaccuracies.
+* Data Integrity: IA data covers various points but is generally accurate within 10% to 20% of actual listings, providing a reasonable estimate with some inaccuracies.
 
-ii. Data Accuracy: Some 2016 IA reviews were identified as "fake" or "spam," affecting data accuracy and quality.
+* Data Accuracy: Some 2016 IA reviews were identified as "fake" or "spam," affecting data accuracy and quality.
 
-iii. Data Scope Limits: Key details like occupancy rates, specific addresses, and guest information were missing, limiting analysis depth, especially regarding Airbnb's impact on hosts and local economies.
+* Data Scope Limits: Key details like occupancy rates, specific addresses, and guest information were missing, limiting analysis depth, especially regarding Airbnb's impact on hosts and local economies.
 
 b. Broader Issues:
 
-i. Ethical and Privacy Concerns:
+* Ethical and Privacy Concerns:
 IA data collection raises ethical concerns about user privacy and consent, potentially seen as intrusive or violating platform terms.
 
-ii. Impact on Policies and Society:
+* Impact on Policies and Society:
 While the data offers insights into Airbnb's scale and nature in cities, it may not fully reflect nuanced impacts on real estate, neighborhoods, and local economies, including long-term housing availability and market dynamics.
 
 ## 5. What ethical considerations does the use of this data raise? 
